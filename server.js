@@ -1,14 +1,21 @@
 const express = require('express');
 const app = express();
 
+app.use(express.urlencoded({ extended: true }));
+
 app.listen(8080, function () {
   console.log('listening on 8080');
 });
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/test', function (req, res) {
-  res.send('테스트입니다.');
+app.get('/write', (req, res) => {
+  res.sendFile(__dirname + '/write.html');
+});
+
+app.post('/add', (req, res) => {
+  res.send('전송 완료');
+  console.log(req.body);
 });
