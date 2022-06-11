@@ -1,10 +1,12 @@
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
 const MongoClient = require('mongodb').MongoClient;
-MongoClient.connect('', (err, client) => {
+MongoClient.connect(process.env.DB_URL, (err, client) => {
   app.listen(8080, function () {
     console.log('listening on 8080');
   });
