@@ -28,6 +28,14 @@ app.get('/write', (req, res) => {
   res.sendFile(__dirname + '/write.html');
 });
 
+app.get('/list', (req, res) => {
+  db.collection('post')
+    .find()
+    .toArray((err, result) => {
+      res.render('list.ejs', { posts: result });
+    });
+});
+
 app.post('/add', (req, res) => {
   db.collection('post').insertOne(
     { title: req.body.title, date: req.body.date },
