@@ -37,13 +37,29 @@ app.get('/list', (req, res) => {
 });
 
 app.post('/add', (req, res) => {
-  db.collection('post').insertOne(
-    { title: req.body.title, date: req.body.date },
-    (err, result) => {
-      if (err) {
-        return console.log(err);
+  db.collection('counter').findOne({ name: '게시물 수' }, (err, result) => {
+    const totalPost = result.totalPost;
+    console.log(`totalPost is ${totalPost}`);
+
+    db.collection('post').insertOne(
+      { _id: totalPost + 1, title: req.body.title, date: req.body.date },
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        console.log('게시글 등록 완료');
+        db.collection('post')
+          .find()
+          .toArray((err, result) => {
+            res.send('등록 완료');
+          });
+        db.collection('counter').updateOne(
+          { name: '게시물 수' },
+          { $inc: { totalPost: 1 } },
+          () => {}
+        );
       }
-      res.send('저장 완료');
-    }
-  );
+    );
+  });
 });
