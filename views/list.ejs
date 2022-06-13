@@ -49,13 +49,28 @@
     <ul class="list-group">
       <% for (let i = 0; i < posts.length; i++) { %>
       <li class="list-group-item">
+        <p>글 번호 : <%= posts[i]._id %></p>
         <h4>할 일 : <%= posts[i].title %></h4>
         <p>마감일 : <%= posts[i].date %></p>
-        <button class="delete_btn">삭제</button>
+        <button class="del_btn" data-id="<%= posts[i]._id %>">삭제</button>
       </li>
       <% } %>
     </ul>
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const delBtns = document.querySelectorAll('.del_btn');
+      delBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const pId = btn.dataset.id;
+          axios.delete('/delete', {
+            data: {
+              _id: pId,
+            },
+            withCredentials: true,
+          });
+        });
+      });
+    </script>
     <script
       src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
