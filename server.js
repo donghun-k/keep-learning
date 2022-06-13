@@ -48,12 +48,7 @@ app.post('/add', (req, res) => {
           console.log(err);
           return;
         }
-        console.log('게시글 등록 완료');
-        db.collection('post')
-          .find()
-          .toArray((err, result) => {
-            res.send('등록 완료');
-          });
+        res.send('등록 완료');
         db.collection('counter').updateOne(
           { name: '게시물 수' },
           { $inc: { totalPost: 1 } },
@@ -61,5 +56,12 @@ app.post('/add', (req, res) => {
         );
       }
     );
+  });
+});
+
+app.delete('/delete', (req, res) => {
+  req.body._id = parseInt(req.body._id);
+  db.collection('post').deleteOne({}, (err, result) => {
+    console.log('삭제 완료');
   });
 });
