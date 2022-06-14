@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.set('view engine', 'ejs');
 
 const MongoClient = require('mongodb').MongoClient;
@@ -70,7 +71,12 @@ app.post('/add', (req, res) => {
 
 app.delete('/delete', (req, res) => {
   req.body._id = parseInt(req.body._id);
-  db.collection('post').deleteOne({}, (err, result) => {
+  db.collection('post').deleteOne({ _id: req.body._id }, (err, result) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
     console.log('삭제 완료');
+    res.status(200).send({ message: '삭제했습니다.' });
   });
 });

@@ -61,13 +61,18 @@
       const delBtns = document.querySelectorAll('.del_btn');
       delBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
-          const pId = btn.dataset.id;
-          axios.delete('/delete', {
-            data: {
-              _id: pId,
-            },
-            withCredentials: true,
-          });
+          console.log(btn.dataset.id);
+          axios
+            .delete('/delete', {
+              data: {
+                _id: btn.dataset.id,
+              },
+              withCredentials: true,
+            })
+            .then((res) => {
+              alert(res.data.message);
+              location.reload();
+            });
         });
       });
     </script>
