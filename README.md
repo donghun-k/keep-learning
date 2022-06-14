@@ -17,8 +17,15 @@ Express.js 연습용 프로젝트 입니다
 </details>
 
 <details>
-  <summary>DELETE 요청의 body를 읽어오지 못하는 현상</summary>
+  <summary>서버에서 DELETE 요청의 body를 읽어오지 못하는 현상</summary>
   
   - 
   > https://stackoverflow.com/questions/38294730/express-js-post-req-body-empty
+</details>
+
+<details>
+  <summary>Alert의 한글 메시지가 깨지는 현상 </summary>
+  
+  - 
+  > https://wowan.tistory.com/59
 </details>
