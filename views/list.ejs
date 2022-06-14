@@ -15,7 +15,7 @@
       integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
       crossorigin="anonymous"
     />
-
+    <link href="/public/main.css" rel="stylesheet" />
     <title>To-Do</title>
   </head>
   <body>
@@ -24,7 +24,11 @@
       <% for (let i = 0; i < posts.length; i++) { %>
       <li class="list-group-item">
         <p>글 번호 : <%= posts[i]._id %></p>
-        <h4>할 일 : <%= posts[i].title %></h4>
+        <h4>
+          <a href="<%= `/detail/${posts[i]._id}` %>" class="list-title">
+            <%= posts[i].title %>
+          </a>
+        </h4>
         <p>마감일 : <%= posts[i].date %></p>
         <button class="del_btn" data-id="<%= posts[i]._id %>">삭제</button>
       </li>

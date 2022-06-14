@@ -1,0 +1,8 @@
+.list-title:link {
+  color: black;
+}
+.list-title:hover {
+}
+.list-title:visited {
+  color: grey;
+}

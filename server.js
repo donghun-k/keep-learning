@@ -7,6 +7,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.set('view engine', 'ejs');
 
+app.use('/public', express.static('public'));
+
 const MongoClient = require('mongodb').MongoClient;
 let db;
 MongoClient.connect(process.env.DB_URL, (err, client) => {
@@ -49,10 +51,15 @@ app.get('/detail/:id', (req, res) => {
 app.post('/add', (req, res) => {
   db.collection('counter').findOne({ name: '게시물 수' }, (err, result) => {
     const totalPost = result.totalPost;
-    console.log(`totalPost is ${totalPost}`);
+    console.log(req.body);
 
     db.collection('post').insertOne(
-      { _id: totalPost + 1, title: req.body.title, date: req.body.date },
+      {
+        _id: totalPost + 1,
+        title: req.body.title,
+        date: req.body.date,
+        content: req.body.content,
+      },
       (err, result) => {
         if (err) {
           console.log(err);
