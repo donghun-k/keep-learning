@@ -36,6 +36,15 @@ app.get('/list', (req, res) => {
     });
 });
 
+app.get('/detail/:id', (req, res) => {
+  db.collection('post').findOne(
+    { _id: parseInt(req.params.id) },
+    (err, result) => {
+      res.render('detail.ejs', { data: result });
+    }
+  );
+});
+
 app.post('/add', (req, res) => {
   db.collection('counter').findOne({ name: '게시물 수' }, (err, result) => {
     const totalPost = result.totalPost;
