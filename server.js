@@ -65,7 +65,7 @@ app.post('/add', (req, res) => {
           console.log(err);
           return;
         }
-        res.send('등록 완료');
+        res.redirect('/list');
         db.collection('counter').updateOne(
           { name: '게시물 수' },
           { $inc: { totalPost: 1 } },
