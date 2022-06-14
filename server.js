@@ -3,12 +3,21 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 
+// body-parser 사용
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// ejs 사용
 app.set('view engine', 'ejs');
 
+// public 폴더 사용한다고 알려주기
 app.use('/public', express.static('public'));
 
+// method-override 사용
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+
+// MongoDB 연결
 const MongoClient = require('mongodb').MongoClient;
 let db;
 MongoClient.connect(process.env.DB_URL, (err, client) => {
@@ -23,6 +32,7 @@ MongoClient.connect(process.env.DB_URL, (err, client) => {
   });
 });
 
+// GET
 app.get('/', (req, res) => {
   res.render('index.ejs');
 });
@@ -48,6 +58,16 @@ app.get('/detail/:id', (req, res) => {
   );
 });
 
+app.get('/edit/:id', (req, res) => {
+  db.collection('post').findOne(
+    { _id: parseInt(req.params.id) },
+    (err, result) => {
+      res.render('edit.ejs', { data: result });
+    }
+  );
+});
+
+// POST
 app.post('/add', (req, res) => {
   db.collection('counter').findOne({ name: '게시물 수' }, (err, result) => {
     const totalPost = result.totalPost;
@@ -65,17 +85,20 @@ app.post('/add', (req, res) => {
           console.log(err);
           return;
         }
-        res.redirect('/list');
         db.collection('counter').updateOne(
           { name: '게시물 수' },
           { $inc: { totalPost: 1 } },
           () => {}
         );
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        res.write("<script>alert('등록했습니다.')</script>");
+        res.write("<script>window.location='/list'</script>");
       }
     );
   });
 });
 
+// DELETE
 app.delete('/delete', (req, res) => {
   req.body._id = parseInt(req.body._id);
   db.collection('post').deleteOne({ _id: req.body._id }, (err, result) => {
@@ -84,6 +107,28 @@ app.delete('/delete', (req, res) => {
       return;
     }
     console.log('삭제 완료');
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.status(200).send({ message: '삭제했습니다.' });
   });
+});
+
+// PUT
+app.put('/edit', (req, res) => {
+  db.collection('post').updateOne(
+    { _id: parseInt(req.body.id) },
+    {
+      $set: {
+        title: req.body.title,
+        date: req.body.date,
+        content: req.body.content,
+      },
+    },
+    (err, result) => {
+      console.log('수정 완료');
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.write("<script>alert('수정했습니다.')</script>");
+      res.write(`<script>window.location=\"/detail/${req.body.id}\"</script>`);
+      // res.redirect(`/detail/${req.body.id}`);
+    }
+  );
 });
