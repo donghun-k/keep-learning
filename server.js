@@ -22,11 +22,11 @@ MongoClient.connect(process.env.DB_URL, (err, client) => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.render('index.ejs');
 });
 
 app.get('/write', (req, res) => {
-  res.sendFile(__dirname + '/write.html');
+  res.render('write.ejs');
 });
 
 app.get('/list', (req, res) => {
