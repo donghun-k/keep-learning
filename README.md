@@ -1,5 +1,5 @@
 # To-Do List
-Express.js 연습용 프로젝트 입니다
+Express.js & MongoDB 연습용 프로젝트 입니다
 
 ## 사용 기술
 - Express v4.18.1
