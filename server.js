@@ -156,3 +156,37 @@ app.post(
     res.redirect('/');
   }
 );
+
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: 'id',
+      passwordField: 'pw',
+      session: true,
+      passReqToCallback: false,
+    },
+    (inputId, inputPw, done) => {
+      console.log(inputId, inputPw);
+      db.collection('login').findOne({ id: inputId }, (err, result) => {
+        if (err) return done(err);
+        // 입력한 id로 검색한 결과가 없을 경우
+        if (!result)
+          return done(null, false, { message: '존재하지않는 아이디입니다.' });
+        // 입력한 id로 검색한 결과는 있는데 입력한 pw와 DB 데이터의 pw가 다를 경우
+        if (inputPw == result.pw) {
+          return done(null, result);
+        } else {
+          return done(null, false, { message: '비밀번호가 틀렸습니다.' });
+        }
+      });
+    }
+  )
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  done(null, {});
+});
