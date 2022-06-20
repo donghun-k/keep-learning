@@ -3,6 +3,17 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 
+// Session 이용한 로그인 기능 구현에 필요한 라이브러리들 세팅
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
+
+app.use(
+  session({ secret: '비밀코드', resave: true, saveUninitialized: false })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
 // body-parser 사용
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
