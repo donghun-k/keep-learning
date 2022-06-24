@@ -192,7 +192,10 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  done(null, {});
+  db.collection('login'),
+    findOne({ id: id }, (err, result) => {
+      done(null, { result });
+    });
 });
 
 function checkAuth(req, res, next) {
