@@ -67,6 +67,10 @@ app.get('/edit/:id', (req, res) => {
   );
 });
 
+app.get('/mypage', checkAuth, (req, res) => {
+  res.render('mypage.ejs');
+});
+
 // POST
 app.post('/add', (req, res) => {
   db.collection('counter').findOne({ name: '게시물 수' }, (err, result) => {
@@ -190,3 +194,11 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
   done(null, {});
 });
+
+function checkAuth(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.send('로그인 해주세요.');
+  }
+}
