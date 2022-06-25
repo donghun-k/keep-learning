@@ -26,6 +26,7 @@ app.use('/public', express.static('public'));
 
 // method-override 사용
 const methodOverride = require('method-override');
+const e = require('express');
 app.use(methodOverride('_method'));
 
 // MongoDB 연결
@@ -60,7 +61,7 @@ app.get('/list', checkAuth, (req, res) => {
     });
 });
 
-app.get('/detail/:id', checkAuth, (req, res) => {
+app.get('/detail/:id', checkAuthor, (req, res) => {
   db.collection('post').findOne(
     { _id: parseInt(req.params.id) },
     (err, result) => {
@@ -69,7 +70,7 @@ app.get('/detail/:id', checkAuth, (req, res) => {
   );
 });
 
-app.get('/edit/:id', checkAuth, (req, res) => {
+app.get('/edit/:id', checkAuthor, (req, res) => {
   db.collection('post').findOne(
     { _id: parseInt(req.params.id) },
     (err, result) => {
@@ -195,6 +196,27 @@ passport.deserializeUser((id, done) => {
 function checkAuth(req, res, next) {
   if (req.user) {
     next();
+  } else {
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.write("<script>alert('로그인 해주세요.')</script>");
+    res.write(`<script>window.location=\"/login\"</script>`);
+  }
+}
+
+function checkAuthor(req, res, next) {
+  if (req.user) {
+    db.collection('post').findOne(
+      { _id: parseInt(req.params.id) },
+      (err, result) => {
+        if (result.author == req.user.id) {
+          next();
+        } else {
+          res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+          res.write("<script>alert('권한이 없습니다.')</script>");
+          res.write(`<script>window.location=\"/login\"</script>`);
+        }
+      }
+    );
   } else {
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.write("<script>alert('로그인 해주세요.')</script>");
