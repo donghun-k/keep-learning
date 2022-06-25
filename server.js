@@ -55,7 +55,7 @@ app.get('/write', checkAuth, (req, res) => {
 
 app.get('/list', checkAuth, (req, res) => {
   db.collection('post')
-    .find()
+    .find({ author: req.user.id })
     .toArray((err, result) => {
       res.render('list.ejs', { posts: result });
     });
