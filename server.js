@@ -37,11 +37,11 @@ app.get('/', (req, res) => {
   res.render('index.ejs');
 });
 
-app.get('/write', (req, res) => {
+app.get('/write', checkAuth, (req, res) => {
   res.render('write.ejs');
 });
 
-app.get('/list', (req, res) => {
+app.get('/list', checkAuth, (req, res) => {
   db.collection('post')
     .find()
     .toArray((err, result) => {
@@ -49,7 +49,7 @@ app.get('/list', (req, res) => {
     });
 });
 
-app.get('/detail/:id', (req, res) => {
+app.get('/detail/:id', checkAuth, (req, res) => {
   db.collection('post').findOne(
     { _id: parseInt(req.params.id) },
     (err, result) => {
@@ -58,7 +58,7 @@ app.get('/detail/:id', (req, res) => {
   );
 });
 
-app.get('/edit/:id', (req, res) => {
+app.get('/edit/:id', checkAuth, (req, res) => {
   db.collection('post').findOne(
     { _id: parseInt(req.params.id) },
     (err, result) => {
