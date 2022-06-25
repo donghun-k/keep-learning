@@ -78,10 +78,6 @@ app.get('/edit/:id', checkAuth, (req, res) => {
   );
 });
 
-app.get('/mypage', checkAuth, (req, res) => {
-  res.render('mypage.ejs');
-});
-
 // POST
 app.post('/add', (req, res) => {
   db.collection('counter').findOne({ name: '게시물 수' }, (err, result) => {
@@ -91,6 +87,7 @@ app.post('/add', (req, res) => {
     db.collection('post').insertOne(
       {
         _id: totalPost + 1,
+        author: req.user.id,
         title: req.body.title,
         date: req.body.date,
         content: req.body.content,
@@ -122,7 +119,6 @@ app.delete('/delete', (req, res) => {
       return;
     }
     console.log('삭제 완료');
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.status(200).send({ message: '삭제했습니다.' });
   });
 });
@@ -192,13 +188,11 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
   db.collection('login').findOne({ id: id }, (err, result) => {
-    console.log(result);
     done(null, result);
   });
 });
 
 function checkAuth(req, res, next) {
-  console.log(req.user);
   if (req.user) {
     next();
   } else {
