@@ -202,6 +202,7 @@ function checkAuth(req, res, next) {
   if (req.user) {
     next();
   } else {
-    res.send('로그인 해주세요.');
+    res.write("<script>alert('로그인 해주세요.')</script>");
+    res.write(`<script>window.location=\"/login\"</script>`);
   }
 }
