@@ -46,13 +46,13 @@ Express.js & MongoDB 연습용 프로젝트 입니다.
 
 <details>
   <summary>서버에서 응답에 담아 보낸 alert의 한글 메시지가 깨지는 현상 </summary>
-  
-  
+
+
   ### 😣 문제 상황
   https://github.com/donghun-K/to-do-list/blob/00c090c4c4d3d5bbd4d96d841cf51167af99d664/server.js#L129-L130
   - 서버의 응답에 클라이언트에게 alert을 띄우고 페이지를 이동하게하는 스크립트를 추가하는 코드 작성.
   - alert도 제대로 뜨고 페이지 이동도 문제 없었지만 alert의 메시지가 깨지는 현상 발생.
-  
+
   ### ✅ 해결
   https://github.com/donghun-K/to-do-list/blob/00c090c4c4d3d5bbd4d96d841cf51167af99d664/server.js#L128-L130
   - 한글 깨짐은 어차피 인코딩 문제일 거라 판단, 응답을 utf-8로 보내주는 라인을 추가해 해결.
