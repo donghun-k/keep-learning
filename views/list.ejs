@@ -19,7 +19,14 @@
     <title>To-Do</title>
   </head>
   <body>
-    <%- include('nav.ejs', {auth: auth}) %>
+    <%- include('nav.ejs', {auth: auth}) %> <% if (posts.length == 0) { %>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">등록된 글이 없습니다.</h1>
+        <p class="lead">해야할 일을 추가해보세요!</p>
+      </div>
+    </div>
+    <% } %>
     <ul class="list-group">
       <% for (let i = 0; i < posts.length; i++) { %>
       <li class="list-group-item">
