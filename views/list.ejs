@@ -37,7 +37,9 @@
           </a>
         </h4>
         <p>마감일 : <%= posts[i].date %></p>
-        <button class="del_btn" data-id="<%= posts[i]._id %>">삭제</button>
+        <button class="btn btn-outline-secondary" data-id="<%= posts[i]._id %>">
+          삭제
+        </button>
       </li>
       <% } %>
     </ul>

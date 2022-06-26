@@ -19,17 +19,17 @@
     <title>To-Do</title>
   </head>
   <body>
-    <%- include('nav.ejs', {auth: auth}) %>
+    <%- include('nav.ejs') %>
     <div class="container mt-3">
       <h3 class="text-center">Detail</h3>
       <div class="card" style="width: 100%">
         <div class="card-body">
           <h5 class="card-title"><%= data.title %></h5>
-          <h6 class="card-subtitle mb-2 text-muted">
-            마감일 : <%= data.date %>
-          </h6>
+          <h6 class="card-subtitle mb-2 text-muted"><%= data.date %></h6>
           <p class="card-text"><%= data.content %></p>
-          <a href="<%= `/edit/${data._id}` %>" class="card-link">수정</a>
+          <a href="<%= `/edit/${data._id}` %>" class="btn btn-outline-secondary"
+            >수정</a
+          >
         </div>
       </div>
     </div>
