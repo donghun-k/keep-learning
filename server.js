@@ -87,6 +87,14 @@ app.get('/edit/:id', checkAuthor, (req, res) => {
   );
 });
 
+app.get('/search', (req, res) => {
+  db.collection('post')
+    .find({ title: req.query.value, author: req.user.id })
+    .toArray((err, result) => {
+      res.render('search.ejs', { posts: result, auth: req.user });
+    });
+});
+
 // 게시글 등록, 수정, 삭제
 app.post('/add', (req, res) => {
   db.collection('counter').findOne({ name: '게시물 수' }, (err, result) => {
