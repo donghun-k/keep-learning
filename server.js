@@ -44,7 +44,7 @@ MongoClient.connect(process.env.DB_URL, (err, client) => {
   });
 });
 
-// GET
+// 라우팅
 app.get('/', (req, res) => {
   res.render('index.ejs', { auth: req.user });
 });
@@ -59,6 +59,14 @@ app.get('/list', checkAuth, (req, res) => {
     .toArray((err, result) => {
       res.render('list.ejs', { posts: result, auth: req.user });
     });
+});
+
+app.get('/signin', (req, res) => {
+  res.render('signin.ejs', { auth: req.user });
+});
+
+app.get('/signup', (req, res) => {
+  res.render('signup.ejs', { auth: req.user });
 });
 
 app.get('/detail/:id', checkAuthor, (req, res) => {
@@ -79,7 +87,7 @@ app.get('/edit/:id', checkAuthor, (req, res) => {
   );
 });
 
-// POST
+// 게시글 등록, 수정, 삭제
 app.post('/add', (req, res) => {
   db.collection('counter').findOne({ name: '게시물 수' }, (err, result) => {
     const totalPost = result.totalPost;
@@ -111,20 +119,6 @@ app.post('/add', (req, res) => {
   });
 });
 
-// DELETE
-app.delete('/delete', (req, res) => {
-  req.body._id = parseInt(req.body._id);
-  db.collection('post').deleteOne({ _id: req.body._id }, (err, result) => {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    console.log('삭제 완료');
-    res.status(200).send({ message: '삭제했습니다.' });
-  });
-});
-
-// PUT
 app.put('/edit', (req, res) => {
   db.collection('post').updateOne(
     { _id: parseInt(req.body.id) },
@@ -145,10 +139,21 @@ app.put('/edit', (req, res) => {
   );
 });
 
-// 로그인 / 로그아웃
-app.get('/signin', (req, res) => {
-  res.render('signin.ejs', { auth: req.user });
+app.delete('/delete', (req, res) => {
+  req.body._id = parseInt(req.body._id);
+  db.collection('post').deleteOne({ _id: req.body._id }, (err, result) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log('삭제 완료');
+    res.status(200).send({ message: '삭제했습니다.' });
+  });
 });
+
+// 회원가입
+
+// 로그인 / 로그아웃
 app.post(
   '/signin',
   passport.authenticate('local', { failureRedirect: '/fail' }),
