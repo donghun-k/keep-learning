@@ -26,8 +26,12 @@
         Express & MongoDB 연습용으로 만든 To-Do List 서비스 입니다.
       </p>
       <hr class="my-4" />
+      <% if (!auth) { %>
       <p>서비스를 이용하시려면 로그인이 필요합니다</p>
       <a class="btn btn-primary btn-lg" href="/signin" role="button">Sign In</a>
+      <% } %> <% if (auth) { %>
+      <p><%= auth.id %>님 안녕하세요 :)</p>
+      <% } %>
     </div>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <script
