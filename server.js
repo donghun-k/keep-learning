@@ -145,7 +145,7 @@ app.put('/edit', (req, res) => {
   );
 });
 
-// 로그인 기능 구현
+// 로그인 / 로그아웃
 app.get('/signin', (req, res) => {
   res.render('signin.ejs', { auth: req.user });
 });
@@ -156,6 +156,14 @@ app.post(
     res.redirect('/');
   }
 );
+
+app.get('/signout', (req, res) => {
+  req.logout((err, result) => {
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.write("<script>alert('로그아웃 했습니다.')</script>");
+    res.write(`<script>window.location=\"/\"</script>`);
+  });
+});
 
 passport.use(
   new LocalStrategy(
