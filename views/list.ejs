@@ -27,6 +27,19 @@
       </div>
     </div>
     <% } %>
+    <div class="input-group mb-3">
+      <input
+        id="search_input"
+        type="text"
+        class="form-control"
+        placeholder="검색할 내용"
+      />
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="search_btn">
+          Search
+        </button>
+      </div>
+    </div>
     <ul class="list-group">
       <% for (let i = 0; i < posts.length; i++) { %>
       <li class="list-group-item">
@@ -45,6 +58,7 @@
     </ul>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+      // 게시글 삭제
       const delBtns = document.querySelectorAll('.del_btn');
       delBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
@@ -61,6 +75,14 @@
               location.reload();
             });
         });
+      });
+
+      // 게시글 검색
+      const searchInput = document.querySelector('#search_input');
+      const searchBtn = document.querySelector('#search_btn');
+
+      searchBtn.addEventListener('click', () => {
+        window.location.replace(`/search?value=${searchInput.value}`);
       });
     </script>
     <script
