@@ -19,7 +19,7 @@
     <title>To-Do</title>
   </head>
   <body>
-    <%- include('nav.ejs') %>
+    <%- include('nav.ejs', {auth: auth}) %>
     <div class="container mt-3">
       <h3 class="text-center">Detail</h3>
       <div class="card" style="width: 100%">

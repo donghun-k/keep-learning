@@ -19,7 +19,7 @@
     <title>To-Do</title>
   </head>
   <body>
-    <%- include('nav.ejs') %>
+    <%- include('nav.ejs', {auth: auth}) %>
     <div class="jumbotron">
       <h1 class="display-4">To-Do</h1>
       <p class="lead">

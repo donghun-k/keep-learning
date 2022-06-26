@@ -19,7 +19,7 @@
     <title>To-Do</title>
   </head>
   <body>
-    <%- include('nav.ejs') %>
+    <%- include('nav.ejs', {auth: auth}) %>
     <ul class="list-group">
       <% for (let i = 0; i < posts.length; i++) { %>
       <li class="list-group-item">

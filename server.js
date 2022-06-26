@@ -46,18 +46,18 @@ MongoClient.connect(process.env.DB_URL, (err, client) => {
 
 // GET
 app.get('/', (req, res) => {
-  res.render('index.ejs');
+  res.render('index.ejs', { auth: req.user });
 });
 
 app.get('/write', checkAuth, (req, res) => {
-  res.render('write.ejs');
+  res.render('write.ejs', { auth: req.user });
 });
 
 app.get('/list', checkAuth, (req, res) => {
   db.collection('post')
     .find({ author: req.user.id })
     .toArray((err, result) => {
-      res.render('list.ejs', { posts: result });
+      res.render('list.ejs', { posts: result, auth: req.user });
     });
 });
 
@@ -65,7 +65,7 @@ app.get('/detail/:id', checkAuthor, (req, res) => {
   db.collection('post').findOne(
     { _id: parseInt(req.params.id) },
     (err, result) => {
-      res.render('detail.ejs', { data: result });
+      res.render('detail.ejs', { data: result, auth: req.user });
     }
   );
 });
@@ -74,7 +74,7 @@ app.get('/edit/:id', checkAuthor, (req, res) => {
   db.collection('post').findOne(
     { _id: parseInt(req.params.id) },
     (err, result) => {
-      res.render('edit.ejs', { data: result });
+      res.render('edit.ejs', { data: result, auth: req.user });
     }
   );
 });
@@ -147,7 +147,7 @@ app.put('/edit', (req, res) => {
 
 // 로그인 기능 구현
 app.get('/signin', (req, res) => {
-  res.render('signin.ejs');
+  res.render('signin.ejs', { auth: req.user });
 });
 app.post(
   '/signin',
