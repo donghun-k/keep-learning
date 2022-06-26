@@ -146,11 +146,11 @@ app.put('/edit', (req, res) => {
 });
 
 // 로그인 기능 구현
-app.get('/login', (req, res) => {
-  res.render('login.ejs');
+app.get('/signin', (req, res) => {
+  res.render('signin.ejs');
 });
 app.post(
-  '/login',
+  '/signin',
   passport.authenticate('local', { failureRedirect: '/fail' }),
   (req, res) => {
     res.redirect('/');
@@ -199,7 +199,7 @@ function checkAuth(req, res, next) {
   } else {
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.write("<script>alert('로그인 해주세요.')</script>");
-    res.write(`<script>window.location=\"/login\"</script>`);
+    res.write(`<script>window.location=\"/signin\"</script>`);
   }
 }
 
@@ -213,13 +213,13 @@ function checkAuthor(req, res, next) {
         } else {
           res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
           res.write("<script>alert('권한이 없습니다.')</script>");
-          res.write(`<script>window.location=\"/login\"</script>`);
+          res.write(`<script>window.location=\"/signin\"</script>`);
         }
       }
     );
   } else {
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.write("<script>alert('로그인 해주세요.')</script>");
-    res.write(`<script>window.location=\"/login\"</script>`);
+    res.write(`<script>window.location=\"/signin\"</script>`);
   }
 }
