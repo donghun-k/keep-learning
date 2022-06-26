@@ -140,8 +140,8 @@ app.put('/edit', (req, res) => {
 });
 
 app.delete('/delete', (req, res) => {
-  req.body._id = parseInt(req.body._id);
-  db.collection('post').deleteOne({ _id: req.body._id }, (err, result) => {
+  req.body.id = parseInt(req.body.id);
+  db.collection('post').deleteOne({ _id: req.body.id }, (err, result) => {
     if (err) {
       console.log(err);
       return;
@@ -152,6 +152,26 @@ app.delete('/delete', (req, res) => {
 });
 
 // 회원가입
+app.post('/signup', (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+  db.collection('login').findOne({ id: req.body.id }, (err, result) => {
+    if (result != undefined) {
+      res.write("<script>alert('이미 존재하는 아이디입니다.')</script>");
+      res.write(`<script>window.location=\"/signup\"</script>`);
+    } else if (req.body.pw != req.body.cpw) {
+      res.write("<script>alert('입력된 비밀번호가 다릅니다.')</script>");
+      res.write(`<script>window.location=\"/signup\"</script>`);
+    } else {
+      db.collection('login').insertOne(
+        { id: req.body.id, pw: req.body.pw },
+        () => {
+          res.write("<script>alert('가입 되었습니다.')</script>");
+          res.write(`<script>window.location=\"/\"</script>`);
+        }
+      );
+    }
+  });
+});
 
 // 로그인 / 로그아웃
 app.post(
