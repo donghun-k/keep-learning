@@ -88,10 +88,30 @@ app.get('/edit/:id', checkAuthor, (req, res) => {
 });
 
 app.get('/search', (req, res) => {
+  const search = [
+    {
+      $search: {
+        index: 'titleSearch',
+        text: {
+          query: req.query.value,
+          path: 'title',
+        },
+      },
+    },
+    {
+      $match: {
+        author: req.user.id,
+      },
+    },
+  ];
   db.collection('post')
-    .find({ title: req.query.value, author: req.user.id })
+    .aggregate(search)
     .toArray((err, result) => {
-      res.render('search.ejs', { posts: result, auth: req.user });
+      res.render('search.ejs', {
+        posts: result,
+        auth: req.user,
+        word: req.query.value,
+      });
     });
 });
 

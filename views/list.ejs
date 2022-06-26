@@ -50,7 +50,10 @@
           </a>
         </h4>
         <p>마감일 : <%= posts[i].date %></p>
-        <button class="btn btn-outline-secondary" data-id="<%= posts[i]._id %>">
+        <button
+          class="btn btn-outline-secondary del_btn"
+          data-id="<%= posts[i]._id %>"
+        >
           삭제
         </button>
       </li>
@@ -83,6 +86,11 @@
 
       searchBtn.addEventListener('click', () => {
         window.location.replace(`/search?value=${searchInput.value}`);
+      });
+      searchInput.addEventListener('keyup', (e) => {
+        if (e.keyCode === 13) {
+          window.location.replace(`/search?value=${searchInput.value}`);
+        }
       });
     </script>
     <script
