@@ -44,7 +44,7 @@ MongoClient.connect(process.env.DB_URL, (err, client) => {
   });
 });
 
-// 라우팅
+// 페이지
 app.get('/', (req, res) => {
   res.render('index.ejs', { auth: req.user });
 });
