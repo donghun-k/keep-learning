@@ -25,11 +25,11 @@
       <form action="/add" method="POST">
         <div class="form-group">
           <label>할 일</label>
-          <input type="text" class="form-control" name="title" />
+          <input type="text" class="form-control" name="title" required />
         </div>
         <div class="form-group">
           <label>마감일</label>
-          <input type="date" class="form-control" name="date" />
+          <input type="date" class="form-control" name="date" required />
         </div>
         <div class="form-group">
           <label for="content">상세 내용</label>
@@ -38,6 +38,7 @@
             id="content"
             name="content"
             rows="3"
+            required
           ></textarea>
         </div>
         <button type="submit" class="btn btn-outline-secondary">등록</button>
