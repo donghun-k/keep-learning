@@ -1,6 +1,6 @@
-.list-title:link {
+a:link {
   color: black;
 }
-.list-title:visited {
+a:visited {
   color: grey;
 }
