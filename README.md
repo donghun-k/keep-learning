@@ -7,12 +7,15 @@ Express.js & MongoDB 연습용 프로젝트 입니다.
 - EJS
 
 ## 주요 기능
-<details>
-  <summary>### Sign Up / Sign In</summary>
-  
-  
+### ● Sign Up / Sign In
 ![SignUp](https://user-images.githubusercontent.com/60064471/176761227-6b239bc0-133c-4699-9298-a02257604758.gif)
-</details>
+
+### ● Post, Edit, Delete
+![Post](https://user-images.githubusercontent.com/60064471/176761813-1ac7f378-6775-4923-80e0-34d3bcd5dfca.gif)
+
+### ● Search
+![Search](https://user-images.githubusercontent.com/60064471/176761833-bed79bff-6b9e-4374-a41b-94ff6d73a5ab.gif)
+
 
 ## 트러블 슈팅
 <details>
