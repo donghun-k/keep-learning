@@ -6,6 +6,14 @@ Express.js & MongoDB 연습용 프로젝트 입니다.
 - MongoDB 
 - EJS
 
+## 주요 기능
+<details>
+  <summary>### Sign Up / Sign In</summary>
+  
+  
+![SignUp](https://user-images.githubusercontent.com/60064471/176761227-6b239bc0-133c-4699-9298-a02257604758.gif)
+</details>
+
 ## 트러블 슈팅
 <details>
   <summary>'MongoAPIError: URI must include hostname, domain name, and tld
