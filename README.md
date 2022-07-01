@@ -1,25 +1,33 @@
 # To-Do List
 Express.js & MongoDB 연습용 프로젝트 입니다.
 
-## 사용 기술
+## 1. 사용 기술
 - Express v4.18.1
 - MongoDB 
 - EJS
 
-## 주요 기능
-### ● Sign Up / Sign In
-![SignUp](https://user-images.githubusercontent.com/60064471/176761227-6b239bc0-133c-4699-9298-a02257604758.gif)
-
-### ● Post, Edit, Delete
-![Post](https://user-images.githubusercontent.com/60064471/176761813-1ac7f378-6775-4923-80e0-34d3bcd5dfca.gif)
-
-### ● Search
-![Search](https://user-images.githubusercontent.com/60064471/176761833-bed79bff-6b9e-4374-a41b-94ff6d73a5ab.gif)
-
-
-## 트러블 슈팅
+## 2. 주요 기능
 <details>
-  <summary>'MongoAPIError: URI must include hostname, domain name, and tld
+  <summary>자세히 보기</summary>
+
+
+  ### 2-1. Sign Up / Sign In
+  ![SignUp](https://user-images.githubusercontent.com/60064471/176761227-6b239bc0-133c-4699-9298-a02257604758.gif)
+  
+  Passport, express-session 미들웨어를 사용한 세션 기반 인증 기능.
+
+  ### 2-2. Post, Edit, Delete
+  ![Post](https://user-images.githubusercontent.com/60064471/176761813-1ac7f378-6775-4923-80e0-34d3bcd5dfca.gif)
+
+  ### 2-3. Search
+  ![Search](https://user-images.githubusercontent.com/60064471/176761833-bed79bff-6b9e-4374-a41b-94ff6d73a5ab.gif)
+  
+  MongoDB에 기본적으로 탑재 돼 있는 Full Text Search 기능을 이용한 검색 기능.
+</details>
+
+## 3. 트러블 슈팅
+<details>
+  <summary>3-1. 'MongoAPIError: URI must include hostname, domain name, and tld
     at resolveSRVRecord' 에러 발생</summary>
   
   
@@ -39,7 +47,7 @@ Express.js & MongoDB 연습용 프로젝트 입니다.
 </details>
 
 <details>
-  <summary>서버에서 DELETE 요청의 body를 읽어오지 못하는 현상</summary>
+  <summary>3-2. 서버에서 DELETE 요청의 body를 읽어오지 못하는 현상</summary>
   
   
   ### 😣 문제 상황
@@ -56,7 +64,7 @@ Express.js & MongoDB 연습용 프로젝트 입니다.
 </details>
 
 <details>
-  <summary>서버에서 응답에 담아 보낸 alert의 한글 메시지가 깨지는 현상 </summary>
+  <summary>3-3. 서버에서 응답에 담아 보낸 alert의 한글 메시지가 깨지는 현상 </summary>
 
 
   ### 😣 문제 상황
