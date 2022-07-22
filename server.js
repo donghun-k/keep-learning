@@ -116,7 +116,17 @@ app.get('/search', (req, res) => {
 });
 
 app.get('/chat', checkAuth, (req, res) => {
-  res.render('chat.ejs', { auth: req.user });
+  db.collection('chat').countDocuments({}, (err, num) => {
+    if (num >= 20) {
+      console.log('삭제');
+      db.collection('chat').deleteOne({});
+    }
+  });
+  db.collection('chat')
+    .find()
+    .toArray((err, result) => {
+      res.render('chat.ejs', { msgs: result, auth: req.user });
+    });
 });
 
 // 게시글 등록, 수정, 삭제
@@ -288,3 +298,16 @@ function checkAuthor(req, res, next) {
     res.write(`<script>window.location=\"/signin\"</script>`);
   }
 }
+
+// 채팅
+app.post('/chat', (req, res) => {
+  let doc = {
+    author: req.user.id,
+    msg: req.body.data.msg,
+    date: new Date(),
+  };
+  db.collection('chat').insertOne(doc, () => {
+    console.log('채팅 전송');
+    res.status(200).send();
+  });
+});

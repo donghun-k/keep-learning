@@ -23,12 +23,27 @@
     <h4 class="container mt-4"><strong>Chat</strong></h4>
     <div class="container p-4 detail">
       <div class="row">
-        <div class="col-12">
+        <div class="col-lg-12">
           <div class="chat-room">
             <ul class="list-group chat-content">
-              <li><span class="chat-box">채팅방1 내용</span></li>
-              <li><span class="chat-box">채팅방1 내용</span></li>
-              <li><span class="chat-box mine">채팅방1 내용</span></li>
+              <% for (let i = 0; i < msgs.length; i++) { %> <% if (auth.id ==
+              msgs[i].author) { %>
+              <li>
+                <span class="chat-box mine">
+                  <span class="chat-author">Me<br /></span>
+                  <%= msgs[i].msg %> <br />
+                  <small><%= msgs[i].date %></small>
+                </span>
+              </li>
+              <% } %> <% if (auth.id != msgs[i].author) { %>
+              <li>
+                <span class="chat-box">
+                  <span class="chat-author"><%= msgs[i].author %> <br /></span>
+                  <%= msgs[i].msg %> <br />
+                  <small><%= msgs[i].date %></small>
+                </span>
+              </li>
+              <% } %> <% } %>
             </ul>
             <div class="input-group">
               <input class="form-control" id="chat-input" />
@@ -38,6 +53,27 @@
         </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      // 게시글 삭제
+      const msgBtn = document.querySelector('#send');
+      const msg = document.querySelector('#chat-input');
+      const chatBox = document.querySelector('.chat-content');
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      msgBtn.addEventListener('click', () => {
+        axios
+          .post('/chat', {
+            data: {
+              msg: msg.value,
+            },
+          })
+          .then((res) => {
+            location.reload();
+          });
+      });
+    </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

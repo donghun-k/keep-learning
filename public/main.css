@@ -6,7 +6,7 @@ a:visited {
 }
 
 .chat-content {
-  height: 450px;
+  height: 70vh;
   overflow-y: scroll;
   padding: 10px;
 }
@@ -25,6 +25,10 @@ a:visited {
   border-radius: 5px;
   float: left;
 }
+.chat-author {
+  font-weight: bold;
+}
 .mine {
+  background: #ddd;
   float: right;
 }
