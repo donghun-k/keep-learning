@@ -115,6 +115,10 @@ app.get('/search', (req, res) => {
     });
 });
 
+app.get('/chat', checkAuth, (req, res) => {
+  res.render('chat.ejs', { auth: req.user });
+});
+
 // 게시글 등록, 수정, 삭제
 app.post('/add', (req, res) => {
   db.collection('counter').findOne({ name: '게시물 수' }, (err, result) => {
