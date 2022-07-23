@@ -89,20 +89,20 @@
       const searchInput = document.querySelector('#search_input');
       const searchBtn = document.querySelector('#search_btn');
 
-      searchBtn.addEventListener('click', () => {
-        if (searchInput.value.trim() == '') {
+      function search(val) {
+        if (val.trim() == '') {
           alert('검색어를 입력해주세요!');
           return;
         }
-        window.location.replace(`/search?value=${searchInput.value}`);
+        window.location.replace(`/search?value=${val}`);
+      }
+
+      searchBtn.addEventListener('click', () => {
+        search(searchInput.value);
       });
       searchInput.addEventListener('keyup', (e) => {
         if (e.keyCode === 13) {
-          if (searchInput.value.trim() == '') {
-            alert('검색어를 입력해주세요!');
-            return;
-          }
-          window.location.replace(`/search?value=${searchInput.value}`);
+          search(searchInput.value);
         }
       });
     </script>

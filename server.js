@@ -151,11 +151,12 @@ app.post('/add', (req, res) => {
         db.collection('counter').updateOne(
           { name: '게시물 수' },
           { $inc: { totalPost: 1 } },
-          () => {}
+          () => {
+            res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+            res.write("<script>alert('등록했습니다.')</script>");
+            res.write(`<script>window.location=\"/list\"</script>`);
+          }
         );
-        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-        res.write("<script>alert('등록했습니다.')</script>");
-        res.write("<script>window.location='/list'</script>");
       }
     );
   });
