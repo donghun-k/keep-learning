@@ -10,21 +10,11 @@ Express.js & MongoDB 연습용 프로젝트 입니다.
 
 ## 2. 주요 기능
 <details>
+  - 회원가입 / 로그인
+  - 글 등록, 수정, 삭제, 검색
+  - 실시간 채팅
   <summary>자세히 보기</summary>
 
-
-  ### 2-1. Sign Up / Sign In
-  ![SignUp](https://user-images.githubusercontent.com/60064471/176761227-6b239bc0-133c-4699-9298-a02257604758.gif)
-  
-  Passport, express-session 미들웨어를 사용한 세션 기반 인증 기능.
-
-  ### 2-2. Post, Edit, Delete
-  ![Post](https://user-images.githubusercontent.com/60064471/176761813-1ac7f378-6775-4923-80e0-34d3bcd5dfca.gif)
-
-  ### 2-3. Search
-  ![Search](https://user-images.githubusercontent.com/60064471/176761833-bed79bff-6b9e-4374-a41b-94ff6d73a5ab.gif)
-  
-  MongoDB에 기본적으로 탑재 돼 있는 Full Text Search 기능을 이용한 검색 기능.
 </details>
 
 ## 3. 트러블 슈팅
