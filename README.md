@@ -9,10 +9,10 @@ Express.js & MongoDB 연습용 프로젝트 입니다.
 - EJS
 
 ## 2. 주요 기능
-<details>
-  - 회원가입 / 로그인
-  - 글 등록, 수정, 삭제, 검색
-  - 실시간 채팅
+- 회원가입 / 로그인
+- 글 등록, 수정, 삭제, 검색
+- 실시간 채팅
+<details>  
   <summary>자세히 보기</summary>
 
 </details>
