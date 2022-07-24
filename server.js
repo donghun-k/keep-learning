@@ -3,6 +3,11 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 
+// socket.io 세팅
+const http = require('http').createServer(app);
+const { Server } = require('socket.io');
+const io = new Server(http);
+
 // Session 이용한 로그인 기능 구현에 필요한 라이브러리들 세팅
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -39,7 +44,7 @@ MongoClient.connect(process.env.DB_URL, (err, client) => {
 
   db = client.db('todolist');
 
-  app.listen(8080, function () {
+  http.listen(8080, function () {
     console.log('listening on 8080');
   });
 });
@@ -301,14 +306,11 @@ function checkAuthor(req, res, next) {
 }
 
 // 채팅
-app.post('/chat', (req, res) => {
-  let doc = {
-    author: req.user.id,
-    msg: req.body.data.msg,
-    date: new Date(),
-  };
-  db.collection('chat').insertOne(doc, () => {
-    console.log('채팅 전송');
-    res.status(200).send();
+
+io.on('connection', (socket) => {
+  let serverData;
+  socket.on('user-send', function (data) {
+    console.log(data);
+    io.emit('broadcast', data);
   });
 });

@@ -26,7 +26,7 @@
         <div class="col-lg-12">
           <div class="chat-room">
             <ul class="list-group chat-content">
-              <% for (let i = 0; i < msgs.length; i++) { %> <% if (auth.id ==
+              <!-- <% for (let i = 0; i < msgs.length; i++) { %> <% if (auth.id ==
               msgs[i].author) { %>
               <li>
                 <span class="chat-box mine">
@@ -43,9 +43,10 @@
                   <small><%= msgs[i].date %></small>
                 </span>
               </li>
-              <% } %> <% } %>
+              <% } %> <% } %> -->
             </ul>
             <div class="input-group">
+              <span id="auth-id" style="display: none"><%= auth.id %></span>
               <input class="form-control" id="chat-input" />
               <button class="btn btn-secondary" id="send">전송</button>
             </div>
@@ -54,26 +55,68 @@
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"
+      integrity="sha512-9mpsATI0KClwt+xVZfbcf2lJ8IFBAwsubJ6mI3rtULwyM3fBmQFzj0It4tGqxLOGQwGfJdk/G+fANnxfq9/cew=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script>
-      // 게시글 삭제
-      const msgBtn = document.querySelector('#send');
-      const msg = document.querySelector('#chat-input');
+      let socket = io();
+
+      const sendBtn = document.querySelector('#send');
+      const sendInput = document.querySelector('#chat-input');
       const chatBox = document.querySelector('.chat-content');
 
-      chatBox.scrollTop = chatBox.scrollHeight;
+      const author = document.querySelector('#auth-id').textContent;
 
-      msgBtn.addEventListener('click', () => {
-        axios
-          .post('/chat', {
-            data: {
-              msg: msg.value,
-            },
-          })
-          .then((res) => {
-            location.reload();
-          });
+      function chatUpdate() {
+        socket.emit('user-send', [author, sendInput.value]);
+        sendInput.value = '';
+      }
+
+      sendBtn.addEventListener('click', chatUpdate);
+      sendInput.addEventListener('keyup', (e) => {
+        if (e.keyCode === 13) {
+          chatUpdate();
+        }
+      });
+
+      socket.on('broadcast', function (data) {
+        const msgList = document.createElement('li');
+        const msgBox = document.createElement('span');
+        const msgAuthor = document.createElement('span');
+        const msgText = document.createElement('span');
+        const msgDate = document.createElement('small');
+        const now = new Date();
+
+        msgBox.classList.add('chat-box');
+        if (author == data[0]) {
+          msgBox.classList.add('mine');
+        }
+        msgAuthor.classList.add('chat-author');
+        msgText.classList.add('chat-text');
+
+        msgAuthor.textContent = data[0];
+        console.log(data[0], msgAuthor.textContent);
+        msgAuthor.appendChild(document.createElement('br'));
+        msgText.textContent = data[1];
+        msgText.appendChild(document.createElement('br'));
+
+        msgDate.textContent = `${
+          now.getMonth() + 1
+        }/${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+
+        msgBox.appendChild(msgAuthor);
+        msgBox.appendChild(msgText);
+        msgBox.appendChild(msgDate);
+
+        msgList.appendChild(msgBox);
+        chatBox.appendChild(msgList);
+        chatBox.scrollTop = chatBox.scrollHeight;
       });
     </script>
+
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

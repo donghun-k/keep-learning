@@ -28,6 +28,9 @@ a:visited {
 .chat-author {
   font-weight: bold;
 }
+.chat-text {
+  font-size: 1.2rem;
+}
 .mine {
   background: #ddd;
   float: right;
