@@ -1,7 +1,7 @@
 # To-Do List
 Express.js & MongoDB 연습용 프로젝트 입니다.
 
-[DEMO](https://to-do-with-express.herokuapp.com/chat)
+[DEMO](https://to-do-with-express.herokuapp.com/)
 
 ## 1. 사용 기술
 - Express v4.18.1
