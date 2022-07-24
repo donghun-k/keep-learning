@@ -44,7 +44,7 @@ MongoClient.connect(process.env.DB_URL, (err, client) => {
 
   db = client.db('todolist');
 
-  http.listen(8080, function () {
+  http.listen(process.env.PORT || 8080, function () {
     console.log('listening on 8080');
   });
 });
