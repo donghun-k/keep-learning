@@ -15,8 +15,8 @@ a:visited {
   border: none;
   padding: 0;
 }
-.btn {
-  margin: 0 0.5rem;
+.user-tag {
+  margin: 0.5rem;
 }
 .user-list {
   height: 10vh;
