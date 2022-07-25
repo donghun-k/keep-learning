@@ -20,31 +20,40 @@
   </head>
   <body>
     <%- include('nav.ejs', {auth: auth}) %>
-    <h4 class="container mt-4"><strong>Chat</strong></h4>
+    <h2 class="container mt-4" style="text-align: center">
+      <strong>Chat</strong>
+    </h2>
     <div class="container p-4 detail">
       <div class="row">
         <div class="col-lg-12">
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <span id="user-list-toggle">▼</span>
+                <button
+                  id="user-list-btn"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  접속멤버 0명
+                </button>
+              </div>
+
+              <div
+                id="collapseOne"
+                class="collapse"
+                aria-labelledby="headingOne"
+                data-parent="#accordionExample"
+              >
+                <div class="card-body"></div>
+              </div>
+            </div>
+          </div>
           <div class="chat-room">
-            <ul class="list-group chat-content">
-              <!-- <% for (let i = 0; i < msgs.length; i++) { %> <% if (auth.id ==
-              msgs[i].author) { %>
-              <li>
-                <span class="chat-box mine">
-                  <span class="chat-author">Me<br /></span>
-                  <%= msgs[i].msg %> <br />
-                  <small><%= msgs[i].date %></small>
-                </span>
-              </li>
-              <% } %> <% if (auth.id != msgs[i].author) { %>
-              <li>
-                <span class="chat-box">
-                  <span class="chat-author"><%= msgs[i].author %> <br /></span>
-                  <%= msgs[i].msg %> <br />
-                  <small><%= msgs[i].date %></small>
-                </span>
-              </li>
-              <% } %> <% } %> -->
-            </ul>
+            <ul class="list-group chat-content"></ul>
             <div class="input-group">
               <span id="auth-id" style="display: none"><%= auth.id %></span>
               <input class="form-control" id="chat-input" />
@@ -63,6 +72,19 @@
     ></script>
     <script>
       let socket = io();
+
+      const userListBtn = document.querySelector('#user-list-btn');
+      const userListToggle = document.querySelector('#user-list-toggle');
+      const userCollapse = document.querySelector('#collapseOne');
+      let userListBox = document.querySelector('.card-body');
+
+      userListBtn.addEventListener('click', () => {
+        if (userListToggle.textContent == '▼') {
+          userListToggle.textContent = '▲';
+        } else {
+          userListToggle.textContent = '▼';
+        }
+      });
 
       const sendBtn = document.querySelector('#send');
       const sendInput = document.querySelector('#chat-input');
@@ -121,7 +143,18 @@
       });
 
       socket.on('updateUserList', (userList) => {
-        console.log(userList);
+        userListBtn.textContent = `접속멤버 ${userList.length}명`;
+        userListBox.remove();
+        userListBox = document.createElement('div');
+        userListBox.classList.add('.card-body');
+        userList.forEach((user) => {
+          const userTag = document.createElement('button');
+          userTag.classList.add('btn');
+          userTag.classList.add('btn-light');
+          userTag.textContent = user;
+          userListBox.appendChild(userTag);
+          userCollapse.appendChild(userListBox);
+        });
       });
 
       socket.on('broadcast', (data) => {
