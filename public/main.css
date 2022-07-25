@@ -32,7 +32,8 @@ a:visited {
 }
 .chat-box {
   background: rgb(250, 250, 250);
-  padding: 5px;
+  padding: 0.5rem;
+  margin: 0 1rem;
   border-radius: 5px;
   float: left;
 }
