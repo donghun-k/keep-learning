@@ -71,8 +71,10 @@
       const userName = document.querySelector('#auth-id').textContent;
 
       function chatUpdate() {
-        socket.emit('userSend', [userName, sendInput.value]);
-        sendInput.value = '';
+        if (sendInput.value.trim() != '') {
+          socket.emit('userSend', [userName, sendInput.value]);
+          sendInput.value = '';
+        }
       }
 
       sendBtn.addEventListener('click', chatUpdate);
