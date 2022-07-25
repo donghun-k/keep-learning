@@ -306,10 +306,23 @@ function checkAuthor(req, res, next) {
 }
 
 // 채팅
+let userList = [];
 
 io.on('connection', (socket) => {
-  let serverData;
-  socket.on('user-send', function (data) {
+  socket.on('newUserConnect', (userName) => {
+    socket.userName = userName;
+    userList.push(socket.userName);
+    console.log(userList);
+    io.emit('updateUserList', userList);
+    io.emit('sayHi', socket.userName);
+  });
+  socket.on('disconnect', () => {
+    userList = userList.filter((element) => element !== socket.userName);
+    console.log(userList);
+    io.emit('updateUserList', userList);
+    io.emit('sayBye', socket.userName);
+  });
+  socket.on('userSend', (data) => {
     console.log(data);
     io.emit('broadcast', data);
   });

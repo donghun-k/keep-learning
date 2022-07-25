@@ -68,10 +68,10 @@
       const sendInput = document.querySelector('#chat-input');
       const chatBox = document.querySelector('.chat-content');
 
-      const author = document.querySelector('#auth-id').textContent;
+      const userName = document.querySelector('#auth-id').textContent;
 
       function chatUpdate() {
-        socket.emit('user-send', [author, sendInput.value]);
+        socket.emit('userSend', [userName, sendInput.value]);
         sendInput.value = '';
       }
 
@@ -82,7 +82,47 @@
         }
       });
 
-      socket.on('broadcast', function (data) {
+      socket.on('connect', () => {
+        socket.emit('newUserConnect', userName);
+      });
+
+      socket.on('sayHi', (name) => {
+        const msgList = document.createElement('li');
+        const msgAlert = document.createElement('div');
+        const msgSpan = document.createElement('span');
+        const msgUserName = document.createElement('span');
+        msgAlert.classList.add('alert');
+        msgAlert.classList.add('alert-connect');
+        msgUserName.classList.add('chat-author');
+        msgUserName.textContent = `${name}`;
+        msgSpan.textContent = '님이 들어왔어요! 안녕!';
+        msgAlert.appendChild(msgUserName);
+        msgAlert.appendChild(msgSpan);
+        msgList.appendChild(msgAlert);
+        chatBox.appendChild(msgList);
+      });
+
+      socket.on('sayBye', (name) => {
+        const msgList = document.createElement('li');
+        const msgAlert = document.createElement('div');
+        const msgSpan = document.createElement('span');
+        const msgUserName = document.createElement('span');
+        msgAlert.classList.add('alert');
+        msgAlert.classList.add('alert-disconnect');
+        msgUserName.classList.add('chat-author');
+        msgUserName.textContent = `${name}`;
+        msgSpan.textContent = '님이 떠났습니다. 잘 가...';
+        msgAlert.appendChild(msgUserName);
+        msgAlert.appendChild(msgSpan);
+        msgList.appendChild(msgAlert);
+        chatBox.appendChild(msgList);
+      });
+
+      socket.on('updateUserList', (userList) => {
+        console.log(userList);
+      });
+
+      socket.on('broadcast', (data) => {
         const msgList = document.createElement('li');
         const msgBox = document.createElement('span');
         const msgAuthor = document.createElement('span');
@@ -91,7 +131,7 @@
         const now = new Date();
 
         msgBox.classList.add('chat-box');
-        if (author == data[0]) {
+        if (userName == data[0]) {
           msgBox.classList.add('mine');
         }
         msgAuthor.classList.add('chat-author');
