@@ -121,17 +121,7 @@ app.get('/search', (req, res) => {
 });
 
 app.get('/chat', checkAuth, (req, res) => {
-  db.collection('chat').countDocuments({}, (err, num) => {
-    if (num >= 20) {
-      console.log('삭제');
-      db.collection('chat').deleteOne({});
-    }
-  });
-  db.collection('chat')
-    .find()
-    .toArray((err, result) => {
-      res.render('chat.ejs', { msgs: result, auth: req.user });
-    });
+  res.render('chat.ejs', { auth: req.user });
 });
 
 // 게시글 등록, 수정, 삭제
