@@ -11,25 +11,25 @@ Express.js & MongoDB 연습용 프로젝트 입니다.
 - 회원가입 / 로그인
 - 게시글 CRUD 및 검색
 - 실시간 채팅
-<details>  
-  <summary>자세히 보기</summary>
-  
-  
-  ### 2-1. 회원가입 / 로그인
-  https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/server.js#L225-L306
-  __Passport__ 미들웨어를 이용해 __Session__ 기반 __Authentication__ 구현
-  
-  
-  ### 2-2. 게시글 CRUD 및 검색
-  https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/server.js#L138-L200
-  https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/server.js#L95-L121
-  
-  ### 2-3. 실시간 채팅  
-  https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/views/chat.ejs#L109-L193
-  https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/server.js#L309-L329
-  __Socket.IO__ 를 이용한 실시간 채팅 기능 구현
+  <details>  
+    <summary>자세히 보기</summary>
 
-</details>
+
+    ### 2-1. 회원가입 / 로그인
+    https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/server.js#L225-L306
+    __Passport__ 미들웨어를 이용해 __Session__ 기반 __Authentication__ 구현
+
+
+    ### 2-2. 게시글 CRUD 및 검색
+    https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/server.js#L138-L200
+    https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/server.js#L95-L121
+
+    ### 2-3. 실시간 채팅  
+    https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/views/chat.ejs#L109-L193
+    https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/server.js#L309-L329
+    __Socket.IO__ 를 이용한 실시간 채팅 기능 구현
+
+  </details>
 
 ## 3. 트러블 슈팅
 <details>
@@ -46,9 +46,7 @@ Express.js & MongoDB 연습용 프로젝트 입니다.
   - 혹시나 오타가 있었나 몇 번이나 다시 써봤지만 해결되지 않음.
   
   ### ✅ 해결
-  - 그러다가 문득 MongoDB 계정을 만드는 과정에서 encodig 어쩌구 하는 메시지가 떴던 것이 기억 남.
-  - 알고 보니 비밀번호에 특수문자가 들어가 있어서 생긴 문제. 비밀번호에 특수문자를 제거 해 해결.
-  - 경고 메시지 같은 게 뜨면 꼭 잘 읽어보자...
+  - 비밀번호에 특수문자가 포함 돼 있어서 인코딩 과정에서 생긴 문제. 비밀번호에 특수문자를 제거 해 해결.
   > https://stackoverflow.com/questions/55753484/mongoparseerror-uri-does-not-have-hostname-domain-name-and-tld/56705563
 </details>
 
@@ -65,7 +63,7 @@ Express.js & MongoDB 연습용 프로젝트 입니다.
   ### ✅ 해결
   https://github.com/donghun-K/to-do-list/blob/00c090c4c4d3d5bbd4d96d841cf51167af99d664/server.js#L8
   - body-parser에 Request Body를 json 형식으로 parsing 하게 해주는 라인을 추가해서 해결.
-  - 해결 방법을 찾던 중 애초에 DELETE 요청에서 Request Body에 파라미터를 담아 보내는 방식이 정상적인 방법이 아님을 알게 됨. 추후 수정 필요. 
+  - 해결 방법을 찾던 중 애초에 DELETE 요청에서 Request Body에 파라미터를 담아 보내는 방식이 정상적인 방법이 아님을 알게 됨.
   > https://stackoverflow.com/questions/38294730/express-js-post-req-body-empty
 </details>
 
@@ -80,6 +78,6 @@ Express.js & MongoDB 연습용 프로젝트 입니다.
 
   ### ✅ 해결
   https://github.com/donghun-K/to-do-list/blob/00c090c4c4d3d5bbd4d96d841cf51167af99d664/server.js#L128-L130
-  - 한글 깨짐은 어차피 인코딩 문제일 거라 판단, 응답을 utf-8로 보내주는 라인을 추가해 해결.
+  - 응답을 utf-8로 보내주는 라인을 추가해 해결.
   > https://wowan.tistory.com/59
 </details>
