@@ -5,11 +5,7 @@ const HomePage = () => {
   const featuredEvents = getFeaturedEvents();
 
   console.log(featuredEvents);
-  return (
-    <div>
-      <EventList items={featuredEvents} />
-    </div>
-  );
+  return <EventList items={featuredEvents} />;
 };
 
 export default HomePage;
