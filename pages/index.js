@@ -1,11 +1,11 @@
-import EventList from '../components/events/EventList';
-import { getFeaturedEvents } from '../dummy-data';
-
-const HomePage = () => {
-  const featuredEvents = getFeaturedEvents();
-
-  console.log(featuredEvents);
-  return <EventList items={featuredEvents} />;
-};
+function HomePage(props) {
+  return (
+    <ul>
+      <li>Product 1</li>
+      <li>Product 2</li>
+      <li>Product 3</li>
+    </ul>
+  );
+}
 
 export default HomePage;
