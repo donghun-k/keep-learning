@@ -5,7 +5,7 @@ function handler(req, res) {
     const { email, name, text } = req.body;
 
     if (
-      !email.includes('0') ||
+      !email.includes('@') ||
       !name ||
       name.trim() === '' ||
       !text ||
@@ -21,6 +21,7 @@ function handler(req, res) {
       name,
       text,
     };
+
     console.log(newComment);
 
     res.status(201).json({ message: 'Added comment.', comment: newComment });
@@ -32,7 +33,7 @@ function handler(req, res) {
       { id: 'c2', name: 'JooHyeon', text: 'A Second comment!' },
     ];
 
-    res.status.json({ comments: dummyList });
+    res.status(200).json({ comments: dummyList });
   }
 }
 
