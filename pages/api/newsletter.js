@@ -13,7 +13,7 @@ async function handler(req, res) {
       'mongodb+srv://donghun:gFCZS27xZrseet1D@cluster0.cctfa7o.mongodb.net/?retryWrites=true&w=majority'
     );
 
-    const db = client.db();
+    const db = client.db('events');
 
     await db.collection('emails').insertOne({
       email: userEmail,
