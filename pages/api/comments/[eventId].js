@@ -42,7 +42,7 @@ async function handler(req, res) {
   if (req.method === 'GET') {
     const documents = await db
       .collection('comments')
-      .find()
+      .find({ eventId: eventId })
       .sort({ _id: -1 })
       .toArray();
 
