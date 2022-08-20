@@ -2,37 +2,26 @@ import { Fragment } from 'react';
 
 import FeaturedPosts from '../components/home-page/featured-posts';
 import Hero from '../components/home-page/hero';
+import { getFeaturedPosts } from '../lib/posts-util';
 
-const DUMMY_POSTS = [
-  {
-    title: 'Getting started with Next.js',
-    image: 'getting-started-nextjs.png',
-    excerpt: 'Studying Next.js',
-    date: '2022-02-02',
-    slug: 'getting-started-with-nextjs',
-  },
-  {
-    title: 'Getting started with Next.js',
-    image: 'getting-started-nextjs.png',
-    excerpt: 'Studying Next.js',
-    date: '2022-02-02',
-    slug: 'getting-started-with-nextjs2',
-  },
-  {
-    title: 'Getting started with Next.js',
-    image: 'getting-started-nextjs.png',
-    excerpt: 'Studying Next.js',
-    date: '2022-02-02',
-    slug: 'getting-started-with-nextjs3',
-  },
-];
-
-const HomePage = () => {
+const HomePage = (props) => {
   return (
     <Fragment>
       <Hero />
-      <FeaturedPosts posts={DUMMY_POSTS} />
+      <FeaturedPosts posts={props.posts} />
     </Fragment>
   );
 };
+
+export const getStaticProps = () => {
+  const featuredPosts = getFeaturedPosts();
+
+  return {
+    props: {
+      posts: featuredPosts,
+    },
+    revalidate: 1800,
+  };
+};
+
 export default HomePage;
