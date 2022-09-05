@@ -79,6 +79,9 @@
       let userListBox = document.querySelector('.card-body');
 
       userListBtn.addEventListener('click', () => {
+        if (userCollapse.classList.contains('collapsing')) {
+          return;
+        }
         if (userListToggle.textContent == '▼') {
           userListToggle.textContent = '▲';
         } else {
