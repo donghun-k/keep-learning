@@ -81,3 +81,18 @@ Express.js & MongoDB 연습용 프로젝트 입니다.
   - 응답을 utf-8로 보내주는 라인을 추가해 해결.
   > https://wowan.tistory.com/59
 </details>
+
+<details>
+  <summary>3-4. Collapse 상태 변경 중에도 토글 특수문자가 변경되는 현상 </summary>
+  
+
+  ### 😣 문제 상황
+  https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/views/chat.ejs#L81-L87
+  - 유저 리스트 창이 접고 펴지는 데에 약간의 시간이 걸리는 것을 고려하지 않고 토글 버튼 클릭 시 특수문자를 전환하는 코드를 작성함.
+  - 그 결과, 토글 버튼을 계속 연타할 경우, 실제 Collapse 상태와 상관없이 계속 토글 특수문자가 변경 됨.
+
+  ### ✅ 해결
+  https://github.com/donghun-K/to-do-list/blob/23d05afdcccc293147c1f624097bddb2a37237a3/views/chat.ejs#L81-L90
+  - Collapse 상태 변경 중일 때는 특수문자를 변경하는 코드가 실행되지 않도록 조치.
+
+</details>
