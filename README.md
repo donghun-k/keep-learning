@@ -1,5 +1,5 @@
 # To-Do List
-Express.js & MongoDB 연습용 프로젝트 입니다.
+《코딩애플 - Node.js, MongoDB로 2시간 만에 빠르게 웹서비스 만들기》실습 프로젝트 입니다.
 
 [DEMO](https://to-do-with-express.herokuapp.com/)
 
