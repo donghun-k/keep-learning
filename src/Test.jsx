@@ -1,15 +1,25 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import { Button } from '@mui/material';
 
 const Test = () => {
   return (
     <div>
-      <Typography
-        variant='h1'
-        sx={{ color: 'red', border: '1px solid black', borderRadius: 10 }}
+      <Button
+        onClick={() => {
+          alert('Button Clicked!');
+        }}
+        color='success'
+        size='large'
+        variant='contained'
       >
-        Hello, world!
-      </Typography>
+        First
+      </Button>
+      <Button color='error' size='medium' variant='outlined'>
+        Second
+      </Button>
+      <Button color='info' size='small' variant='text'>
+        Third
+      </Button>
     </div>
   );
 };
