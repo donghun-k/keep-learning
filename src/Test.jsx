@@ -1,8 +1,12 @@
 import {
   Button,
   Checkbox,
+  FormControl,
   FormControlLabel,
   FormGroup,
+  InputLabel,
+  Select,
+  MenuItem,
   TextField,
 } from '@mui/material';
 import React from 'react';
@@ -14,6 +18,7 @@ const Test = () => {
     email: '',
     password: '',
     subscribe: false,
+    age: 0,
   });
 
   const handleChange = (e) => {
@@ -76,6 +81,21 @@ const Test = () => {
             label='Subscribe'
           />
         </FormGroup>
+
+        <FormControl fullWidth>
+          <InputLabel>Age</InputLabel>
+          <Select
+            name='age'
+            value={inputs.age}
+            label='Age'
+            onChange={handleChange}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl>
+
         <Button type='submit' variant='contained' sx={{ margin: 3 }}>
           Submit
         </Button>
