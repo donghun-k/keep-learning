@@ -1,25 +1,22 @@
+import { TextField, Typography } from '@mui/material';
 import React from 'react';
-import { Button } from '@mui/material';
+import { useState } from 'react';
 
 const Test = () => {
+  const [name, setName] = useState('');
   return (
     <div>
-      <Button
-        onClick={() => {
-          alert('Button Clicked!');
-        }}
-        color='success'
-        size='large'
-        variant='contained'
-      >
-        First
-      </Button>
-      <Button color='error' size='medium' variant='outlined'>
-        Second
-      </Button>
-      <Button color='info' size='small' variant='text'>
-        Third
-      </Button>
+      <TextField
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        type='text'
+        placeholder='Name'
+        variant='outlined'
+      />
+      <TextField type='email' placeholder='Email' variant='standard' />
+      <TextField type='password' placeholder='Password' variant='filled' />
+
+      <Typography>{name}</Typography>
     </div>
   );
 };
