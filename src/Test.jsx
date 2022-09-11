@@ -1,4 +1,10 @@
-import { Button, TextField } from '@mui/material';
+import {
+  Button,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  TextField,
+} from '@mui/material';
 import React from 'react';
 import { useState } from 'react';
 
@@ -7,6 +13,7 @@ const Test = () => {
     name: '',
     email: '',
     password: '',
+    subscribe: false,
   });
 
   const handleChange = (e) => {
@@ -23,7 +30,10 @@ const Test = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form
+        style={{ display: 'flex', flexDirection: 'column' }}
+        onSubmit={handleSubmit}
+      >
         <TextField
           name='name'
           value={inputs.name}
@@ -31,6 +41,7 @@ const Test = () => {
           type='text'
           placeholder='Name'
           variant='outlined'
+          sx={{ margin: 3 }}
         />
         <TextField
           name='email'
@@ -39,6 +50,7 @@ const Test = () => {
           type='email'
           placeholder='Email'
           variant='standard'
+          sx={{ margin: 3 }}
         />
         <TextField
           name='password'
@@ -47,8 +59,26 @@ const Test = () => {
           type='password'
           placeholder='Password'
           variant='filled'
+          sx={{ margin: 3 }}
         />
-        <Button type='submit'>Submit</Button>
+        <FormGroup>
+          <FormControlLabel
+            control={
+              <Checkbox
+                onChange={() =>
+                  setInputs((prev) => ({
+                    ...prev,
+                    subscribe: !inputs.subscribe,
+                  }))
+                }
+              />
+            }
+            label='Subscribe'
+          />
+        </FormGroup>
+        <Button type='submit' variant='contained' sx={{ margin: 3 }}>
+          Submit
+        </Button>
       </form>
     </div>
   );
