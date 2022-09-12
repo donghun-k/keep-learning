@@ -1,25 +1,32 @@
-import { AppBar, Tab, Tabs, Toolbar } from '@mui/material';
+import { Button, Menu, MenuItem } from '@mui/material';
 import React from 'react';
 import { useState } from 'react';
 
 const Test = () => {
-  const [value, setValue] = useState(0);
+  const [anchorElm, setAnchorElm] = useState(null);
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setAnchorElm(null);
+    setOpen(false);
+  };
+
+  const handleClick = (e) => {
+    setAnchorElm(e.currentTarget);
+    setOpen(true);
+  };
+
   return (
     <div>
-      <AppBar>
-        <Toolbar>
-          <Tabs
-            indicatorColor='inherit'
-            textColor='inherit'
-            value={value}
-            onChange={(e, val) => setValue(val)}
-          >
-            <Tab label='First' />
-            <Tab label='Second' />
-            <Tab label='Third' />
-          </Tabs>
-        </Toolbar>
-      </AppBar>
+      <Button variant='contained' onClick={handleClick}>
+        Open Menu
+      </Button>
+      <Button onClick={handleClick}>Open Menu Again</Button>
+      <Menu anchorEl={anchorElm} open={open} ocClose={handleClose}>
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>Balance</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
     </div>
   );
 };
