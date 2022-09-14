@@ -1,33 +1,33 @@
-import { Button, Menu, MenuItem } from '@mui/material';
-import React from 'react';
-import { useState } from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 const Test = () => {
-  const [anchorElm, setAnchorElm] = useState(null);
-  const [open, setOpen] = useState(false);
-
-  const handleClose = () => {
-    setAnchorElm(null);
-    setOpen(false);
-  };
-
-  const handleClick = (e) => {
-    setAnchorElm(e.currentTarget);
-    setOpen(true);
-  };
-
   return (
-    <div>
-      <Button variant='contained' onClick={handleClick}>
-        Open Menu
-      </Button>
-      <Button onClick={handleClick}>Open Menu Again</Button>
-      <Menu anchorEl={anchorElm} open={open} ocClose={handleClose}>
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>Balance</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
-      </Menu>
-    </div>
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component='img'
+        height='140'
+        image='https://via.placeholder.com/250'
+        alt='green iguana'
+      />
+      <CardContent>
+        <Typography gutterBottom variant='h5' component='div'>
+          Lizard
+        </Typography>
+        <Typography variant='body2' color='text.secondary'>
+          Lizards are a widespread group of squamate reptiles, with over 6,000
+          species, ranging across all continents except Antarctica
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size='small'>Share</Button>
+        <Button size='small'>Learn More</Button>
+      </CardActions>
+    </Card>
   );
 };
 export default Test;
