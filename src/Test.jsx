@@ -1,33 +1,31 @@
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from '@mui/material';
+import { useState } from 'react';
 
 const Test = () => {
+  const [open, setOpen] = useState(false);
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component='img'
-        height='140'
-        image='https://via.placeholder.com/250'
-        alt='green iguana'
-      />
-      <CardContent>
-        <Typography gutterBottom variant='h5' component='div'>
-          Lizard
-        </Typography>
-        <Typography variant='body2' color='text.secondary'>
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size='small'>Share</Button>
-        <Button size='small'>Learn More</Button>
-      </CardActions>
-    </Card>
+    <div>
+      <Button onClick={() => setOpen(true)}>Open Dialog</Button>
+      <Dialog open={open} onClose={() => setOpen(false)}>
+        <DialogTitle>This is my Dialog</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed, rem!
+          </DialogContentText>
+          <DialogActions>
+            <Button onClick={() => setOpen(false)}>Cancel</Button>
+            <Button onClick={() => setOpen(false)}>Agree</Button>
+          </DialogActions>
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 };
 export default Test;
