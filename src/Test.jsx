@@ -1,30 +1,19 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from '@mui/material';
+import { Box, Button, Modal, Typography } from '@mui/material';
 import { useState } from 'react';
 
 const Test = () => {
   const [open, setOpen] = useState(false);
   return (
     <div>
-      <Button onClick={() => setOpen(true)}>Open Dialog</Button>
-      <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>This is my Dialog</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed, rem!
-          </DialogContentText>
-          <DialogActions>
-            <Button onClick={() => setOpen(false)}>Cancel</Button>
-            <Button onClick={() => setOpen(false)}>Agree</Button>
-          </DialogActions>
-        </DialogContent>
-      </Dialog>
+      <Button onClick={() => setOpen(true)}>Open Modal</Button>
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <Box position='absolute' top='50%' left='50%'>
+          <Typography>It is a Modal!</Typography>
+          <Button variant='contained' onClick={() => setOpen(false)}>
+            Click Me
+          </Button>
+        </Box>
+      </Modal>
     </div>
   );
 };
