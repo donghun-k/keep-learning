@@ -1,5 +1,5 @@
 # To-Do List
-《코딩애플 - Node.js, MongoDB로 2시간 만에 빠르게 웹서비스 만들기》실습 프로젝트 입니다.
+[《Node.js, MongoDB로 2시간 만에 빠르게 웹서비스 만들기》](https://codingapple.com/course/node-express-mongodb-server/) 강의 실습 프로젝트 입니다.
 
 [DEMO](https://to-do-with-express.herokuapp.com/)
 
@@ -86,12 +86,15 @@
   <summary>3-4. Collapse 상태 변경 중에도 토글 특수문자가 변경되는 현상 </summary>
   
 
+
   ### 😣 문제 상황
+  ![before](https://user-images.githubusercontent.com/60064471/190693034-1a53fd41-2660-423c-966d-570978eb928e.gif)
   https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/views/chat.ejs#L81-L87
   - 유저 리스트 창이 접고 펴지는 데에 약간의 시간이 걸리는 것을 고려하지 않고 토글 버튼 클릭 시 특수문자를 전환하는 코드를 작성함.
   - 그 결과, 토글 버튼을 계속 연타할 경우, 실제 Collapse 상태와 상관없이 계속 토글 특수문자가 변경 됨.
 
   ### ✅ 해결
+  ![after](https://user-images.githubusercontent.com/60064471/190693064-9b9db22e-2803-4119-9f87-af1c33b1d818.gif)
   https://github.com/donghun-K/to-do-list/blob/23d05afdcccc293147c1f624097bddb2a37237a3/views/chat.ejs#L81-L90
   - Collapse 상태 변경 중일 때는 특수문자를 변경하는 코드가 실행되지 않도록 조치.
 
