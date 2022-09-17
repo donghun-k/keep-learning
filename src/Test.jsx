@@ -1,40 +1,24 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Typography,
-} from '@mui/material';
-import { useState } from 'react';
+import { Autocomplete, TextField } from '@mui/material';
+import { Box } from '@mui/system';
+
+let movie = [
+  'Scarface',
+  'Once Upon A Time In America',
+  'Blade Runner',
+  'Godfather',
+];
 
 const Test = () => {
-  const [accordion, setAccordion] = useState('');
-
   return (
     <div>
       <Box>
-        <Accordion
-          expanded={accordion === 'test1'}
-          onChange={() => setAccordion('test1')}
-        >
-          <AccordionSummary expandIcon={'>'}>
-            <Typography>Test 1</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>My name is Dong Hun, Kim</Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={accordion === 'test2'}
-          onChange={() => setAccordion('test2')}
-        >
-          <AccordionSummary expandIcon={'>'}>
-            <Typography>Test 2</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>My name is Dong Hun, Kim</Typography>
-          </AccordionDetails>
-        </Accordion>
+        <Autocomplete
+          sx={{ width: 300 }}
+          options={movie}
+          renderInput={(params) => (
+            <TextField {...params} label='List of Movie' />
+          )}
+        />
       </Box>
     </div>
   );
