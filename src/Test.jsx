@@ -1,23 +1,39 @@
-import { Container } from '@mui/system';
+import {
+  Box,
+  Collapse,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from '@mui/material';
+import { useState } from 'react';
+
+const array = ['First', 'Second', 'Third', 'Fourth', 'Fifth'];
 
 const Test = () => {
+  const [open, setOpen] = useState(false);
   return (
     <div>
-      <Container sx={{ background: 'pink' }} maxWidth='xs'>
-        This is XS
-      </Container>
-      <Container sx={{ background: 'pink' }} maxWidth='sm'>
-        This is SM
-      </Container>
-      <Container sx={{ background: 'pink' }} maxWidth='md'>
-        This is MD
-      </Container>
-      <Container sx={{ background: 'pink' }} maxWidth='lg'>
-        This is LG
-      </Container>
-      <Container sx={{ background: 'pink' }} maxWidth='xl'>
-        This is XL
-      </Container>
+      <Box>
+        <ListItem divider>
+          <ListItemButton onClick={() => setOpen(true)}>
+            <ListItemIcon>{'>'}</ListItemIcon>
+            <ListItemText primary={'Expand List'} />
+          </ListItemButton>
+        </ListItem>
+        <Collapse in={open}>
+          <List sx={{ marginLeft: '2rem' }}>
+            {array.map((listElm) => (
+              <ListItem divider>
+                <ListItemButton onClick={() => setOpen(false)}>
+                  <ListItemText primary={listElm} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Collapse>
+      </Box>
     </div>
   );
 };
