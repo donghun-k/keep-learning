@@ -1,31 +1,17 @@
-import {
-  Button,
-  Drawer,
-  List,
-  ListItemButton,
-  ListItemText,
-} from '@mui/material';
+import { Alert } from '@mui/material';
 import { Box } from '@mui/system';
 import { useState } from 'react';
 
-const arrOptions = ['Profile', 'Balance', 'Logout'];
-
 const Test = () => {
-  const [open, setOpen] = useState(false);
-
+  const [show, setShow] = useState(true);
   return (
     <div>
       <Box>
-        <Button onClick={() => setOpen(true)}>Open</Button>
-        <Drawer anchor='right' open={open} onClose={() => setOpen(false)}>
-          <List>
-            {arrOptions.map((elm) => (
-              <ListItemButton onClickCapture={() => setOpen(false)}>
-                <ListItemText primary={elm} />
-              </ListItemButton>
-            ))}
-          </List>
-        </Drawer>
+        {show && (
+          <Alert onClose={() => setShow(false)} severity='error'>
+            This is an Error Alert
+          </Alert>
+        )}
       </Box>
     </div>
   );
