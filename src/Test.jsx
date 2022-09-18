@@ -1,19 +1,11 @@
-import { Alert, Box, Snackbar } from '@mui/material';
-import { useState } from 'react';
+import { Box, CircularProgress, LinearProgress } from '@mui/material';
 
 const Test = () => {
-  const [open, setOpen] = useState(true);
   return (
     <div>
       <Box>
-        <Snackbar
-          onClose={() => setOpen(false)}
-          autoHideDuration={2000}
-          open={open}
-          // message='This is a snackbar'
-        >
-          <Alert severity='success'>This is a success message!</Alert>
-        </Snackbar>
+        <CircularProgress color='secondary' />
+        <LinearProgress />
       </Box>
     </div>
   );
