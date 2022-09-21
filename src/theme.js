@@ -6,9 +6,4 @@ export const theme = createTheme({
       main: '#f4005e',
     },
   },
-  typography: {
-    h1: {
-      fontSize: '5rem',
-    },
-  },
 });

@@ -1,15 +1,18 @@
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, styled, Typography } from '@mui/material';
+
+const CustomizedTypography = styled(Typography)`
+  color: #000055;
+  :hover {
+    color: #75125c;
+    background: #afafaf;
+  }
+`;
 
 const Test = () => {
-  const theme = useTheme();
-  console.log(theme);
-
   return (
     <div>
       <Box>
-        <Typography variant='h1' color='primary'>
-          Hello
-        </Typography>
+        <CustomizedTypography variant='h1'>Hello World</CustomizedTypography>
       </Box>
     </div>
   );
