@@ -1,24 +1,55 @@
-import { AccountCircle, ArrowCircleDown } from '@mui/icons-material';
-import { AppBar, Box, IconButton, Toolbar } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 const Test = () => {
   return (
     <div>
       <Box>
-        <AppBar>
-          <Toolbar>
-            <IconButton
-              onClick={() => {
-                alert('Icon Selected!');
-              }}
-            >
-              <AccountCircle />
-            </IconButton>
-            <IconButton>
-              <ArrowCircleDown color='secondary' />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
+        <Grid container spacing={0}>
+          <Grid
+            sx={{ background: 'lightyellow' }}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            xl={4}
+          >
+            Item 1
+          </Grid>
+          <Grid
+            sx={{ background: 'lightpink' }}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            xl={8}
+          >
+            Item 2
+          </Grid>
+          <Grid
+            sx={{ background: 'lightblue' }}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            xl={8}
+          >
+            Item 3
+          </Grid>
+          <Grid
+            sx={{ background: 'lightgreen' }}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            xl={4}
+          >
+            Item 4
+          </Grid>
+        </Grid>
       </Box>
     </div>
   );
