@@ -1,18 +1,24 @@
-import { Box, styled, Typography } from '@mui/material';
-
-const CustomizedTypography = styled(Typography)`
-  color: #000055;
-  :hover {
-    color: #75125c;
-    background: #afafaf;
-  }
-`;
+import { AccountCircle, ArrowCircleDown } from '@mui/icons-material';
+import { AppBar, Box, IconButton, Toolbar } from '@mui/material';
 
 const Test = () => {
   return (
     <div>
       <Box>
-        <CustomizedTypography variant='h1'>Hello World</CustomizedTypography>
+        <AppBar>
+          <Toolbar>
+            <IconButton
+              onClick={() => {
+                alert('Icon Selected!');
+              }}
+            >
+              <AccountCircle />
+            </IconButton>
+            <IconButton>
+              <ArrowCircleDown color='secondary' />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
       </Box>
     </div>
   );
