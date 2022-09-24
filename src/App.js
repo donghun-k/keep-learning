@@ -1,9 +1,10 @@
-import Test from './Test';
+import Navbar from './components/Navbar';
+const linksArray = ['Products', 'Services', 'Overview', 'Contact US'];
 
 function App() {
   return (
     <div>
-      <Test />
+      <Navbar links={linksArray} />
     </div>
   );
 }
