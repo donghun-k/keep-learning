@@ -1,10 +1,9 @@
-import Navbar from './components/Navbar';
-const linksArray = ['Products', 'Services', 'Overview', 'Contact US'];
+import Auth from './Auth';
 
 function App() {
   return (
     <div>
-      <Navbar links={linksArray} />
+      <Auth />
     </div>
   );
 }
