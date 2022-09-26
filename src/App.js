@@ -1,11 +1,5 @@
-import Auth from './Auth';
-
 function App() {
-  return (
-    <div>
-      <Auth />
-    </div>
-  );
+  return <div></div>;
 }
 
 export default App;
