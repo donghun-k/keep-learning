@@ -1,11 +1,14 @@
-import { Box, Typography } from '@mui/material';
+import { useTheme } from '@emotion/react';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 
 const ContentItem = ({ title, description, img, swap }) => {
+  const isMatch = useMediaQuery(useTheme().breakpoints.down('md'));
   return (
     <Box
       bgcolor={!swap && '#fff'}
       display='flex'
       padding={10}
+      flexDirection={isMatch ? 'column' : 'row'}
       justifyContent='space-evenly'
       alignItems='center'
     >
