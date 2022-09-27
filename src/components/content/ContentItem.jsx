@@ -6,7 +6,7 @@ const ContentItem = ({ title, description, img, swap }) => {
       bgcolor={!swap && '#fff'}
       display='flex'
       padding={10}
-      justifyContent='space-between'
+      justifyContent='space-evenly'
       alignItems='center'
     >
       {swap ? (
@@ -23,7 +23,7 @@ const ContentItem = ({ title, description, img, swap }) => {
             src={img}
             alt={title}
             loading='lazy'
-            width='50%'
+            width='500px'
             height='300px'
             style={{
               boxShadow: '10px 10px 20px #ccc',
@@ -38,7 +38,7 @@ const ContentItem = ({ title, description, img, swap }) => {
             src={img}
             alt={title}
             loading='lazy'
-            width='50%'
+            width='500px'
             height='300px'
             style={{
               boxShadow: '10px 10px 20px #ccc',
