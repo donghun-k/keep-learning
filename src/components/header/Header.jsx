@@ -1,5 +1,13 @@
 import { Api } from '@mui/icons-material';
-import { AppBar, Button, Link, Tab, Tabs, Toolbar } from '@mui/material';
+import {
+  AppBar,
+  Button,
+  Link,
+  Tab,
+  Tabs,
+  Toolbar,
+  Typography,
+} from '@mui/material';
 import { Box } from '@mui/system';
 
 const links = ['Products', 'Solutions', 'Pricing', 'Enterprise'];
@@ -44,6 +52,39 @@ const Header = () => {
           </Box>
         </Box>
       </Toolbar>
+      <Box width='100%' height='100vh'>
+        <video
+          width='100%'
+          height='70%'
+          autoPlay
+          loop
+          muted
+          playsInline
+          src='/video.mp4'
+        ></video>
+        <Box display='flex' width='100%'>
+          <Typography
+            margin='auto'
+            variant='h4'
+            color='black'
+            textAlign='center'
+          >
+            Build Your Softwares Hassle Free And With Top Notch Quality
+          </Typography>
+        </Box>
+        <Box
+          width='100%'
+          display='flex'
+          justifyContent='center'
+          margin='auto'
+          marginTop={5}
+        >
+          <Button variant='outlined'>Sign up With Email</Button>
+          <Button sx={{ ml: 4 }} variant='contained'>
+            Sign up With Google
+          </Button>
+        </Box>
+      </Box>
     </AppBar>
   );
 };
