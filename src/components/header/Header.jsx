@@ -1,5 +1,5 @@
 import { useTheme } from '@emotion/react';
-import { Api } from '@mui/icons-material';
+import { Api, Email, Google } from '@mui/icons-material';
 import {
   AppBar,
   Button,
@@ -83,6 +83,7 @@ const Header = () => {
         ></video>
         <Box display='flex' width='100%'>
           <Typography
+            fontSize={{ lg: 30, md: 24, sm: 18, xs: 14 }}
             margin='auto'
             variant='h4'
             color='black'
@@ -98,9 +99,11 @@ const Header = () => {
           margin='auto'
           marginTop={5}
         >
-          <Button variant='outlined'>Sign up With Email</Button>
-          <Button sx={{ ml: 4 }} variant='contained'>
-            Sign up With Google
+          <Button endIcon={<Email />} variant='outlined'>
+            Sign up
+          </Button>
+          <Button endIcon={<Google />} sx={{ ml: 4 }} variant='contained'>
+            Sign up
           </Button>
         </Box>
       </Box>

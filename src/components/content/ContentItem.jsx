@@ -12,10 +12,19 @@ const ContentItem = ({ title, description, img, swap }) => {
       {swap ? (
         <>
           <Box>
-            <Typography color='#734950' padding={3} variant='h3'>
+            <Typography
+              fontSize={{ lg: 32, md: 28, sm: 24, xs: 20 }}
+              color='#734950'
+              padding={3}
+              variant='h3'
+            >
               {title}
             </Typography>
-            <Typography padding={3} variant='caption'>
+            <Typography
+              fontSize={{ lg: 24, md: 20, sm: 16, xs: 12 }}
+              padding={3}
+              variant='caption'
+            >
               {description}
             </Typography>
           </Box>
@@ -47,10 +56,19 @@ const ContentItem = ({ title, description, img, swap }) => {
             }}
           />
           <Box>
-            <Typography color='#734950' padding={3} variant='h3'>
+            <Typography
+              fontSize={{ lg: 32, md: 28, sm: 24, xs: 20 }}
+              color='#734950'
+              padding={3}
+              variant='h3'
+            >
               {title}
             </Typography>
-            <Typography padding={3} variant='caption'>
+            <Typography
+              fontSize={{ lg: 24, md: 20, sm: 16, xs: 12 }}
+              padding={3}
+              variant='caption'
+            >
               {description}
             </Typography>
           </Box>
