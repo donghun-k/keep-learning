@@ -1,9 +1,15 @@
+import Content from './components/content/Content';
 import Header from './components/header/Header';
 
 function App() {
   return (
     <div>
-      <Header />
+      <header>
+        <Header />
+      </header>
+      <section>
+        <Content />
+      </section>
     </div>
   );
 }
