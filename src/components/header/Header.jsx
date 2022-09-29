@@ -79,7 +79,7 @@ const Header = () => {
           loop
           muted
           playsInline
-          src='/video.mp4'
+          src='./video/video.mp4'
         ></video>
         <Box display='flex' width='100%'>
           <Typography

@@ -5,19 +5,19 @@ const contentArray = [
   {
     title: 'Get Things Done',
     description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
-    img: '/1.jpg',
+    img: './img/1.jpg',
   },
   {
     title: 'Productivity Is Brilliant',
     description:
       'Veritatis ea obcaecati, sunt illo accusamus reiciendis iusto dolores corrupti.',
-    img: '/2.jpg',
+    img: './img/2.jpg',
   },
   {
     title: 'Fast Development',
     description:
       'Similique vitae ex sequi vero adipisci eveniet libero vel rerum laudantium. Dignissimos.',
-    img: '/3.jpg',
+    img: './img/3.jpg',
   },
 ];
 
