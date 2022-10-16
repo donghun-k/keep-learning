@@ -27,6 +27,7 @@ function neverStop(): never {
     console.log("Don't stop me now~");
   }
 }
+
 // Anonymous function contextual typing
 const colors = ['red', 'green', 'blue'];
 colors.map((color) => {
