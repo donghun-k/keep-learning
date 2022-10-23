@@ -8,7 +8,11 @@ const input = document.getElementById('todoinput')! as HTMLInputElement;
 const form = document.querySelector('form')!;
 const list = document.getElementById('todolist')!;
 
-const todos: Todo[] = [];
+const readTodos = (): Todo[] => {
+  const todosJSON = localStorage.getItem('todos');
+  if (todosJSON === null) return [];
+  return JSON.parse(todosJSON);
+};
 
 const handleSubmit = (e: SubmitEvent) => {
   e.preventDefault();
@@ -18,6 +22,10 @@ const handleSubmit = (e: SubmitEvent) => {
   };
   createTodo(newTodo);
   todos.push(newTodo);
+
+  localStorage.setItem('todos', JSON.stringify(todos));
+
+  input.value = '';
 };
 
 const createTodo = (todo: Todo) => {
@@ -28,5 +36,8 @@ const createTodo = (todo: Todo) => {
   list?.append(newLi);
   newLi.append(checkbox);
 };
+
+const todos: Todo[] = readTodos();
+todos.forEach(createTodo);
 
 form.addEventListener('submit', handleSubmit);
