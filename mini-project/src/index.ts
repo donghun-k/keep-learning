@@ -23,14 +23,23 @@ const handleSubmit = (e: SubmitEvent) => {
   createTodo(newTodo);
   todos.push(newTodo);
 
-  localStorage.setItem('todos', JSON.stringify(todos));
+  saveTodos();
 
   input.value = '';
+};
+
+const saveTodos = () => {
+  localStorage.setItem('todos', JSON.stringify(todos));
 };
 
 const createTodo = (todo: Todo) => {
   const newLi = document.createElement('li');
   const checkbox = document.createElement('input');
+  checkbox.checked = todo.completed;
+  checkbox.addEventListener('change', () => {
+    todo.completed = checkbox.checked;
+    saveTodos();
+  });
   checkbox.type = 'checkbox';
   newLi.append(todo.text);
   list?.append(newLi);

@@ -17,12 +17,20 @@ const handleSubmit = (e) => {
     };
     createTodo(newTodo);
     todos.push(newTodo);
-    localStorage.setItem('todos', JSON.stringify(todos));
+    saveTodos();
     input.value = '';
+};
+const saveTodos = () => {
+    localStorage.setItem('todos', JSON.stringify(todos));
 };
 const createTodo = (todo) => {
     const newLi = document.createElement('li');
     const checkbox = document.createElement('input');
+    checkbox.checked = todo.completed;
+    checkbox.addEventListener('change', () => {
+        todo.completed = checkbox.checked;
+        saveTodos();
+    });
     checkbox.type = 'checkbox';
     newLi.append(todo.text);
     list === null || list === void 0 ? void 0 : list.append(newLi);
