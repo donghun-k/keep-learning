@@ -1,17 +1,73 @@
-// Annotating Classes
+// Classes
 class Player {
-  // 타입 지정하지 않은 프로퍼티는 사용 불가
-  // public / private 접근 제어자, readonly 사용 가능
-  public readonly firstName: string;
-  public readonly lastName: string;
-  private score: number = 0; // Class field 문법으로 타입 추론
-  constructor(firstName: string, lastName: string) {
+  constructor(
+    public firstName: string,
+    public lastName: string,
+    private _score: number = 0
+  ) {
     this.firstName = firstName;
     this.lastName = lastName;
   }
+  get score(): number {
+    return this._score;
+  }
+  set score(newScore: number) {
+    if (newScore < 0) {
+      throw new Error("Score can't be negative!");
+    }
+    this._score = newScore;
+  }
 }
 
-const elton = new Player('DongHun', 'Kim');
-const kawai = new Player('Joohyun', 'Choi');
+const donghun = new Player('DongHun', 'Kim');
+const joohyun = new Player('Joohyun', 'Choi', 100);
 
-console.log(`${kawai} love ${elton}`);
+// Classes and Interfaces
+interface Colorful {
+  color: string;
+}
+interface Printable {
+  print(): void;
+}
+
+class Bike implements Colorful {
+  constructor(public color: string) {}
+}
+
+class Jacket implements Colorful, Printable {
+  constructor(public brnad: string, public color: string) {}
+  print(): void {
+    console.log('Print!');
+  }
+}
+
+// Abstract classes
+abstract class Employee {
+  constructor(public firstName: string, public lastName: string) {}
+  abstract getPay(): number;
+  greet() {
+    console.log('Hello!');
+  }
+}
+
+class FullTimeEmployee extends Employee {
+  constructor(firstName: string, lastName: string, private salary: number) {
+    super(firstName, lastName);
+  }
+  getPay(): number {
+    return this.salary;
+  }
+}
+class PartTimeEmployee extends Employee {
+  constructor(
+    firstName: string,
+    lastName: string,
+    private hourlyRate: number,
+    private hoursWorked: number
+  ) {
+    super(firstName, lastName);
+  }
+  getPay(): number {
+    return this.hourlyRate * this.hoursWorked;
+  }
+}
