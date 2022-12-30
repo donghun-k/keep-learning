@@ -1,2 +1,0 @@
-# TypeScript practice
-TypeScript practice
