@@ -15,6 +15,8 @@ module.exports = {
       jsx: true,
     },
     project: './tsconfig.json',
+    tsconfigRootDir: __dirname,
+    createDefaultProgram: true,
   },
   env: {
     browser: true,
@@ -89,7 +91,7 @@ module.exports = {
         avoidEscape: true,
       },
     ],
-    'prettier/prettier': 'error',
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
     'jsx-a11y/href-no-hash': 'off',
     'jsx-a11y/anchor-is-valid': [
       'warn',
