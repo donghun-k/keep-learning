@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import GlobalNavBar from './global_nav_bar';
 
 interface Props {
   title: string;
@@ -10,6 +11,7 @@ const ServiceLayout = function ({ title = 'blah x2', children }: Props) {
       <Head>
         <title>{title}</title>
       </Head>
+      <GlobalNavBar />
       {children}
     </div>
   );
