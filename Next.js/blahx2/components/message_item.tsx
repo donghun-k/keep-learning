@@ -1,4 +1,5 @@
-import { Avatar, Box, Divider, Flex, Text } from '@chakra-ui/react';
+import { Avatar, Box, Button, Divider, Flex, Text, Textarea } from '@chakra-ui/react';
+import ResizeTextArea from 'react-textarea-autosize';
 import { InMessage } from '@/models/message/in_message';
 import converDateToString from '@/utils/convert_date_to_string';
 
@@ -10,7 +11,7 @@ interface Props {
   item: InMessage;
 }
 
-const MessageItem = function ({ displayName, photoURL, item }: Props) {
+const MessageItem = function ({ isOwner, displayName, photoURL, item }: Props) {
   const haveReply = item.reply !== undefined;
   return (
     <Box borderRadius="md" width="full" bg="white" boxShadow="md">
@@ -41,7 +42,9 @@ const MessageItem = function ({ displayName, photoURL, item }: Props) {
               </Box>
               <Box borderRadius="md" p="2" width="full" bg="gray.100">
                 <Flex alignItems="center">
-                  <Text fontSize="xs">{displayName}</Text>
+                  <Text fontSize="xs" mr="1">
+                    {displayName}
+                  </Text>
                   <Text whiteSpace="pre-line" fontSize="xs" color="gray">
                     {converDateToString(item.replyAt!)}
                   </Text>
@@ -50,6 +53,31 @@ const MessageItem = function ({ displayName, photoURL, item }: Props) {
                   {item.reply}
                 </Text>
               </Box>
+            </Box>
+          </Box>
+        )}
+        {haveReply === false && isOwner && (
+          <Box pt="2">
+            <Divider />
+            <Box display="flex" mt="2">
+              <Box pt="1">
+                <Avatar size="xs" mr="2" src={photoURL} />
+              </Box>
+              <Box borderRadius="md" width="full" bg="gray.100" mr="2">
+                <Textarea
+                  border="none"
+                  boxShadow="none !important"
+                  resize="none"
+                  minH="unset"
+                  overflow="hidden"
+                  fontSize="xs"
+                  as={ResizeTextArea}
+                  placeholder="댓글을 입력하세요."
+                />
+              </Box>
+              <Button colorScheme="pink" bgColor="#FF75B5" variant="solid" size="sm">
+                등록
+              </Button>
             </Box>
           </Box>
         )}
