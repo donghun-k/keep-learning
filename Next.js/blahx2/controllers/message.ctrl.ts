@@ -14,6 +14,20 @@ async function post(req: NextApiRequest, res: NextApiResponse) {
   return res.status(201).end();
 }
 
+async function get(req: NextApiRequest, res: NextApiResponse) {
+  const { uid, messageId } = req.query;
+  if (uid === undefined) {
+    throw new BadReqError('uid 누락');
+  }
+  if (messageId === undefined) {
+    throw new BadReqError('messageId 누락');
+  }
+  const uidToStr = Array.isArray(uid) ? uid[0] : uid;
+  const messageIdToStr = Array.isArray(messageId) ? messageId[0] : messageId;
+  const data = await MessageModel.get({ uid: uidToStr, messageId: messageIdToStr });
+  return res.status(200).json(data);
+}
+
 async function postReply(req: NextApiRequest, res: NextApiResponse) {
   const { uid, messageId, reply, author } = req.body;
   if (uid === undefined) {
@@ -41,6 +55,7 @@ async function list(req: NextApiRequest, res: NextApiResponse) {
 
 const MessageCtrl = {
   post,
+  get,
   postReply,
   list,
 };

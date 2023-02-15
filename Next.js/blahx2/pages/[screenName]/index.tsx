@@ -85,6 +85,25 @@ const UserHomePage: NextPage<Props> = function ({ userInfo }) {
       console.error(err);
     }
   }
+  async function fetchMessageInfo({ uid, messageId }: { uid: string; messageId: string }) {
+    try {
+      const res = await fetch(`/api/messages.info?uid=${uid}&messageId=${messageId}`);
+      if (res.status === 200) {
+        const data: InMessage = await res.json();
+        setMessageList((prev) => {
+          const findIndex = prev.findIndex((fv) => fv.id === data.id);
+          if (findIndex >= 0) {
+            const updateArr = [...prev];
+            updateArr[findIndex] = data;
+            return updateArr;
+          }
+          return prev;
+        });
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
   useEffect(() => {
     if (userInfo === null) return;
     fetchMessageList(userInfo.uid);
@@ -168,6 +187,7 @@ const UserHomePage: NextPage<Props> = function ({ userInfo }) {
                   toast({ title: '메시지 등록 실패', position: 'top-right' });
                 }
                 setMessage('');
+                setMessageListFetchTrigger((prev) => !prev);
               }}
             >
               등록
@@ -206,7 +226,7 @@ const UserHomePage: NextPage<Props> = function ({ userInfo }) {
               photoURL={userInfo.photoURL ?? 'https://bit.ly/broken-link'}
               isOwner={isOwner}
               onSendComplete={() => {
-                setMessageListFetchTrigger((prev) => !prev);
+                fetchMessageInfo({ uid: userInfo.uid, messageId: messageData.id });
               }}
             />
           ))}
