@@ -99,6 +99,31 @@ async function postReply({ uid, messageId, reply }: { uid: string; messageId: st
   });
 }
 
+async function updateMessage({ uid, messageId, deny }: { uid: string; messageId: string; deny: boolean }) {
+  const memberRef = Firestore.collection(MEMBER_COL).doc(uid);
+  const messageRef = Firestore.collection(MEMBER_COL).doc(uid).collection(MSG_COL).doc(messageId);
+  const data = await Firestore.runTransaction(async (transaction) => {
+    const memberDoc = await transaction.get(memberRef);
+    const messageDoc = await transaction.get(messageRef);
+    if (memberDoc.exists === false) {
+      throw new CustomServerError({ statusCode: 400, message: '존재하지 않는 사용자' });
+    }
+    if (messageDoc.exists === false) {
+      throw new CustomServerError({ statusCode: 400, message: '존재하지 않는 문서' });
+    }
+    await transaction.update(messageRef, { deny });
+    const messageData = messageDoc.data() as InMessageSever;
+    return {
+      ...messageData,
+      id: messageId,
+      deny,
+      createAt: messageData.createAt.toDate().toISOString(),
+      replyAt: messageData.replyAt ? messageData.replyAt.toDate().toISOString() : undefined,
+    };
+  });
+  return data;
+}
+
 async function list({ uid }: { uid: string }) {
   const memberRef = Firestore.collection(MEMBER_COL).doc(uid);
   const listData = await Firestore.runTransaction(async (transaction) => {
@@ -166,6 +191,7 @@ const MessageModel = {
   post,
   get,
   postReply,
+  updateMessage,
   list,
   listWithPage,
 };
