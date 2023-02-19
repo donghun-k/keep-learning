@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { GetServerSideProps, NextPage } from 'next';
 import {
   Avatar,
@@ -15,8 +14,9 @@ import {
 } from '@chakra-ui/react';
 import { TriangleDownIcon } from '@chakra-ui/icons';
 import ResizeTextArea from 'react-textarea-autosize';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
+import { useQuery } from 'react-query';
 import ServiceLayout from '@/components/service_layout';
 import { UseAuth } from '@/contexts/auth_user.context';
 import { InAuthUser } from '@/models/in_auth_user';
@@ -78,24 +78,7 @@ const UserHomePage: NextPage<Props> = function ({ userInfo }) {
   const [messageListFetchTrigger, setMessageListFetchTrigger] = useState(false);
   const toast = useToast();
   const { authUser } = UseAuth();
-  async function fetchMessageList(uid: string) {
-    try {
-      const res = await fetch(`/api/messages.list?uid=${uid}&page=${page}&size=3`);
-      if (res.status === 200) {
-        const data: {
-          totalElements: number;
-          totalPages: number;
-          page: number;
-          size: number;
-          content: InMessage[];
-        } = await res.json();
-        setTotalPage(data.totalPages);
-        setMessageList((prev) => [...prev, ...data.content]);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  }
+
   async function fetchMessageInfo({ uid, messageId }: { uid: string; messageId: string }) {
     try {
       const res = await fetch(`/api/messages.info?uid=${uid}&messageId=${messageId}`);
@@ -115,10 +98,31 @@ const UserHomePage: NextPage<Props> = function ({ userInfo }) {
       console.error(err);
     }
   }
-  useEffect(() => {
-    if (userInfo === null) return;
-    fetchMessageList(userInfo.uid);
-  }, [userInfo, messageListFetchTrigger, page]);
+  const messageListQueryKey = ['messageList', userInfo?.uid, page, messageListFetchTrigger];
+  useQuery(
+    messageListQueryKey,
+    async () =>
+      // eslint-disable-next-line no-return-await
+      await axios.get<{
+        totalElements: number;
+        totalPages: number;
+        page: number;
+        size: number;
+        content: InMessage[];
+      }>(`/api/messages.list?uid=${userInfo?.uid}&page=${page}&size=3`),
+    {
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+      onSuccess: (data) => {
+        setTotalPage(data.data.totalPages);
+        if (page === 1) {
+          setMessageList([...data.data.content]);
+          return;
+        }
+        setMessageList((prev) => [...prev, ...data.data.content]);
+      },
+    },
+  );
   if (userInfo === null) {
     return <p>사용자를 찾을 수 없습니다.</p>;
   }
@@ -198,7 +202,10 @@ const UserHomePage: NextPage<Props> = function ({ userInfo }) {
                   toast({ title: '메시지 등록 실패', position: 'top-right' });
                 }
                 setMessage('');
-                setMessageListFetchTrigger((prev) => !prev);
+                setPage(1);
+                setTimeout(() => {
+                  setMessageListFetchTrigger((prev) => !prev);
+                }, 50);
               }}
             >
               등록
