@@ -44,12 +44,18 @@ async function postReply(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function list(req: NextApiRequest, res: NextApiResponse) {
-  const { uid } = req.query;
+  const { uid, page = '1', size = '10' } = req.query;
   if (uid === undefined) {
     throw new BadReqError('uid 누락');
   }
   const uidToStr = Array.isArray(uid) ? uid[0] : uid;
-  const listRes = await MessageModel.list({ uid: uidToStr });
+  const pageToStr = Array.isArray(page) ? page[0] : page;
+  const sizeToStr = Array.isArray(size) ? size[0] : size;
+  const listRes = await MessageModel.listWithPage({
+    uid: uidToStr,
+    page: parseInt(pageToStr, 10),
+    size: parseInt(sizeToStr, 10),
+  });
   return res.status(200).json(listRes);
 }
 
