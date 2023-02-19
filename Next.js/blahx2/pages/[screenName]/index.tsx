@@ -12,6 +12,7 @@ import {
   FormLabel,
   VStack,
 } from '@chakra-ui/react';
+import { TriangleDownIcon } from '@chakra-ui/icons';
 import ResizeTextArea from 'react-textarea-autosize';
 import { useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
@@ -231,6 +232,9 @@ const UserHomePage: NextPage<Props> = function ({ userInfo }) {
             />
           ))}
         </VStack>
+        <Button width="full" mt="2" fontSize="sm" leftIcon={<TriangleDownIcon />}>
+          더보기
+        </Button>
       </Box>
     </ServiceLayout>
   );
