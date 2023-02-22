@@ -54,6 +54,7 @@ const MessageItem = function ({ uid, isOwner, displayName, photoURL, item, onSen
       toast({
         title: '로그인한 사용자만 사용할 수 있는 기능입니다.',
       });
+      return;
     }
     const res = await fetch('/api/messages.deny', {
       method: 'PUT',
