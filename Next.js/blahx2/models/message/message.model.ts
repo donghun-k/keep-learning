@@ -69,8 +69,10 @@ async function get({ uid, messageId }: { uid: string; messageId: string }) {
       throw new CustomServerError({ statusCode: 400, message: '존재하지 않는 문서' });
     }
     const messageData = messageDoc.data() as InMessageSever;
+    const isDeny = messageData.deny === true;
     return {
       ...messageData,
+      message: isDeny ? '비공개 처리 된 메시지입니다.' : messageData.message,
       id: messageId,
       createAt: messageData.createAt.toDate().toISOString(),
       replyAt: messageData.replyAt ? messageData.replyAt.toDate().toISOString() : undefined,
@@ -135,8 +137,10 @@ async function list({ uid }: { uid: string }) {
     const messageColDoc = await transaction.get(messageCol);
     const data = messageColDoc.docs.map((mv) => {
       const docData = mv.data() as Omit<InMessageSever, 'id'>;
+      const isDeny = docData.deny === true;
       const returnData = {
         ...docData,
+        message: isDeny ? '비공개 처리 된 메시지입니다.' : docData.message,
         id: mv.id,
         createAt: docData.createAt.toDate().toISOString(),
         replyAt: docData.replyAt ? docData.replyAt.toDate().toISOString() : undefined,
@@ -168,8 +172,10 @@ async function listWithPage({ uid, page = 1, size = 10 }: { uid: string; page?: 
     const messageColDoc = await transaction.get(messageCol);
     const data = messageColDoc.docs.map((mv) => {
       const docData = mv.data() as Omit<InMessageSever, 'id'>;
+      const isDeny = docData.deny === true;
       const returnData = {
         ...docData,
+        message: isDeny ? '비공개 처리 된 메시지입니다.' : docData.message,
         id: mv.id,
         createAt: docData.createAt.toDate().toISOString(),
         replyAt: docData.replyAt ? docData.replyAt.toDate().toISOString() : undefined,
