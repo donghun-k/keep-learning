@@ -27,6 +27,7 @@ async function findByScreenName(req: NextApiRequest, res: NextApiResponse) {
   const findResult = await MemberModel.findByScreenName(extractedScreenName);
   if (findResult === null) {
     res.status(404).end();
+    return;
   }
   res.status(200).json(findResult);
 }

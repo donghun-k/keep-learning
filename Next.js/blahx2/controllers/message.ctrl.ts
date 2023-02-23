@@ -31,7 +31,7 @@ async function get(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function postReply(req: NextApiRequest, res: NextApiResponse) {
-  const { uid, messageId, reply, author } = req.body;
+  const { uid, messageId, reply } = req.body;
   if (uid === undefined) {
     throw new BadReqError('uid 누락');
   }
