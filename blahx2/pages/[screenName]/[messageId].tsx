@@ -1,7 +1,9 @@
 import { GetServerSideProps, NextPage } from 'next';
-import { Avatar, Box, Text, Flex } from '@chakra-ui/react';
+import { Avatar, Box, Text, Flex, Button } from '@chakra-ui/react';
 import { useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
+import Link from 'next/link';
+import { ChevronLeftIcon } from '@chakra-ui/icons';
 import ServiceLayout from '@/components/service_layout';
 import { UseAuth } from '@/contexts/auth_user.context';
 import { InAuthUser } from '@/models/in_auth_user';
@@ -11,9 +13,10 @@ import { InMessage } from '@/models/message/in_message';
 interface Props {
   userInfo: InAuthUser | null;
   messageData: InMessage | null;
+  screenName: string;
 }
 
-const MessagePage: NextPage<Props> = function ({ userInfo, messageData: initMsgData }) {
+const MessagePage: NextPage<Props> = function ({ userInfo, messageData: initMsgData, screenName }) {
   const [messageData, setMessageData] = useState<null | InMessage>(initMsgData);
   const { authUser } = UseAuth();
 
@@ -39,6 +42,13 @@ const MessagePage: NextPage<Props> = function ({ userInfo, messageData: initMsgD
   return (
     <ServiceLayout title={`${userInfo.displayName}님의 페이지`} minH="100vh" backgroundColor="gray.50">
       <Box maxW="md" mx="auto" pt="6">
+        <Link href={`/${screenName}`}>
+          <a>
+            <Button leftIcon={<ChevronLeftIcon />} mb="2" fontSize="sm">
+              {userInfo.displayName} 홈으로
+            </Button>
+          </a>
+        </Link>
         <Box borderWidth="1px" borderRadius="lg" overflow="hidden" mb="2" bg="white">
           <Flex p="6">
             <Avatar size="lg" src={userInfo.photoURL ?? 'https://bit.ly/broken-link'} mr="2" />
@@ -70,38 +80,45 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) =
       props: {
         userInfo: null,
         messageData: null,
+        screenName: '',
       },
     };
   }
+  console.log('query', query);
   try {
     const protocol = process.env.PROTOCOL || 'http';
     const host = process.env.HOST || 'localhost';
     const port = process.env.PORT || '3000';
     const baseUrl = `${protocol}://${host}:${port}`;
     const userInfoRes: AxiosResponse<InAuthUser> = await axios(`${baseUrl}/api/user.info/${screenName}`);
+    const screenNameToStr = Array.isArray(screenName) ? screenName[0] : screenName;
     if (userInfoRes.status !== 200 || userInfoRes.data === undefined || userInfoRes.data.uid === undefined) {
       return {
         props: {
           userInfo: null,
           messageData: null,
+          screenName: screenNameToStr,
         },
       };
     }
     const messageInfoRes: AxiosResponse<InMessage> = await axios(
       `${baseUrl}/api/message.info?uid=${userInfoRes.data.uid}&messageId=${messageId}`,
     );
+    console.log('query', query);
     return {
       props: {
         userInfo: userInfoRes.data,
         messageData: messageInfoRes.status !== 200 || messageInfoRes.data === undefined ? null : messageInfoRes.data,
+        screenName: screenNameToStr,
       },
     };
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     return {
       props: {
         userInfo: null,
         messageData: null,
+        screenName: '',
       },
     };
   }
