@@ -62,6 +62,7 @@ const MessagePage: NextPage<Props> = function ({ userInfo, messageData: initMsgD
           item={messageData}
           uid={userInfo.uid}
           displayName={userInfo.displayName ?? ''}
+          screenName={screenName}
           photoURL={userInfo.photoURL ?? 'https://bit.ly/broken-link'}
           isOwner={isOwner}
           onSendComplete={() => {
