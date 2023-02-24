@@ -84,7 +84,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) =
       },
     };
   }
-  console.log('query', query);
   try {
     const protocol = process.env.PROTOCOL || 'http';
     const host = process.env.HOST || 'localhost';
@@ -102,9 +101,9 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) =
       };
     }
     const messageInfoRes: AxiosResponse<InMessage> = await axios(
-      `${baseUrl}/api/message.info?uid=${userInfoRes.data.uid}&messageId=${messageId}`,
+      `${baseUrl}/api/messages.info?uid=${userInfoRes.data.uid}&messageId=${messageId}`,
     );
-    console.log('query', query);
+    console.log('query1', query);
     return {
       props: {
         userInfo: userInfoRes.data,
