@@ -1,0 +1,58 @@
+a:link {
+  color: black;
+}
+a:visited {
+  color: grey;
+}
+
+#user-list-btn,
+#user-list-btn:focus,
+#user-list-btn:hover {
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  padding: 0;
+}
+.user-tag {
+  margin: 0.5rem;
+}
+.user-list {
+  height: 10vh;
+  overflow-y: scroll;
+}
+.chat-content {
+  height: 70vh;
+  overflow-y: scroll;
+}
+.chat-content li {
+  margin-top: 10px;
+  list-style: none;
+}
+.chat-box {
+  background: rgb(250, 250, 250);
+  padding: 0.5rem;
+  margin: 0 1rem;
+  border-radius: 5px;
+  float: left;
+}
+.chat-author {
+  font-weight: bold;
+}
+.chat-text {
+  font-size: 1.2rem;
+}
+.mine {
+  background: rgb(245, 245, 245);
+  float: right;
+}
+.alert {
+  text-align: center;
+}
+.alert-connect {
+  background-color: rgb(255, 255, 240);
+}
+.alert-disconnect {
+  background-color: rgb(255, 240, 240);
+}
