@@ -1,7 +1,6 @@
 # To-Do
 [《Node.js, MongoDB로 2시간 만에 빠르게 웹서비스 만들기》](https://codingapple.com/course/node-express-mongodb-server/) 강의 실습 프로젝트 입니다.
 
-## 1. 사용 기술
 ## 학습한 것
 ### 주요 기술
 |Framework|Database|
