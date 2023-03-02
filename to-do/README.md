@@ -1,37 +1,18 @@
-# To-Do List
+# To-Do
 [《Node.js, MongoDB로 2시간 만에 빠르게 웹서비스 만들기》](https://codingapple.com/course/node-express-mongodb-server/) 강의 실습 프로젝트 입니다.
 
-[DEMO](https://to-do-with-express.herokuapp.com/)
-
 ## 1. 사용 기술
-- Express v4.18.1
-- MongoDB 
+## 학습한 것
+### 주요 기술
+|Framework|Database|
+|:---:|:---:|
+|![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)|![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)|
+### 그 외 연습한 것
+- EJS 템플릿 엔진 써보기
+- Passport.js를 사용한 인증 기능
+- Socket.io를 사용한 실시간 채팅 기능
 
-## 2. 주요 기능
-- 회원가입 / 로그인
-- 게시글 CRUD 및 검색
-- 실시간 채팅
-  <details>  
-    <summary>자세히 보기</summary>
-
-
-    ### 2-1. 회원가입 / 로그인
-    https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/server.js#L225-L306
-    __Passport__ 미들웨어를 이용해 __Session__ 기반 __Authentication__ 구현
-
-
-    ### 2-2. 게시글 CRUD 및 검색
-    https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/server.js#L138-L200
-    https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/server.js#L95-L121
-
-    ### 2-3. 실시간 채팅  
-    https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/views/chat.ejs#L109-L193
-    https://github.com/donghun-K/to-do-list/blob/66ab0dcef065a75368d3b43513aa6cc930dfea4d/server.js#L309-L329
-    __Socket.IO__ 를 이용한 실시간 채팅 기능 구현
-
-  </details>
-
-## 3. 트러블 슈팅
+## 문제 해결
 <details>
   <summary>3-1. 'MongoAPIError: URI must include hostname, domain name, and tld
     at resolveSRVRecord' 에러 발생</summary>
