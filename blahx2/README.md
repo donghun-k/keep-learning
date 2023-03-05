@@ -15,3 +15,5 @@ __⟪만들면서 배우는 프론트엔드 DO IT 코딩 (Next.js, Typescript)�
 
 ## 문제 해결
 - [[ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client 에러](https://likebear.notion.site/ERR_HTTP_HEADERS_SENT-Cannot-set-headers-after-they-are-sent-to-the-client-015a2ac34c9c4c2e977b43eb86a399b3)
+
+test
