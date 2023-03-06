@@ -1,8 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('Button has correct initial color', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  // button 이라는 Role과 'Change to blue'라는 텍스트로 버튼 찾기
+  const colorBtn = screen.getByRole('button', { name: 'Change to blue' });
+  // 버튼 색이 빨강인지 확인
+  expect(colorBtn).toHaveStyle({ backgroundColor: 'red' });
 });
+test('Button turns blue when clicked', () => {});
