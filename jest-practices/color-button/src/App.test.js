@@ -27,6 +27,17 @@ test('Initial conditions', () => {
   expect(colorBtn).toBeEnabled();
 
   // 체크박스가 unchecked 상태인지 테스트
-  const checkBox = screen.getByRole('checkBox');
+  const checkBox = screen.getByRole('checkbox');
   expect(checkBox).not.toBeChecked();
+});
+
+test('Check box test', () => {
+  render(<App />);
+  const colorBtn = screen.getByRole('button', { name: 'Change to blue' });
+  const checkBox = screen.getByRole('checkbox');
+
+  fireEvent.click(checkBox);
+  expect(colorBtn).toBeDisabled();
+  fireEvent.click(checkBox);
+  expect(colorBtn).toBeEnabled();
 });
