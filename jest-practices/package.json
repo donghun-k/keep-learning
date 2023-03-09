@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "eslint-plugin-jest-dom": "^4.0.3",
+    "eslint-plugin-testing-library": "^5.10.2"
+  }
+}
