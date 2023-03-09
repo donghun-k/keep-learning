@@ -1,5 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import SummaryForm from '../SummaryForm';
+import userEvent from '@testing-library/user-event';
 
 test('초기 조건 확인', () => {
   render(<SummaryForm />);
@@ -11,7 +12,8 @@ test('초기 조건 확인', () => {
   expect(confirmBtn).toBeDisabled();
 });
 
-test('체크박스 체크 여부에 따른 버튼 활성화', () => {
+test('체크박스 체크 여부에 따른 버튼 활성화', async () => {
+  const user = userEvent.setup();
   render(<SummaryForm />);
   const checkbox = screen.getByRole('checkbox', {
     name: /terms and conditions/i,
@@ -19,8 +21,8 @@ test('체크박스 체크 여부에 따른 버튼 활성화', () => {
   const confirmBtn = screen.getByRole('button', {
     name: /confirm order/i,
   });
-  fireEvent.click(checkbox);
+  await user.click(checkbox);
   expect(confirmBtn).toBeEnabled();
-  fireEvent.click(checkbox);
+  await user.click(checkbox);
   expect(confirmBtn).toBeDisabled();
 });
