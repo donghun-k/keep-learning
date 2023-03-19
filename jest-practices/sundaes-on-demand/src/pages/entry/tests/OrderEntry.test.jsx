@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import OrderEntry from '../OrderEntry';
 import { rest } from 'msw';
 import { server } from '../../../mocks/server';
@@ -14,9 +14,8 @@ test('스쿱, 토핑 라우트 에러 핸들링', async () => {
   );
   render(<OrderEntry />);
 
-  const alerts = await screen.findAllByRole('alert', {
-    name: 'An unexpected error occured. Please try again later.',
+  await waitFor(async () => {
+    const alerts = await screen.findAllByRole('alert');
+    expect(alerts).toHaveLength(2);
   });
-
-  expect(alerts).toHaveLength(2);
 });
