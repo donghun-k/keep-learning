@@ -1,12 +1,13 @@
 import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { OrderDetailsProvider } from '../../../contexts/OrderDetails';
 import Options from '../Options';
 
 test('스쿱 업데이트 시 소계 변경 테스트', async () => {
   const user = userEvent.setup();
-  render(<Options optionType={'scoops'} />);
+  render(<Options optionType={'scoops'} />, { wrapper: OrderDetailsProvider });
 
-  const scoopsSubtotal = screen.getByText('Scoop total: $', { exact: false });
+  const scoopsSubtotal = screen.getByText('Scoops total: $', { exact: false });
   expect(scoopsSubtotal).toHaveTextContent('0.00');
 
   // 바닐라 스쿱 업데이트 후 소계 체크
