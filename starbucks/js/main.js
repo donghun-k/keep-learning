@@ -14,3 +14,9 @@ searchInputEl.addEventListener('blur', () => {
   searchEl.classList.remove('focused');
   searchInputEl.setAttribute('placeholder', '');
 });
+
+const badgeEl = document.querySelector('header .badges');
+
+window.addEventListener('scroll', () => {
+  console.log('scroll!');
+});
