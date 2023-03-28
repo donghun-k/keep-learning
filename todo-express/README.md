@@ -1,12 +1,10 @@
 # To-Do with Express
 [《Node.js, MongoDB로 2시간 만에 빠르게 웹서비스 만들기》](https://codingapple.com/course/node-express-mongodb-server/) 강의 실습 프로젝트 입니다.
 
-## 학습한 것
-### 주요 기술
+## What I Learned
 |Framework|Database|
 |:---:|:---:|
 |![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)|![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)|
-### 그 외 연습한 것
 - EJS 템플릿 엔진 써보기
 - Passport.js를 사용한 인증 기능
 - Socket.io를 사용한 실시간 채팅 기능
