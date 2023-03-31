@@ -48,3 +48,14 @@ new Swiper('.notice-line .swiper', {
   autoplay: true,
   loop: true,
 });
+
+new Swiper('.promotion .swiper', {
+  direction: 'horizontal',
+  slidesPerView: 3,
+  spaceBetween: 10,
+  centeredSlides: true,
+  loop: true,
+  autoplay: {
+    delay: 5000,
+  },
+});

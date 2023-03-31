@@ -440,16 +440,31 @@ header .badges .badge {
   height: 693px;
   background-color: #f6f5ef;
   position: relative;
+  overflow: hidden;
 }
 
 .notice .promotion .swiper {
   width: calc(819px * 3 + 20px);
   height: 553px;
-  background-color: orange;
-  text-align: center;
-  font-size: 200px;
   position: absolute;
   top: 40px;
   left: 50%;
   margin-left: calc((819px * 3 + 20px) / -2);
+}
+
+.notice .promotion .swiper-slide {
+  opacity: .5;
+  transition: opacity 1s;
+}
+
+.notice .promotion .swiper-slide .swiper-slide-active {
+  opacity: 1;
+}
+
+.notice .promotion .swiper-slide .btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
