@@ -382,10 +382,19 @@ header .badges .badge {
   margin-right: 20px;
 }
 
-.notice .notice-line .inner__left .swiper-container {
+.notice .notice-line .inner__left .swiper {
   height: 62px;
-  background-color: orange;
   flex-grow: 1;
+}
+
+.notice .notice-line .inner__left .swiper-slide {
+  height: 62px;
+  display: flex;
+  align-items: center;
+}
+
+.notice .notice-line .inner__left .swiper-slide a {
+  color: white
 }
 
 .notice .notice-line .inner__left .notice-line__more {
@@ -425,4 +434,22 @@ header .badges .badge {
 
 .notice .notice-line .inner__right .toggle-promotion .material-icons {
   font-size: 30px;
+}
+
+.notice .promotion {
+  height: 693px;
+  background-color: #f6f5ef;
+  position: relative;
+}
+
+.notice .promotion .swiper {
+  width: calc(819px * 3 + 20px);
+  height: 553px;
+  background-color: orange;
+  text-align: center;
+  font-size: 200px;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  margin-left: calc((819px * 3 + 20px) / -2);
 }
