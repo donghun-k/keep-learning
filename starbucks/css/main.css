@@ -441,6 +441,12 @@ header .badges .badge {
   background-color: #f6f5ef;
   position: relative;
   overflow: hidden;
+  transition: height .4s;
+  overflow: hidden;
+}
+
+.notice .promotion.hide {
+  height: 0;
 }
 
 .notice .promotion .swiper {
