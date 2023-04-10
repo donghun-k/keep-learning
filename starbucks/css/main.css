@@ -69,7 +69,6 @@
 }
 .notice .notice-line .inner {
   height: 62px;
-  border: 2px solid red;
   display: flex;
 }
 .notice .notice-line .inner__left {
