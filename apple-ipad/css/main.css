@@ -1,4 +1,10 @@
+html.fixed {
+  position: fixed;
+  overflow-y: scroll;
+  width: 100%;
+}
 body {
+  height: 5000px;
   line-height: 1;
   font-family: 'Roboto', 'Noto Sans KR', sans-serif;
   word-break: keep-all;
@@ -123,6 +129,7 @@ header .search-wrap {
   top: 0;
   left: 0;
   width: 100%;
+  display: none;
 }
 header .search {
   max-width: 680px;
@@ -205,4 +212,7 @@ header .search .autocompletes ul li:hover a {
 }
 header.searching ul.menu > li {
   display: none;
+}
+header.searching .search-wrap {
+  display: block;
 }
