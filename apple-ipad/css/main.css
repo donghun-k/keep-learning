@@ -15,6 +15,28 @@ a {
   text-decoration: none;
 }
 
+/* Btn */
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 100px;
+  outline: none;
+  font-size: 11px;
+  line-height: 1;
+  color: #fff;
+  background-color: #0071e3;
+  cursor: pointer;
+}
+.btn:hover {
+  opacity: 0.7;
+}
+.btn:focus {
+  box-shadow: 0 0 0 4px #81b9f1;
+}
 /* Header */
 header {
   background-color: #3a3a3a;
@@ -213,7 +235,6 @@ header .search .autocompletes ul li:hover a {
   background-color: #f5f5f5;
   color: #0071e3;
 }
-
 header .search input,
 header .search .search-icon,
 header .search .autocompletes h3,
@@ -221,7 +242,6 @@ header .search .autocompletes li {
   transition: 0.6s;
   transform: translate(100px, 0);
 }
-
 header.searching ul.menu > li {
   transform: scale(0.7);
   opacity: 0;
@@ -231,11 +251,53 @@ header.searching .search-wrap {
   opacity: 1;
   transition-delay: 0.2s;
 }
-
 header.searching .search input,
 header.searching .search .search-icon,
 header.searching .search .autocompletes h3,
 header.searching .search .autocompletes li {
   transition-delay: 0.2s;
   transform: translate(0, 0);
+}
+
+/* Navigation  */
+nav {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid #d2d2d2;
+  position: sticky;
+  top: 0;
+  z-index: 0;
+}
+nav .inner {
+  max-width: 1000px;
+  height: 52px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+nav h1 {
+  flex-grow: 1;
+  font-size: 22px;
+  font-weight: 500;
+}
+nav .menu {
+  display: flex;
+  gap: 12px;
+}
+nav .menu li {
+}
+nav .menu li a {
+  display: block;
+  padding: 6px;
+  font-size: 11px;
+}
+nav .menu li:hover a {
+  color: #0071e3;
+}
+nav .menu li.active a {
+  opacity: 0.5;
+  cursor: default;
+}
+nav .menu li.active a:hover {
+  color: #1d1d1d;
 }
