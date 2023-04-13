@@ -11,5 +11,5 @@ __⟪만들면서 배우는 프론트엔드 DO IT 코딩 (Next.js, Typescript)�
 - Firebase를 이용한 소셜 로그인
 - MVC 패턴 적용
 
-## 문제 해결
-- [[ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client 에러](https://likebear.notion.site/ERR_HTTP_HEADERS_SENT-Cannot-set-headers-after-they-are-sent-to-the-client-015a2ac34c9c4c2e977b43eb86a399b3)
+## Troubleshooting
+- [[ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client 에러](https://velog.io/@donghun-k/ERRHTTPHEADERSSENT-Cannot-set-headers-after-they-are-sent-to-the-client)
