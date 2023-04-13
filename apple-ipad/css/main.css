@@ -32,6 +32,7 @@ header ul.menu {
 header ul.menu > li {
   display: flex;
   position: relative;
+  transition: 0.4s;
 }
 header ul.menu > li > a {
   padding: 0 10px;
@@ -129,7 +130,9 @@ header .search-wrap {
   top: 0;
   left: 0;
   width: 100%;
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.4s;
 }
 header .search {
   max-width: 680px;
@@ -210,9 +213,29 @@ header .search .autocompletes ul li:hover a {
   background-color: #f5f5f5;
   color: #0071e3;
 }
+
+header .search input,
+header .search .search-icon,
+header .search .autocompletes h3,
+header .search .autocompletes li {
+  transition: 0.6s;
+  transform: translate(100px, 0);
+}
+
 header.searching ul.menu > li {
-  display: none;
+  transform: scale(0.7);
+  opacity: 0;
 }
 header.searching .search-wrap {
-  display: block;
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0.2s;
+}
+
+header.searching .search input,
+header.searching .search .search-icon,
+header.searching .search .autocompletes h3,
+header.searching .search .autocompletes li {
+  transition-delay: 0.2s;
+  transform: translate(0, 0);
 }
