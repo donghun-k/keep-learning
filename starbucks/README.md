@@ -9,6 +9,7 @@ __⟪HTML/CSS/JS로 만드는 스타벅스 웹사이트)⟫__ 실습 프로젝�
 |:---:|
 |![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)|
 - 기본적인 __HTML__ / __CSS__ / __JS__ 활용
+  - CSS 클래스 네이밍 컨벤션 BEM 적용
   - 기본적인 레이아웃 작성
   - 고정 네비게이션 바, 배경 이미지
   - 드롭다운 메뉴
