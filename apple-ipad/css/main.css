@@ -1,3 +1,17 @@
+html {
+  --color-white: #fff;
+  --color-black: #000;
+  --color-font: #1d1d1d;
+  --color-font-darkgray: #6e6e6e;
+  --color-font-middlegray: #b7b7b7;
+  --color-font-lightgray: #f5f5f5;
+  --color-link: #0071e3;
+  --color-link-focus: #81b9f1;
+  --color-border: #d2d2d2;
+  --color-header: #3a3a3a;
+  --color-section: #f5f5f5;
+  --color-shadow: rgba(0, 0, 0, 0.4);
+}
 html.fixed {
   position: fixed;
   overflow-y: scroll;
@@ -8,10 +22,10 @@ body {
   line-height: 1;
   font-family: 'Roboto', 'Noto Sans KR', sans-serif;
   word-break: keep-all;
-  color: #1d1d1d;
+  color: var(--color-font);
 }
 a {
-  color: #1d1d1d;
+  color: var(--color-font);
   text-decoration: none;
 }
 img {
@@ -59,15 +73,15 @@ p {
   outline: none;
   font-size: 11px;
   line-height: 1;
-  color: #fff;
-  background-color: #0071e3;
+  color: var(--color-white);
+  background-color: var(--color-link);
   cursor: pointer;
 }
 .btn:hover {
   opacity: 0.7;
 }
 .btn:focus {
-  box-shadow: 0 0 0 4px #81b9f1;
+  box-shadow: 0 0 0 4px var(--color-link-focus);
 }
 
 /* Background image text */
@@ -86,7 +100,7 @@ p {
   gap: 40px;
 }
 a.link {
-  color: #0071e3;
+  color: var(--color-link);
   font-size: 19px;
   line-height: 1.3;
 }
@@ -98,7 +112,8 @@ a.link::after {
 }
 /* Header */
 header {
-  background-color: #3a3a3a;
+  --header-height: 44px;
+  background-color: var(--color-header);
   position: relative;
   z-index: 9;
 }
@@ -106,7 +121,7 @@ header .inner {
   max-width: 1020px;
 }
 header ul.menu {
-  height: 44px;
+  height: var(--header-height);
   display: flex;
   justify-content: space-between;
 }
@@ -120,7 +135,7 @@ header ul.menu > li > a {
   font-size: 11px;
   display: flex;
   align-items: center;
-  color: #f5f5f5;
+  color: var(--color-font-lightgray);
   opacity: 0.8;
 }
 header ul.menu > li.apple-logo > a,
@@ -148,10 +163,10 @@ header ul.menu > li > a:hover {
 header .basket {
   width: 290px;
   padding: 10px 20px;
-  border: 1px solid #d2d2d2;
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   box-sizing: border-box;
-  background-color: #fff;
+  background-color: var(--color-white);
   position: absolute;
   top: calc(100% + 4px);
   right: -6px;
@@ -175,8 +190,8 @@ header .basket .arrow::before {
   content: '';
   width: 12px;
   height: 12px;
-  border: 1px solid #d2d2d2;
-  background-color: #fff;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-white);
   transform: rotate(45deg);
   transform-origin: 0 0;
   position: absolute;
@@ -186,20 +201,20 @@ header .basket .arrow::before {
 header .basket .message {
   padding: 30px 0;
   font-size: 13px;
-  color: #6e6e6e;
+  color: var(--color-font-darkgray);
   text-align: center;
 }
 header .basket ul {
   margin-top: 10px;
 }
 header .basket ul li {
-  border-top: 1px solid #d2d2d2;
+  border-top: 1px solid var(--color-border);
 }
 header .basket ul li a {
   display: block;
   padding: 14px;
   font-size: 13px;
-  color: #0071e3;
+  color: var(--color-link);
 }
 header .basket ul li a:hover {
   text-decoration: underline;
@@ -226,25 +241,25 @@ header .search .shadow {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: var(--color-shadow);
 }
 header .search .textfield {
   position: relative;
 }
 header .search input {
   width: 100%;
-  height: 44px;
+  height: var(--header-height);
   padding: 0 40px;
   border: none;
   outline: none;
   box-sizing: border-box;
   background-color: transparent;
   font-size: 17px;
-  color: #fff;
+  color: var(--color-white);
 }
 header .search .search-icon {
   width: 40px;
-  height: 44px;
+  height: var(--header-height);
   background-image: url(../images/header_search.svg);
   background-repeat: no-repeat;
   background-position: center;
@@ -255,7 +270,7 @@ header .search .search-icon {
 }
 header .search .search-closer {
   width: 40px;
-  height: 44px;
+  height: var(--header-height);
   background-image: url(../images/header_close.svg);
   background-repeat: no-repeat;
   background-position: center;
@@ -273,14 +288,14 @@ header .search .autocompletes {
   padding: 26px 40px 20px;
   border-radius: 0 0 18px 18px;
   box-sizing: border-box;
-  background-color: #fff;
+  background-color: var(--color-white);
   position: absolute;
-  top: 44px;
+  top: var(--header-height);
   left: 0;
 }
 header .search .autocompletes h3 {
   font-size: 12px;
-  color: #6e6e6e;
+  color: var(--color-font-darkgray);
   margin-bottom: 12px;
 }
 header .search .autocompletes ul li a {
@@ -291,8 +306,8 @@ header .search .autocompletes ul li a {
   cursor: pointer;
 }
 header .search .autocompletes ul li:hover a {
-  background-color: #f5f5f5;
-  color: #0071e3;
+  background-color: var(--color-section);
+  color: var(--color-link);
 }
 header .search input,
 header .search .search-icon,
@@ -322,7 +337,7 @@ header.searching .search .autocompletes li {
 nav {
   background-color: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid #d2d2d2;
+  border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
   z-index: 8;
@@ -348,19 +363,19 @@ nav .menu li a {
   font-size: 11px;
 }
 nav .menu li:hover a {
-  color: #0071e3;
+  color: var(--color-link);
 }
 nav .menu li.active a {
   opacity: 0.5;
   cursor: default;
 }
 nav .menu li.active a:hover {
-  color: #1d1d1d;
+  color: var(--color-font);
 }
 
 /* Hero */
 .hero {
-  background-color: #f5f5f5;
+  background-color: var(--color-section);
 }
 .hero .inner {
   padding-bottom: 110px;
