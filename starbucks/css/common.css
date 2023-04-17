@@ -235,7 +235,7 @@ header .main-menu .item .item__contents .contents__menu > ul > li ul li:hover {
 header .main-menu .item .item__contents .contents__texture {
   padding: 26px 0;
   font-size: 12px;
-  background-image: url('./images/main_menu_pattern.jpg');
+  background-image: url('../images/main_menu_pattern.jpg');
 }
 header .main-menu .item .item__contents .contents__texture h4 {
   color: #999;
