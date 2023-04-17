@@ -96,7 +96,7 @@ p {
 /* Links */
 .links {
   display: flex;
-  justify-content: cetner;
+  justify-content: center;
   gap: 40px;
 }
 a.link {
@@ -432,4 +432,43 @@ nav .menu li.active a:hover {
 }
 .hero .links {
   margin-top: 30px;
+}
+
+/* Power */
+.power {
+  margin-top: 110px;
+}
+/* Power / Multiple Apps */
+.power .multiple-apps h1 {
+  width: 500px;
+  height: 280px;
+  background-image: url('../images/power_headline.png');
+  transform: translate(104px, 0);
+}
+.power .multiple-apps .figures {
+  height: 773px;
+}
+.power .multiple-apps figcaption {
+  width: 138px;
+  height: 46px;
+  background-image: url('../images/power_multiple_apps_caption.png');
+  transform: translate(703px, -47px);
+}
+/* Power / Arcade */
+.power .arcade {
+}
+.power .arcade .figures {
+}
+.power .arcade figure {
+}
+.power .arcade figcaption {
+}
+/* Power / Create */
+.power .create {
+}
+.power .create .figures {
+}
+.power create figure {
+}
+.power create figcaption {
 }
