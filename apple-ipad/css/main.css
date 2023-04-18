@@ -925,6 +925,23 @@ nav .menu li.active a:hover {
   transform: translate(533px, 485px);
 }
 
+/* Accessibility */
+.accessibility {
+  margin-top: 266px;
+  margin-bottom: 170px;
+}
+.accessibility h1 {
+  width: 384px;
+  height: 270px;
+  background-image: url('../images/accessibility_headline.png');
+}
+.accessibility .infos {
+  margin-top: 20px;
+}
+.accessibility figure {
+  transform: translate(470px, -620px);
+}
+
 @keyframes sprite-icon {
   /* 1~10 */
   0.00% {
