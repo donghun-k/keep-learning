@@ -622,6 +622,53 @@ nav .menu li.active a:hover {
   transform: translate(300px, 658px);
 }
 
+/* Camera */
+.camera {
+  margin-top: 303px;
+}
+/* Camera / Stage */
+.camera .stage {
+  position: relative;
+}
+.camera .stage h1 {
+  width: 650px;
+  height: 450px;
+  background-image: url('../images/camera_headline.png');
+  transform: translate(-25px, 0);
+}
+.camera .stage .info {
+  position: absolute;
+  top: 150px;
+  right: 0;
+}
+.camera .stage .figures {
+  height: 770px;
+  margin-top: 24px;
+}
+.camera .stage figure {
+  transform: translate(90px, 0);
+}
+.camera .stage figcaption {
+  width: 130px;
+  height: 110px;
+  background-image: url('../images/camera_hardware_caption.png');
+  transform: translate(-116px, 383px);
+}
+
+/* Camera / Edit */
+.camera .edit .figures {
+  height: 910px;
+}
+.camera .edit figure {
+  transform: translate(20px, 0);
+}
+.camera .edit figcaption {
+  width: 130px;
+  height: 47px;
+  background-image: url('../images/camera_edit_caption.png');
+  transform: translate(27px, 905px);
+}
+
 @keyframes sprite-icon {
   /* 1~10 */
   0.00% {
