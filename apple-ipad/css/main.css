@@ -115,6 +115,13 @@ p {
 .info {
   max-width: 330px;
   margin-bottom: 24px;
+  transition: 1s;
+  transform: translate(0, 100px);
+  opacity: 0;
+}
+.info.show {
+  transform: translate(0, 0);
+  opacity: 1;
 }
 .info .icon {
   width: 100px;
