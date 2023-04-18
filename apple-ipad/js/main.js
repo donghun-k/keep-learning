@@ -1,4 +1,4 @@
-// Basket
+// 장바구니
 const basketStarterEl = document.querySelector('.basket-starter');
 const basketEl = basketStarterEl.querySelector('.basket');
 
@@ -26,7 +26,7 @@ function hideBasket() {
   basketEl.classList.remove('show');
 }
 
-// Search
+// 검색바
 const headerEl = document.querySelector('header');
 const headerMenuEls = [...headerEl.querySelectorAll('ul.menu > li')];
 const searchWrapEl = headerEl.querySelector('.search-wrap');
@@ -66,6 +66,7 @@ function hideSearch() {
   searchInputEl.value = '';
 }
 
+// 요소 가시성 검사
 const io = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -79,4 +80,20 @@ const io = new IntersectionObserver((entries) => {
 const infoEls = document.querySelectorAll('.info');
 infoEls.forEach((el) => {
   io.observe(el);
+});
+
+// 비디오 재생
+const videoEl = document.querySelector('.stage video');
+const playBtnEl = document.querySelector('.stage .controller--play');
+const pauseBtnEl = document.querySelector('.stage .controller--pause');
+
+playBtnEl.addEventListener('click', () => {
+  videoEl.play();
+  playBtnEl.classList.add('hide');
+  pauseBtnEl.classList.remove('hide');
+});
+pauseBtnEl.addEventListener('click', () => {
+  videoEl.pause();
+  playBtnEl.classList.remove('hide');
+  pauseBtnEl.classList.add('hide');
 });
