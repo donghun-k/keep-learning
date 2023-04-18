@@ -45,22 +45,6 @@ p {
   position: relative;
 }
 
-/* Figures */
-.figures {
-  position: relative;
-}
-.figures figure,
-.figures figcaption {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.figures figcaption * {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 /* Btn */
 .btn {
   display: flex;
@@ -91,6 +75,57 @@ p {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+/* Feature  */
+.feature {
+  display: flex;
+}
+
+/* Figures */
+.figures {
+  flex-grow: 1;
+  position: relative;
+}
+.figures figure,
+.figures figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.figures figcaption * {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Infos */
+.infos {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+.infos.infos--center {
+  justify-content: center;
+}
+.infos.infos--end {
+  justify-content: flex-end;
+}
+.info {
+  max-width: 330px;
+  margin-bottom: 24px;
+}
+.info .icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 0 -15px -30px;
+  background-image: url('../images/sprite_apps.png');
+}
+.info p {
+  font-size: 21.5px;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 /* Links */
@@ -456,19 +491,33 @@ nav .menu li.active a:hover {
 }
 /* Power / Arcade */
 .power .arcade {
+  margin-top: 55px;
 }
 .power .arcade .figures {
+  height: 600px;
 }
 .power .arcade figure {
+  transform: translate(-347px, -90px);
 }
 .power .arcade figcaption {
+  width: 150px;
+  height: 77px;
+  background-image: url('../images/power_arcade_caption.png');
+  transform: translate(483px, 653px);
 }
 /* Power / Create */
 .power .create {
+  margin-top: 55px;
 }
 .power .create .figures {
+  height: 772px;
 }
 .power create figure {
+  transform: translate(-25px, 50px);
 }
 .power create figcaption {
+  background-image: url('../images/power_ccreate_caption.png');
+  width: 142px;
+  height: 46px;
+  transform: translate(543px, 908px);
 }
