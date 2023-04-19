@@ -1082,6 +1082,36 @@ nav .menu li.active a:hover {
   font-size: 14px;
 }
 
+/* Footer */
+footer {
+  background-color: var(--color-section);
+}
+/* Footer / Buy Info */
+footer .buy-info {
+  padding: 76px 0;
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  text-align: center;
+}
+footer .buy-info .icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 10px;
+}
+footer .buy-info h3 {
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+footer .buy-info p {
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+footer .buy-info a.link {
+  font-size: 14px;
+}
+
 @keyframes sprite-icon {
   /* 1~10 */
   0.00% {
