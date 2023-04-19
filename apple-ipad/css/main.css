@@ -971,6 +971,23 @@ nav .menu li.active a:hover {
   transform: translate(470px, -620px);
 }
 
+/* AR */
+.ar {
+  padding: 20px 20px 0;
+  background-color: var(--color-section);
+}
+.ar .whitebox {
+  padding-bottom: 0;
+}
+.ar .inner {
+  display: flex;
+}
+.ar .inner > div {
+  max-width: 410px;
+  margin-top: 60px;
+  margin-right: 90px;
+}
+
 @keyframes sprite-icon {
   /* 1~10 */
   0.00% {
