@@ -196,6 +196,35 @@ p {
   margin-top: 44px;
 }
 
+/* WhiteBox */
+.whitebox {
+  max-width: 1386px;
+  margin: 0 auto;
+  padding: 100px 30px;
+  border-radius: 30px;
+  box-sizing: border-box;
+  background-color: var(--color-white);
+}
+.whitebox.whitebox--transparent {
+  background-color: transparent;
+}
+.whitebox .icon {
+  margin-bottom: 20px;
+}
+.whitebox h1 {
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.whitebox p {
+  margin-top: 20px;
+  font-size: 19px;
+}
+.whitebox a.link {
+  display: block;
+  margin-top: 26px;
+}
+
 /* Links */
 .links {
   display: flex;
