@@ -1002,6 +1002,23 @@ nav .menu li.active a:hover {
   color: #03a10e;
 }
 
+/* Accessory Shop */
+.accessory-shop {
+  background-color: var(--color-section);
+  text-align: center;
+}
+.accessory-shop .whitebox {
+  padding-bottom: 0;
+}
+.accessory-shop .inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.accessory-shop img {
+  margin-top: 50px;
+}
+
 @keyframes sprite-icon {
   /* 1~10 */
   0.00% {
