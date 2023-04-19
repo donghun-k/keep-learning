@@ -988,6 +988,20 @@ nav .menu li.active a:hover {
   margin-right: 90px;
 }
 
+/* Environment */
+.environment {
+  padding: 20px 20px 0;
+  background-color: var(--color-section);
+  text-align: center;
+}
+.environment .icon {
+  margin-left: auto;
+  margin-right: auto;
+}
+.environment h1 {
+  color: #03a10e;
+}
+
 @keyframes sprite-icon {
   /* 1~10 */
   0.00% {
