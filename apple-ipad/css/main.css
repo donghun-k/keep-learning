@@ -510,6 +510,11 @@ nav .menu li.active a:hover {
   color: var(--color-font);
 }
 
+/* Main */
+main {
+  overflow-x: hidden;
+}
+
 /* Hero */
 .hero {
   background-color: var(--color-section);
