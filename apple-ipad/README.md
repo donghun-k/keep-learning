@@ -12,3 +12,4 @@ __⟪애플 아이패드 반응형 웹사이트⟫__ 실습 프로젝트입니�
 - 자주 사용하는 CSS 속성 값을 **CSS Variable**로 재사용
 - 스프라이트 이미지와 **CSS Animation**으로 애니메이션 효과
 - `IntersectionObserver` 객체를 이용한 요소 가시성 관찰
+- **Media Query**를 사용한 반응형 디자인
