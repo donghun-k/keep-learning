@@ -45,7 +45,7 @@ searchShadowEl.addEventListener('click', hideSearch);
 
 function showSearch() {
   headerEl.classList.add('searching');
-  document.documentElement.classList.add('fixed');
+  stopScroll();
   headerMenuEls.reverse().forEach((el, i) => {
     el.style.transitionDelay = (i * 0.4) / headerMenuEls.length + 's';
   });
@@ -58,7 +58,7 @@ function showSearch() {
 }
 function hideSearch() {
   headerEl.classList.remove('searching');
-  document.documentElement.classList.remove('fixed');
+  playScroll();
   headerMenuEls.reverse().forEach((el, i) => {
     el.style.transitionDelay = (i * 0.4) / headerMenuEls.length + 's';
   });
@@ -68,6 +68,24 @@ function hideSearch() {
   searchDelayEls.reverse();
   searchInputEl.value = '';
 }
+function playScroll() {
+  document.documentElement.classList.remove('fixed');
+}
+function stopScroll() {
+  document.documentElement.classList.add('fixed');
+}
+
+// 헤더 메뉴 토글!
+const menuStarterEl = document.querySelector('header .menu-starter');
+menuStarterEl.addEventListener('click', () => {
+  if (headerEl.classList.contains('menuing')) {
+    headerEl.classList.remove('menuing');
+    playScroll();
+  } else {
+    headerEl.classList.add('menuing');
+    stopScroll();
+  }
+});
 
 // 요소 가시성 검사
 const io = new IntersectionObserver((entries) => {
@@ -156,3 +174,15 @@ navigations.forEach((nav) => {
 // 년도
 const thisYearEl = document.querySelector('.this-year');
 thisYearEl.textContent = new Date().getFullYear();
+
+function replaceAll(str, from, to) {
+  let result = '';
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === from) {
+      result = result + to;
+    } else {
+      result = result + str[i];
+    }
+  }
+  return result;
+}
