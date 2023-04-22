@@ -108,6 +108,35 @@ window.addEventListener('resize', () => {
   }
 });
 
+// 네비게이션 토글 [모바일]
+const navEl = document.querySelector('nav');
+const navMenuToggleEl = navEl.querySelector('.menu-toggler');
+const navMenuShadowEl = navEl.querySelector('.shadow');
+
+navMenuToggleEl.addEventListener('click', () => {
+  if (navEl.classList.contains('menuing')) {
+    hideNavMenu();
+  } else {
+    showNavMenu();
+  }
+});
+navEl.addEventListener('click', (e) => {
+  e.stopPropagation();
+});
+navMenuShadowEl.addEventListener('click', () => {
+  hideNavMenu();
+});
+window.addEventListener('click', () => {
+  hideNavMenu();
+});
+
+function showNavMenu() {
+  navEl.classList.add('menuing');
+}
+function hideNavMenu() {
+  navEl.classList.remove('menuing');
+}
+
 // 요소 가시성 검사
 const io = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {

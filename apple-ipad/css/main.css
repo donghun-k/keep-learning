@@ -664,16 +664,17 @@ header.searching .search .autocompletes li {
 
 /* Navigation  */
 nav {
+  --nav-height: 52px;
+  border-bottom: 1px solid var(--color-border);
   background-color: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
   z-index: 8;
 }
 nav .inner {
   max-width: 1000px;
-  height: 52px;
+  height: var(--nav-height);
   display: flex;
   align-items: center;
 }
@@ -685,21 +686,118 @@ nav h1 {
 nav .menu {
   display: flex;
   gap: 12px;
+  margin-right: 18px;
 }
 nav .menu li a {
   display: block;
   padding: 6px;
   font-size: 11px;
 }
-nav .menu li:hover a {
-  color: var(--color-link);
-}
 nav .menu li.active a {
   opacity: 0.5;
   cursor: default;
 }
-nav .menu li.active a:hover {
+nav .menu li:hover a {
+  color: var(--color-link);
+}
+nav .menu li.active:hover a {
   color: var(--color-font);
+}
+@media (max-width: 740px) {
+  nav .shadow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-shadow);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.4s;
+  }
+  nav .contents-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-white);
+    visibility: hidden;
+    transition: 0.4s;
+  }
+  nav .menu-toggler {
+    position: relative;
+    width: 30px;
+    height: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  nav .menu-toggler::before,
+  nav .menu-toggler::after {
+    content: '';
+    display: block;
+    width: 11px;
+    height: 1px;
+    background-color: var(--color-font-darkgray);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transition: 0.4s;
+  }
+  nav .menu-toggler::before {
+    transform: rotate(40deg);
+    left: -9px;
+  }
+  nav .menu-toggler::after {
+    transform: rotate(-40deg);
+    right: -9px;
+  }
+  nav .menu {
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    width: 100%;
+    padding: 10px 40px 30px;
+    box-sizing: border-box;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(0, -50px);
+    transition: 0.4s;
+  }
+  nav .menu li {
+    border-bottom: 1px solid var(--color-border);
+  }
+  nav .menu li:last-child {
+    border-bottom: none;
+  }
+  nav .menu li a {
+    padding: 16px 0;
+    font-size: 14px;
+  }
+  nav.menuing .shadow {
+    visibility: visible;
+    opacity: 1;
+  }
+  nav.menuing .contents-bg {
+    visibility: visible;
+    height: 232px;
+  }
+  nav.menuing .menu {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  nav.menuing .menu-toggler::before {
+    transform: rotate(-40deg);
+  }
+  nav.menuing .menu-toggler::after {
+    transform: rotate(40deg);
+  }
 }
 
 /* Main */
