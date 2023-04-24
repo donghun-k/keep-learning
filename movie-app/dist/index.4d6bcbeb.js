@@ -586,6 +586,8 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Component", ()=>Component);
 parcelHelpers.export(exports, "createRouter", ()=>createRouter);
+// Store
+parcelHelpers.export(exports, "Store", ()=>Store);
 class Component {
     constructor(payload = {}){
         const { tagName ="div" , state ={} , props ={}  } = payload;
@@ -621,6 +623,24 @@ function createRouter(routes) {
         });
         routeRender(routes);
     };
+}
+class Store {
+    constructor(state){
+        this.state = {};
+        this.observers = {};
+        for(const key in state)Object.defineProperty(this.state, key, {
+            get: ()=>{
+                return state[key];
+            },
+            set: (val)=>{
+                state[key] = val;
+                this.observers[key]();
+            }
+        });
+    }
+    subscribe(key, cb) {
+        this.observers[key] = cb;
+    }
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
@@ -695,16 +715,69 @@ exports.default = (0, _core.createRouter)([
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _core = require("../core/core");
+var _textFeild = require("../components/TextFeild");
+var _textFeildDefault = parcelHelpers.interopDefault(_textFeild);
+var _message = require("../components/Message");
+var _messageDefault = parcelHelpers.interopDefault(_message);
 class Home extends (0, _core.Component) {
     render() {
         this.el.innerHTML = /*html*/ `
       <h1>Home Pages!</h1>
     `;
+        this.el.append(new (0, _textFeildDefault.default)().el, new (0, _messageDefault.default)().el);
     }
 }
 exports.default = Home;
 
-},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gdB30":[function(require,module,exports) {
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../components/TextFeild":"7t0Ez","../components/Message":"i84kQ"}],"7t0Ez":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+var _message = require("../store/message");
+var _messageDefault = parcelHelpers.interopDefault(_message);
+class TextFeild extends (0, _core.Component) {
+    render() {
+        this.el.innerHTML = /* html */ `
+      <input value="${(0, _messageDefault.default).state.message}"/>
+    `;
+        const inputEl = this.el.querySelector("input");
+        inputEl.addEventListener("input", ()=>{
+            (0, _messageDefault.default).state.message = inputEl.value;
+        });
+    }
+}
+exports.default = TextFeild;
+
+},{"../core/core":"3SuZC","../store/message":"4gYOO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4gYOO":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+exports.default = new (0, _core.Store)({
+    message: "Hello World!"
+});
+
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"i84kQ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+var _message = require("../store/message");
+var _messageDefault = parcelHelpers.interopDefault(_message);
+class Message extends (0, _core.Component) {
+    constructor(){
+        super();
+        (0, _messageDefault.default).subscribe("message", ()=>{
+            this.render();
+        });
+    }
+    render() {
+        this.el.innerHTML = /* html */ `
+      <h2>${(0, _messageDefault.default).state.message}</h2>
+    `;
+    }
+}
+exports.default = Message;
+
+},{"../core/core":"3SuZC","../store/message":"4gYOO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gdB30":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _core = require("../core/core");
