@@ -567,6 +567,8 @@ root.append(new (0, _appDefault.default)().el);
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _core = require("./core/core");
+var _fruitItem = require("./components/FruitItem");
+var _fruitItemDefault = parcelHelpers.interopDefault(_fruitItem);
 class App extends (0, _core.Component) {
     constructor(){
         super({
@@ -591,26 +593,30 @@ class App extends (0, _core.Component) {
     render() {
         this.el.innerHTML = /*html*/ `
       <h1>Fruits</h1>
-      <ul>
-        ${this.state.fruits.filter((fruit)=>fruit.price < 3000).map((fruit)=>/*html*/ `
-            <li>${fruit.name} is ${fruit.price}</li>
-          `).join("")}
-      </ul>
+      <ul></ul>
     `;
+        const ulEl = this.el.querySelector("ul");
+        ulEl.append(...this.state.fruits.filter((fruit)=>fruit.price < 3000).map((fruit)=>new (0, _fruitItemDefault.default)({
+                props: {
+                    name: fruit.name,
+                    price: fruit.price
+                }
+            }).el));
     }
 }
 exports.default = App;
 
-},{"./core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3SuZC":[function(require,module,exports) {
+},{"./core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/FruitItem":"79Im4"}],"3SuZC":[function(require,module,exports) {
 // Component
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Component", ()=>Component);
 class Component {
     constructor(payload = {}){
-        const { tagName ="div" , state ={}  } = payload;
+        const { tagName ="div" , state ={} , props ={}  } = payload;
         this.el = document.createElement(tagName);
         this.state = state;
+        this.props = props;
         this.render();
     }
     render() {}
@@ -646,6 +652,29 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["e11Rl","gLLPy"], "gLLPy", "parcelRequire6588")
+},{}],"79Im4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+class FruitItem extends (0, _core.Component) {
+    constructor({ props  }){
+        super({
+            tagName: "li",
+            props
+        });
+    }
+    render() {
+        this.el.innerHTML = /*html*/ `
+      <span>${this.props.name}</span>
+      <span>${this.props.price}</span>
+    `;
+        this.el.addEventListener("click", ()=>{
+            console.log(this.props.name, this.props.price);
+        });
+    }
+}
+exports.default = FruitItem;
+
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["e11Rl","gLLPy"], "gLLPy", "parcelRequire6588")
 
 //# sourceMappingURL=index.4d6bcbeb.js.map
