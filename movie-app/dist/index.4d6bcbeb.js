@@ -571,24 +571,32 @@ class App extends (0, _core.Component) {
     constructor(){
         super({
             state: {
-                inputText: ""
+                fruits: [
+                    {
+                        name: "apple",
+                        price: 1000
+                    },
+                    {
+                        name: "banana",
+                        price: 2000
+                    },
+                    {
+                        name: "orange",
+                        price: 3000
+                    }
+                ]
             }
         });
     }
     render() {
-        this.el.classList.add("search");
         this.el.innerHTML = /*html*/ `
-      <input />
-      <button>Click!</button>
+      <h1>Fruits</h1>
+      <ul>
+        ${this.state.fruits.filter((fruit)=>fruit.price < 3000).map((fruit)=>/*html*/ `
+            <li>${fruit.name} is ${fruit.price}</li>
+          `).join("")}
+      </ul>
     `;
-        const inputEl = this.el.querySelector("input");
-        inputEl.addEventListener("input", ()=>{
-            this.state.inpuText = inputEl.value;
-        });
-        const buttonEl = this.el.querySelector("button");
-        buttonEl.addEventListener("click", ()=>{
-            console.log("this.state.inpuText", this.state.inpuText);
-        });
     }
 }
 exports.default = App;
