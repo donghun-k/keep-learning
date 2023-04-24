@@ -568,12 +568,27 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _core = require("./core/core");
 class App extends (0, _core.Component) {
-    // 생략 가능한 부분
-    // constructor() {
-    //   super();
-    // }
+    constructor(){
+        super({
+            state: {
+                inputText: ""
+            }
+        });
+    }
     render() {
-        this.el.textContent = "Hello World";
+        this.el.classList.add("search");
+        this.el.innerHTML = /*html*/ `
+      <input />
+      <button>Click!</button>
+    `;
+        const inputEl = this.el.querySelector("input");
+        inputEl.addEventListener("input", ()=>{
+            this.state.inpuText = inputEl.value;
+        });
+        const buttonEl = this.el.querySelector("button");
+        buttonEl.addEventListener("click", ()=>{
+            console.log("this.state.inpuText", this.state.inpuText);
+        });
     }
 }
 exports.default = App;
@@ -585,8 +600,9 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Component", ()=>Component);
 class Component {
     constructor(payload = {}){
-        const { tagName ="div"  } = payload;
+        const { tagName ="div" , state ={}  } = payload;
         this.el = document.createElement(tagName);
+        this.state = state;
         this.render();
     }
     render() {}
