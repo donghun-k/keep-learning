@@ -17,3 +17,26 @@ body {
   line-height: 1.4;
   color: var(--color-white);
 }
+.container {
+  max-width: 1120;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+.headline {
+  margin-bottom: 40px;
+}
+.headline h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 80px;
+  line-height: 1;
+  margin-bottom: 40px;
+}
+.headline h1 .js {
+  color: #e4cf4c;
+}
+.headline h1 .ts {
+  color: #2f72bc;
+}
+.headline p {
+  color: var(--color-white-30);
+}
