@@ -5,8 +5,9 @@ const store = new Store({
   page: 1,
   pageMax: 1,
   movies: [],
+  movie: {},
   isLoading: false,
-  message: '영화 제목으로 검색해 주세요.',
+  message: 'Search for the movie title!',
 });
 
 export default store;
@@ -35,5 +36,16 @@ export const searchMovies = async (page) => {
     store.state.message = err.message;
   } finally {
     store.state.isLoading = false;
+  }
+};
+
+export const getMovieDetails = async (id) => {
+  try {
+    const res = await fetch(
+      `https://omdbapi.com?apikey=7035c60c&i=${id}&plot=full`
+    );
+    store.state.movie = await res.json();
+  } catch (err) {
+    console.log('getMovieDetails error', err);
   }
 };
