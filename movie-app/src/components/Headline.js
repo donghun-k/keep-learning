@@ -9,7 +9,7 @@ export default class Headline extends Component {
         MOVIE APP
       </h1>
       <p>
-        JavaScript 및 TypeScript 연습용 프로젝트입니다.
+        <span class="js">JavaScript</span> 및 <span class="ts">TypeScript</span> 연습용 프로젝트입니다.
       </p>
     `;
   }

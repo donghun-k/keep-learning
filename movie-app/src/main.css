@@ -11,6 +11,12 @@ html {
   --color-hover: #f86a05;
   --color-area: #1c212e;
 }
+.js {
+  color: #e4cf4c;
+}
+.ts {
+  color: #2f72bc;
+}
 body {
   background-color: var(--color-black);
   font-family: 'Roboto', sans-serif;
@@ -162,12 +168,6 @@ header .user img {
   font-size: 80px;
   line-height: 1;
   margin-bottom: 40px;
-}
-.headline h1 .js {
-  color: #e4cf4c;
-}
-.headline h1 .ts {
-  color: #2f72bc;
 }
 .headline p {
   color: var(--color-white-30);
