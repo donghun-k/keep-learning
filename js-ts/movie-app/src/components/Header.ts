@@ -1,6 +1,15 @@
 import { Component } from '../core';
 
+interface State {
+  [key: string]: unknown;
+  menus: {
+    name: string;
+    href: string;
+  }[];
+}
+
 export default class Header extends Component {
+  public state!: State;
   constructor() {
     super({
       tagName: 'header',
