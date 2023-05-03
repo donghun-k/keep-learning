@@ -1,15 +1,15 @@
 /* Common */
 html {
-  --color-black: #0e111b;
+  --color-black: #111111;
   --color-white: #fff;
   --color-white-50: rgba(255, 255, 255, 0.5);
   --color-white-30: rgba(255, 255, 255, 0.3);
   --color-white-20: rgba(255, 255, 255, 0.2);
   --color-white-10: rgba(255, 255, 255, 0.1);
   --color-white-5: rgba(255, 255, 255, 0.05);
-  --color-primary: #fdc000;
-  --color-hover: #f86a05;
-  --color-area: #1c212e;
+  --color-primary: #fe8bab;
+  --color-hover: #de6b8b;
+  --color-area: #303030;
   --color-js: #e4cf4c;
   --color-ts: #2f72bc;
 }
@@ -20,9 +20,11 @@ body {
   color: var(--color-white);
 }
 .js {
+  font-weight: bold;
   color: var(--color-js);
 }
 .ts {
+  font-weight: bold;
   color: var(--color-ts);
 }
 
@@ -123,10 +125,10 @@ body {
   }
 }
 
-/* components/TheHeader */
+/* components/Header */
 header {
   padding: 20px 40px;
-  background-color: rgba(14, 17, 27, 0.9);
+  background-color: rgba(10, 10, 10, 0.9);
   position: sticky;
   top: 0;
   z-index: 9;
@@ -141,7 +143,7 @@ header .logo {
   text-decoration: none;
 }
 header .logo span {
-  color: var(--color-primary);
+  color: var(--color-white);
 }
 header nav ul {
   display: flex;
@@ -173,6 +175,8 @@ header .user:hover {
   transform: scale(1.2);
 }
 header .user img {
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
   width: 100%;
 }
 @media (max-width: 600px) {
@@ -187,7 +191,7 @@ header .user img {
   }
 }
 
-/* components/TheFooter */
+/* components/Footer */
 footer {
   padding: 40px 40px 60px;
   text-align: center;
@@ -380,7 +384,8 @@ footer a:hover {
   width: 230px;
   height: 230px;
   margin: 0 auto 20px;
-  border-radius: 10px;
+  box-shadow: 0 0 5px 7px var(--color-primary) inset;
+  border-radius: 50%;
   background-size: cover;
 }
 .about .name {
