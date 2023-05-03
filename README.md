@@ -1,10 +1,9 @@
 # 웹 기술 연습 프로젝트 저장소
 
-## HTML / CSS
-> **HTML**과 **CSS**의 기본적인 사용법을 익혀 정적인 웹 페이지 만들어보기
+## [HTML / CSS](https://github.com/donghun-k/front-end-exercises/tree/main/html-css)
 
-## JavaScript / TypeScript
+## [JavaScript / TypeScript](https://github.com/donghun-k/front-end-exercises/tree/main/js-ts)
 
 ## React
 
-## Next.js
+## [Next.js](https://github.com/donghun-k/front-end-exercises/tree/main/next/blahx2)
