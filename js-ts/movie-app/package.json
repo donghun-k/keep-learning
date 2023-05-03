@@ -14,6 +14,7 @@
   "devDependencies": {
     "dotenv": "^16.0.3",
     "parcel": "^2.8.3",
+    "typescript": "^5.0.4",
     "vercel": "^29.0.3"
   },
   "dependencies": {
