@@ -49,7 +49,6 @@ export const getMovieDetails = async (id) => {
       method: 'POST',
       body: JSON.stringify({
         id,
-        page,
       }),
     });
     store.state.movie = await res.json();
