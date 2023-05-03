@@ -1,6 +1,15 @@
 import { Store } from '../core';
 
-export default new Store({
+interface State {
+  photo: string;
+  name: string;
+  email: string;
+  github: string;
+  repo: string;
+  blog: string;
+}
+
+export default new Store<State>({
   photo: 'https://avatars.githubusercontent.com/u/60064471?v=4',
   name: 'DongHun, Kim',
   email: 'donghun.kdh@gmail.com',
