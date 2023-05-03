@@ -7,8 +7,8 @@ html {
   --color-white-20: rgba(255, 255, 255, 0.2);
   --color-white-10: rgba(255, 255, 255, 0.1);
   --color-white-5: rgba(255, 255, 255, 0.05);
-  --color-primary: #fe8bab;
-  --color-hover: #de6b8b;
+  --color-primary: #cccccc;
+  --color-hover: #aaaaaa;
   --color-area: #303030;
   --color-js: #e4cf4c;
   --color-ts: #2f72bc;
