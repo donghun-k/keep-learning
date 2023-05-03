@@ -1,6 +1,19 @@
 ///// Component /////
+interface ComponentPayload {
+  tagName?: string;
+  props?: {
+    [key: string]: unknown;
+  };
+  state?: {
+    [key: string]: unknown;
+  };
+}
+
 export class Component {
-  constructor(payload = {}) {
+  public el: HTMLElement;
+  public props;
+  public state;
+  constructor(payload: ComponentPayload = {}) {
     const {
       tagName = 'div', // 최상위 요소의 태그 이름
       props = {},
