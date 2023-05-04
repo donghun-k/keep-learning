@@ -1,4 +1,4 @@
 # HTML / CSS
-## Starbucks
+## [Starbucks](https://github.com/donghun-k/front-end-exercises/tree/main/html-css/starbucks)
 
-## Apple iPad
+## [Apple iPad](https://github.com/donghun-k/front-end-exercises/tree/main/html-css/apple-ipad)
