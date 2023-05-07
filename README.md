@@ -4,6 +4,6 @@
 
 ## [JavaScript / TypeScript](https://github.com/donghun-k/front-end-exercises/tree/main/js-ts)
 
-## React
+## [React](https://github.com/donghun-k/front-end-exercises/tree/main/react)
 
 ## [Next.js](https://github.com/donghun-k/front-end-exercises/tree/main/next/blahx2)
