@@ -20,7 +20,7 @@ export default class Youtube {
   }
   async #mostPopular(keyword) {
     return this.apiClient
-      .search({
+      .videos({
         params: {
           part: 'snippet',
           maxResults: 25,
