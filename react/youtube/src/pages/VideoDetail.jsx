@@ -17,7 +17,7 @@ const VideoDetail = () => {
           type="text/html"
           width="100%"
           height="640"
-          src={`http://www.youtube.com/embed/${video.id}`}
+          src={`https://www.youtube.com/embed/${video.id}`}
         ></iframe>
         <div className="p-2">
           <h2 className="text-2xl font-bold">{title}</h2>
