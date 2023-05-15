@@ -8,7 +8,7 @@ const VideoCard = ({ video }) => {
   return (
     <li
       onClick={() => {
-        navigate(`videos/watch/${video.id}`, {
+        navigate(`/videos/watch/${video.id}`, {
           state: { video },
         });
       }}
