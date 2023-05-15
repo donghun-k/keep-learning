@@ -9,7 +9,9 @@ const RelatedVideos = ({ id }) => {
     error,
     isLoading,
     data: videos,
-  } = useQuery(['related', id], () => youtube.getRelatedVideos(id));
+  } = useQuery(['related', id], () => youtube.getRelatedVideos(id), {
+    staleTiem: 1000 * 60 * 5,
+  });
   return (
     <>
       {isLoading && <p>Loading...</p>}
