@@ -8,8 +8,11 @@ import User from './User';
 const Navbar = () => {
   const [user, setUser] = useState();
 
-  useEffect((user) => {
-    onUserStateChange(setUser);
+  useEffect(() => {
+    onUserStateChange((user) => {
+      console.log(user);
+      setUser(user);
+    });
   }, []);
   return (
     <header className="flex justify-between border-b border-gray-300 p-2">
