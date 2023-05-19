@@ -9,6 +9,8 @@ import AllProducts from './pages/AllProducts';
 import ProductDetail from './pages/ProductDetail';
 import MyCart from './pages/MyCart';
 import NotFound from './pages/NotFound';
+import NewProduct from './pages/NewProduct';
+import ProtectedRoute from './pages/ProtectedRoute';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -28,12 +30,24 @@ const router = createBrowserRouter([
         element: <AllProducts />,
       },
       {
+        path: '/products/new',
+        element: (
+          <ProtectedRoute requireAdmin={true}>
+            <NewProduct />
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: '/products/:id',
         element: <ProductDetail />,
       },
       {
         path: '/carts',
-        element: <MyCart />,
+        element: (
+          <ProtectedRoute>
+            <MyCart />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
