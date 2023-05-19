@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../components/ui/Button';
+import { uploadImage } from '../api/uploader';
 
 const NewProduct = () => {
   const [product, setProduct] = useState({});
@@ -15,6 +16,9 @@ const NewProduct = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    uploadImage(file).then((url) => {
+      console.log(url);
+    });
   };
 
   return (
