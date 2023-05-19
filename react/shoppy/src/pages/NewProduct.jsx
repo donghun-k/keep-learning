@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../components/ui/Button';
 import { uploadImage } from '../api/uploader';
+import { addNewProduct } from '../api/firebase';
 
 const NewProduct = () => {
   const [product, setProduct] = useState({});
@@ -18,6 +19,7 @@ const NewProduct = () => {
     e.preventDefault();
     uploadImage(file).then((url) => {
       console.log(url);
+      addNewProduct(product, url);
     });
   };
 
