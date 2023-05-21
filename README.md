@@ -6,4 +6,4 @@
 
 ## [React](https://github.com/donghun-k/front-end-exercises/tree/main/react)
 
-## [Next.js](https://github.com/donghun-k/front-end-exercises/tree/main/next/blahx2)
+## [Next.js](https://github.com/donghun-k/front-end-exercises/tree/main/next)
