@@ -78,7 +78,7 @@ export async function getCart(userId) {
     });
 }
 
-export async function addOrUpdatedToCart(userId, product) {
+export async function addOrUpdateToCart(userId, product) {
   return set(ref(database, `carts/${userId}/${product.id}`), product);
 }
 
