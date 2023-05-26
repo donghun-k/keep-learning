@@ -10,7 +10,7 @@ const SummaryPage = () => {
           type="checkbox"
           checked={checked}
           id="confirm-checkbox"
-          onClick={(e) => setChecked(e.target.checked)}
+          onChange={(e) => setChecked(e.target.checked)}
         />
         <label htmlFor="confirm-checkbox">
           주문 내역을 확인하였으며, 결제에 동의합니다.
