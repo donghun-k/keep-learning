@@ -1,5 +1,5 @@
 import React from 'react';
-import Type from '../../components/Type';
+import Type from '../components/Type';
 
 const OrderPage = () => {
   return (
