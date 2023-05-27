@@ -10,7 +10,7 @@ function App() {
     <div style={{ padding: '4rem' }}>
       {step === 0 && <OrderPage setStep={setStep} />}
       {step === 1 && <SummaryPage setStep={setStep} />}
-      {step === 3 && <CompletePage setStep={setStep} />}
+      {step === 2 && <CompletePage setStep={setStep} />}
     </div>
   );
 }
