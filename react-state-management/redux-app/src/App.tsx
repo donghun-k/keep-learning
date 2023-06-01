@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './reducers';
-import axios from 'axios';
+import { fetchPosts } from './actions/posts';
 
 interface Post {
   userId: number;
@@ -18,13 +18,6 @@ function App() {
   const posts: Post[] = useSelector((state: RootState) => state.posts);
 
   const [todoValue, setTodoValue] = useState('');
-
-  const fetchPosts = (): any => {
-    return async (dispatch: any, getState: any) => {
-      const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
-      dispatch({ type: 'FETCH_POSTS', payload: res.data });
-    };
-  };
 
   useEffect(() => {
     dispatch(fetchPosts());
