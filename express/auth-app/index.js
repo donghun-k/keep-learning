@@ -13,6 +13,21 @@ const POSTS = [
   },
 ];
 
+function authMiddleware(req, res, next) {
+  // 토큰을 request headers에서 가져오기
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (token == null) return res.sendStatus(401);
+
+  // 유효한 토큰인지 확인
+  jwt.verify(token, SECRET_KEY, (err, user) => {
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+}
+
 const app = express();
 
 app.use(express.json()); // application/json 파싱 미들웨어
@@ -26,7 +41,7 @@ app.post('/login', (req, res) => {
   res.json({ accessToken });
 });
 
-app.get('/posts', (req, res) => {
+app.get('/posts', authMiddleware, (req, res) => {
   res.json(POSTS);
 });
 
