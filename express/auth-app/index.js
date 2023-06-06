@@ -1,3 +1,4 @@
+const cookieParser = require('cookie-parser');
 const express = require('express');
 const jwt = require('jsonwebtoken');
 
@@ -34,6 +35,7 @@ function authMiddleware(req, res, next) {
 const app = express();
 
 app.use(express.json()); // application/json 파싱 미들웨어
+app.use(cookieParser()); // 쿠키 파싱 미들웨어
 
 app.post('/login', (req, res) => {
   const { username } = req.body;
@@ -60,6 +62,26 @@ app.post('/login', (req, res) => {
 
 app.get('/posts', authMiddleware, (req, res) => {
   res.json(POSTS);
+});
+
+app.get('/refresh', (req, res) => {
+  // 쿠키 가져오기 with cookie-parser
+  const cookies = req.cookies;
+  if (!cookies?.jwt) return res.sendStatus(403);
+
+  const refreshToken = cookies.jwt;
+  // refreshToken이 DB에 있는지 확인
+  if (!REFRESHES_TOKENS.includes(refreshToken)) return res.sendStatus(403);
+
+  // refreshToken이 유효하다면 accessToken 재발급
+  jwt.verify(refreshToken, REFRESH_SECRET_KEY, (err, user) => {
+    if (err) return res.sendStatus(403);
+
+    const accessToken = jwt.sign({ name: user.name }, SECRET_KEY, {
+      expiresIn: '30s',
+    });
+    res.json({ accessToken });
+  });
 });
 
 const PORT = 4000;
