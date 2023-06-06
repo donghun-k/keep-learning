@@ -2,6 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 
 const SECRET_KEY = 'doradora';
+const REFRESH_SECRET_KEY = 'doradora';
 const POSTS = [
   {
     username: 'DongHun, Kim',
@@ -12,6 +13,8 @@ const POSTS = [
     title: 'I love DongHun',
   },
 ];
+
+const REFRESHES_TOKENS = [];
 
 function authMiddleware(req, res, next) {
   // 토큰을 request headers에서 가져오기
@@ -37,7 +40,21 @@ app.post('/login', (req, res) => {
   const user = { name: username };
 
   // jwt를 이용해서 토큰 생성하기 payload + secretKey
-  const accessToken = jwt.sign(user, SECRET_KEY);
+  // 유효기간 추가
+  const accessToken = jwt.sign(user, SECRET_KEY, { expiresIn: '30s' });
+  // jwt를 이용해서 refreshToken 생성하기
+  const refreshToken = jwt.sign(user, REFRESH_SECRET_KEY, {
+    expiresIn: '1d',
+  });
+
+  // refreshToken을 쿠키에 넣어주기
+  res.cookie('jwt', refreshToken, {
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000,
+  });
+
+  REFRESHES_TOKENS.push(refreshToken);
+
   res.json({ accessToken });
 });
 
