@@ -1,4 +1,4 @@
-# Shoppy
+# Context App
 __⟪리액트 Context 를 이용한 간단한 앱 만들기⟫__ 실습 프로젝트입니다.
 
 ## What I Learned
