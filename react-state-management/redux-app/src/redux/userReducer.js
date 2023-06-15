@@ -1,4 +1,5 @@
 import { LOGIN, LOGOUT } from './userActions';
+import storage from 'redux-persist/lib/storage';
 
 const initialState = {
   id: null,
@@ -21,3 +22,10 @@ export const userReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+const persistConfig = {
+  key: 'userInfo',
+  storage,
+};
+
+export default persistReducer(persistConfig, userReducer);
