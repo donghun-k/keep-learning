@@ -8,7 +8,6 @@ function Login() {
   const LOGIN_API_URL = 'https://dummyjson.com/auth/login';
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
-  const URL = 'https://dummyjson.com/auth/login';
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,7 +23,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(URL, {
+      const res = await axios.post(LOGIN_API_URL, {
         headers: {
           'Content-type': 'application/json',
         },
