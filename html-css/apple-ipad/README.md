@@ -2,7 +2,7 @@
 
 __⟪애플 아이패드 반응형 웹사이트⟫__ 실습 프로젝트입니다.
 
-[DEMO](https://donghun-k.github.io/front-end-exercises/html-css/apple-ipad/)
+[DEMO](https://donghun-k.github.io/front-end-basic/html-css/apple-ipad/)
 
 ## What I Learned
 |Language|
