@@ -1,15 +1,11 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { loginAction } from '../redux/userActions';
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const LOGIN_API_URL = 'https://dummyjson.com/auth/login';
-  const [userId, setUserId] = useState('');
-  const [password, setPassword] = useState('');
-
-  const dispatch = useDispatch();
+  const [userId, setUserId] = useState("");
+  const [password, setPassword] = useState("");
+  const URL = "https://dummyjson.com/auth/login";
   const navigate = useNavigate();
 
   const handleId = (e) => {
@@ -23,21 +19,20 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(LOGIN_API_URL, {
+      const res = await axios.post(URL, {
         headers: {
-          'Content-type': 'application/json',
+          "Content-type": "application/json"
         },
         username: userId,
-        password: password,
+        password: password
       });
       console.log(res);
-      dispatch(loginAction(res.data));
-      navigate('/');
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
-    setUserId('');
-    setPassword('');
+    setUserId("");
+    setPassword("");
   };
 
   return (
