@@ -1,12 +1,16 @@
-import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { loginAction } from '../store/userSlice';
 
 function Login() {
-  const [userId, setUserId] = useState("");
-  const [password, setPassword] = useState("");
-  const URL = "https://dummyjson.com/auth/login";
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
+  const LOGIN_URL = 'https://dummyjson.com/auth/login';
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const handleId = (e) => {
     setUserId(e.target.value);
@@ -19,20 +23,21 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(URL, {
+      const res = await axios.post(LOGIN_URL, {
         headers: {
-          "Content-type": "application/json"
+          'Content-type': 'application/json',
         },
         username: userId,
-        password: password
+        password: password,
       });
-      console.log(res);
-      navigate("/");
+      dispatch(loginAction(res.data));
+      localStorage.setItem('testToken', res.data.token);
+      navigate('/');
     } catch (error) {
       console.error(error);
     }
-    setUserId("");
-    setPassword("");
+    setUserId('');
+    setPassword('');
   };
 
   return (
