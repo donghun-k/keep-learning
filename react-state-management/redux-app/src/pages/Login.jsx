@@ -30,6 +30,7 @@ function Login() {
         username: userId,
         password: password,
       });
+      console.log(res.data);
       dispatch(loginAction(res.data));
       localStorage.setItem('testToken', res.data.token);
       navigate('/');

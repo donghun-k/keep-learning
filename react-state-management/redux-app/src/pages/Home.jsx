@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../store/userSlice';
+import { selectToken, selectUser } from '../store/userSlice';
 
 function Home() {
-  const user = useSelector(selectUser).user;
-  const token = useSelector(selectUser).token;
+  const user = useSelector(selectUser);
+  const token = useSelector(selectToken);
+  console.log('user', user);
+  console.log('token', token);
   return (
     <main className="wrapper">
       <div className="container">
