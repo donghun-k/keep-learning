@@ -1,0 +1,74 @@
+.stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #222;
+  gap: 50px;
+}
+.door {
+  position: relative;
+  width: 100px;
+  height: 150px;
+}
+.door:first-child {
+  transform: perspective(1000px) rotateY(30deg);
+  transform-origin: right;
+}
+.door:last-child {
+  transform: perspective(1000px) rotateY(-30deg);
+  transform-origin: left;
+}
+.door-back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+}
+.toshimmoong {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
+  background-size: contain;
+  transform: translate3d(0, 100%, 0);
+  transition: 0.5s 0.3s cubic-bezier(0.51, 0.86, 0.45, 1.44), background 0s;
+}
+.door--opened .toshimmoong {
+  transform: translate3d(0, 0, 0);
+}
+.door-body {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+  transform-origin: left;
+  cursor: pointer;
+}
+.door-body:hover {
+  filter: brightness(1.5);
+}
+.door:nth-child(1) .door-body {
+  background-color: rgba(229, 106, 186, 0.7);
+  box-shadow: 0 0 5px rgba(229, 106, 186, 1);
+}
+.door:nth-child(2) .door-body {
+  background-color: rgba(228, 234, 2, 0.7);
+  box-shadow: 0 0 5px rgba(228, 234, 2, 1);
+}
+.door:nth-child(3) .door-body {
+  background-color: rgba(1, 205, 202, 0.7);
+  box-shadow: 0 0 5px rgba(1, 205, 202, 1);
+}
+.door--opened .door-body {
+  transform: perspective(800px) rotateY(-110deg);
+}
