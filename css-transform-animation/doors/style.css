@@ -59,9 +59,9 @@
 .door:nth-child(3) .door-body {
   background-color: rgba(0, 0, 255, 0.5);
 }
-.door:hover .door-body {
+.door--opened .door-body {
   transform: perspective(800px) rotateY(-110deg);
 }
-.door:hover .toshimee {
+.door--opened .toshimee {
   transform: translate3d(0, 0, 0);
 }
