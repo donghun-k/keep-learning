@@ -9,7 +9,7 @@
       doorBodyEl.removeEventListener('click', clickHandler);
       setTimeout(() => {
         doorBodyEl.addEventListener('click', clickHandler);
-      }, 1500);
+      }, 2000);
     });
 
     e.target.parentElement.classList.add('door--opened');

@@ -16,6 +16,9 @@
   transform: perspective(1000px) rotateY(30deg);
   transform-origin: right;
 }
+.door:nth-child(2) {
+  transform: scale(0.98);
+}
 .door:last-child {
   transform: perspective(1000px) rotateY(-30deg);
   transform-origin: left;
@@ -39,7 +42,7 @@
   background-position: 50% 100%;
   background-size: contain;
   transform: translate3d(0, 100%, 0);
-  transition: 0.5s 0.3s cubic-bezier(0.51, 0.86, 0.45, 1.44), background 0s;
+  transition: 0.5s 0.5s cubic-bezier(0.51, 0.86, 0.45, 1.44), background 0s;
 }
 .door--opened .toshimmoong {
   transform: translate3d(0, 0, 0);
@@ -69,6 +72,12 @@
   background-color: rgba(1, 205, 202, 0.7);
   box-shadow: 0 0 5px rgba(1, 205, 202, 1);
 }
-.door--opened .door-body {
-  transform: perspective(800px) rotateY(-110deg);
+.door--opened:nth-child(1) .door-body {
+  transform: perspective(1000px) rotateY(-100deg);
+}
+.door--opened:nth-child(2) .door-body {
+  transform: perspective(1000px) rotateY(-110deg);
+}
+.door--opened:nth-child(3) .door-body {
+  transform: perspective(1000px) rotateY(-120deg);
 }
