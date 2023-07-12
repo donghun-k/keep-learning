@@ -24,3 +24,35 @@ body {
   height: 100vh;
   transform-style: preserve-3d;
 }
+.house {
+  width: 100vw;
+  height: 100vh;
+  transform: translateZ(-500vw);
+  transform-style: preserve-3d;
+}
+.wall {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8);
+  perspective: 1000px;
+  left: 0;
+  top: 0;
+}
+.wall-left {
+  width: 1000vw;
+  transform: rotateY(90deg) translateZ(-500vw);
+}
+.wall-right {
+  width: 1000vw;
+  transform: rotateY(90deg) translateZ(-400vw);
+}
+.wall-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.wall-title {
+  font-size: 5rem;
+}
