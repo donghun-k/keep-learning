@@ -47,6 +47,18 @@ body {
   width: 1000vw;
   transform: rotateY(90deg) translateZ(-400vw);
 }
+.wall-front-a {
+  transform: translateZ(300vw);
+}
+.wall-front-b {
+  transform: translateZ(0vw);
+}
+.wall-front-c {
+  transform: translateZ(-200vw);
+}
+.wall-front-d {
+  transform: translateZ(-500vw);
+}
 .wall-content {
   display: flex;
   align-items: center;
