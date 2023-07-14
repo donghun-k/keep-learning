@@ -1,9 +1,17 @@
 (function () {
   const houseEl = document.querySelector('.house');
-  const maxScrollValue = document.body.offsetHeight - window.innerHeight;
+  let maxScrollValue;
+
+  function resizeHandler() {
+    maxScrollValue = document.body.offsetHeight - window.innerHeight;
+  }
 
   window.addEventListener('scroll', () => {
-    const zMove = (pageYOffset / maxScrollValue) * 950 - 490;
+    const zMove = (scrollY / maxScrollValue) * 980 - 500;
     houseEl.style.transform = `translateZ(${zMove}vw)`;
   });
+
+  window.addEventListener('resize', resizeHandler);
+
+  resizeHandler();
 })();
