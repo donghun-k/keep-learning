@@ -1,5 +1,6 @@
 (function () {
   const houseEl = document.querySelector('.house');
+  const barEl = document.querySelector('.progress-bar');
   let maxScrollValue;
 
   function resizeHandler() {
@@ -7,8 +8,11 @@
   }
 
   window.addEventListener('scroll', () => {
-    const zMove = (scrollY / maxScrollValue) * 980 - 500;
+    const scrollPercent = scrollY / maxScrollValue;
+    const zMove = scrollPercent * 980 - 500;
     houseEl.style.transform = `translateZ(${zMove}vw)`;
+
+    barEl.style.width = scrollPercent * 100 + '%';
   });
 
   window.addEventListener('resize', resizeHandler);
