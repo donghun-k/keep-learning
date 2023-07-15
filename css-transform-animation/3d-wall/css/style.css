@@ -4,7 +4,7 @@ body {
     'Malgun Gothic', sans-serif;
   -webkit-overflow-scrolling: touch;
   color: #555;
-  background: #fff000;
+  background: #333;
   transition: background 0.5s;
 }
 
@@ -41,10 +41,12 @@ body {
 }
 .wall-left {
   width: 1000vw;
+  background-color: #555;
   transform: rotateY(90deg) translateZ(-500vw);
 }
 .wall-right {
   width: 1000vw;
+  background-color: #555;
   transform: rotateY(90deg) translateZ(-400vw);
 }
 .wall-front-a {
