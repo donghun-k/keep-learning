@@ -1,3 +1,8 @@
+@keyframes ani-head {
+  to {
+    transform: rotateX(-10deg);
+  }
+}
 body {
   height: 500vw;
   font-family: 'Apple SD Gothic Neo', 'Roboto', 'Noto Sans KR', NanumGothic,
