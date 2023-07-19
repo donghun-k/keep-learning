@@ -131,8 +131,8 @@ body {
   transform: rotateY(180deg);
 }
 .character-head {
-  left: calc(42 / 856 * 100%);
-  top: 0;
+  left: calc(0 / 856 * 100%);
+  top: calc(50 / 1334 * 100%);
   z-index: 60;
   width: calc(770 / 856 * 100%);
   height: calc(648 / 1334 * 100%);
