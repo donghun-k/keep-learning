@@ -141,10 +141,10 @@ body {
     cubic-bezier(0.46, 0.18, 0.66, 0.93);
 }
 .character-head-face.face-front {
-  background-image: url('../images/ilbuni_head_front.png');
+  background-image: url('../images/hun_head_front.png');
 }
 .character-head-face.face-back {
-  background-image: url('../images/ilbuni_head_back.png');
+  background-image: url('../images/hun_head_back.png');
 }
 .character-torso {
   left: calc(208 / 856 * 100%);
@@ -155,10 +155,10 @@ body {
   transform-origin: center center;
 }
 .character-torso-face.face-front {
-  background-image: url('../images/ilbuni_body_front.png');
+  background-image: url('../images/hun_body_front.png');
 }
 .character-torso-face.face-back {
-  background-image: url('../images/ilbuni_body_back.png');
+  background-image: url('../images/hun_body_back.png');
 }
 .character-arm-right {
   left: 0;
@@ -168,10 +168,10 @@ body {
   transform-origin: right top;
 }
 .character-arm-right .face-front {
-  background-image: url('../images/ilbuni_arm_0.png');
+  background-image: url('../images/hun_arm_0.png');
 }
 .character-arm-right .face-back {
-  background-image: url('../images/ilbuni_arm_1.png');
+  background-image: url('../images/hun_arm_1.png');
 }
 .character-arm-left {
   left: calc(600 / 856 * 100%);
@@ -181,10 +181,10 @@ body {
   transform-origin: left top;
 }
 .character-arm-left .face-front {
-  background-image: url('../images/ilbuni_arm_1.png');
+  background-image: url('../images/hun_arm_1.png');
 }
 .character-arm-left .face-back {
-  background-image: url('../images/ilbuni_arm_0.png');
+  background-image: url('../images/hun_arm_0.png');
 }
 .character-leg-right {
   left: calc(200 / 856 * 100%);
@@ -194,10 +194,10 @@ body {
   transform-origin: center top;
 }
 .character-leg-right .face-front {
-  background-image: url('../images/ilbuni_leg_0.png');
+  background-image: url('../images/hun_leg_0.png');
 }
 .character-leg-right .face-back {
-  background-image: url('../images/ilbuni_leg_1.png');
+  background-image: url('../images/hun_leg_1.png');
 }
 .character-leg-left {
   left: calc(414 / 856 * 100%);
@@ -207,10 +207,10 @@ body {
   transform-origin: center top;
 }
 .character-leg-left .face-front {
-  background-image: url('../images/ilbuni_leg_1.png');
+  background-image: url('../images/hun_leg_1.png');
 }
 .character-leg-left .face-back {
-  background-image: url('../images/ilbuni_leg_0.png');
+  background-image: url('../images/hun_leg_0.png');
 }
 .character.running .character-leg-right {
   animation: ani-running-leg 0.2s alternate infinite linear;
