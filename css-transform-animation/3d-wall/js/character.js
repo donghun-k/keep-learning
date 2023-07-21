@@ -1,7 +1,7 @@
-function Character() {
-  this.mainElem = document.createElement('div');
-  this.mainElem.classList.add('character');
-  this.mainElem.innerHTML =
+function Character(info) {
+  this.mainEl = document.createElement('div');
+  this.mainEl.classList.add('character');
+  this.mainEl.innerHTML =
     '<div class="character-face-con character-head">' +
     '<div class="character-face character-head-face face-front"></div>' +
     '<div class="character-face character-head-face face-back"></div>' +
@@ -27,5 +27,7 @@ function Character() {
     '<div class="character-face character-leg-face face-back"></div>' +
     '</div>';
 
-  document.querySelector('.stage').appendChild(this.mainElem);
+  document.querySelector('.stage').appendChild(this.mainEl);
+
+  this.mainEl.style.left = info.xPos + '%';
 }
