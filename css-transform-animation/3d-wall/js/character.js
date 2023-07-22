@@ -29,5 +29,37 @@ function Character(info) {
 
   document.querySelector('.stage').appendChild(this.mainEl);
 
-  this.mainEl.style.left = info.xPos + '%';
+  this.mainEl.style.left = `calc(${info.xPos}% - 5vw)`;
+
+  this.scrollState = false;
+  this.lastScrollTop = 0;
+
+  this.init();
 }
+
+Character.prototype = {
+  constructor: Character,
+  init: function () {
+    const self = this;
+    window.addEventListener('scroll', function () {
+      clearTimeout(self.scrollState);
+
+      if (!self.scrollState) {
+        self.mainEl.classList.add('running');
+      }
+
+      self.scrollState = setTimeout(function () {
+        self.scrollState = false;
+        self.mainEl.classList.remove('running');
+      }, 100);
+
+      if (self.lastScrollTop > window.scrollY) {
+        self.mainEl.setAttribute('data-direction', 'backward');
+      } else {
+        self.mainEl.setAttribute('data-direction', 'forward');
+      }
+
+      self.lastScrollTop = window.scrollY;
+    });
+  },
+};
