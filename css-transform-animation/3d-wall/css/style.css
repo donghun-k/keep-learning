@@ -149,8 +149,8 @@ body {
   transform: rotateY(180deg);
 }
 .character-head {
-  left: calc(43 / 856 * 100%);
-  top: calc(50 / 1334 * 100%);
+  left: calc(23 / 856 * 100%);
+  top: calc(60 / 1334 * 100%);
   z-index: 60;
   width: calc(770 / 856 * 100%);
   height: calc(648 / 1334 * 100%);
@@ -239,22 +239,23 @@ body {
 .character.running .character-arm {
   animation: ani-running-arm 0.2s alternate infinite linear;
 }
-body[data-char='ragirl'] .character {
+body[data-char='hyun'] .character {
   width: 12vw;
   height: calc(12vw * 1.4135);
 }
-body[data-char='ragirl'] .character-head {
-  left: calc(23 / 948 * 100%);
-  width: calc(920 / 948 * 100%);
-  height: calc(750 / 1340 * 100%);
+body[data-char='hyun'] .character-head {
+  left: calc(80 / 856 * 100%);
+  top: calc(160 / 1334 * 100%);
+  width: calc(650 / 856 * 100%);
+  height: calc(570 / 1334 * 100%);
 }
-body[data-char='ragirl'] .character-head-face.face-front {
-  background-image: url('../images/ragirl_head_front.png');
+body[data-char='hyun'] .character-head-face.face-front {
+  background-image: url('../images/hyun_head_front.png');
 }
-body[data-char='ragirl'] .character-head-face.face-back {
-  background-image: url('../images/ragirl_head_back.png');
+body[data-char='hyun'] .character-head-face.face-back {
+  background-image: url('../images/hyun_head_back.png');
 }
-body[data-char='ragirl'] .character-torso {
+body[data-char='hyun'] .character-torso {
   left: calc(273 / 948 * 100%);
   top: calc(630 / 1340 * 100%);
   z-index: 50;
@@ -262,61 +263,96 @@ body[data-char='ragirl'] .character-torso {
   height: calc(444 / 1340 * 100%);
   transform-origin: center center;
 }
-body[data-char='ragirl'] .character-torso-face.face-front {
-  background-image: url('../images/ragirl_body_front.png');
+body[data-char='hyun'] .character-torso-face.face-front {
+  background-image: url('../images/hyun_body_front.png');
 }
-body[data-char='ragirl'] .character-torso-face.face-back {
-  background-image: url('../images/ragirl_body_back.png');
+body[data-char='hyun'] .character-torso-face.face-back {
+  background-image: url('../images/hyun_body_back.png');
 }
-body[data-char='ragirl'] .character-arm-right {
+body[data-char='hyun'] .character-arm-right {
   left: calc(134 / 948 * 100%);
   top: calc(709 / 1340 * 100%);
   width: calc(138 / 948 * 100%);
   height: calc(300 / 1340 * 100%);
   transform-origin: right top;
 }
-body[data-char='ragirl'] .character-arm-right .face-front {
-  background-image: url('../images/ragirl_arm_0_front.png');
+body[data-char='hyun'] .character-arm-right .face-front {
+  background-image: url('../images/hyun_arm_0_front.png');
 }
-body[data-char='ragirl'] .character-arm-right .face-back {
-  background-image: url('../images/ragirl_arm_1_back.png');
+body[data-char='hyun'] .character-arm-right .face-back {
+  background-image: url('../images/hyun_arm_1_back.png');
 }
-body[data-char='ragirl'] .character-arm-left {
+body[data-char='hyun'] .character-arm-left {
   left: calc(675 / 948 * 100%);
   top: calc(709 / 1340 * 100%);
   width: calc(138 / 948 * 100%);
   height: calc(300 / 1340 * 100%);
   transform-origin: left top;
 }
-body[data-char='ragirl'] .character-arm-left .face-front {
-  background-image: url('../images/ragirl_arm_1_front.png');
+body[data-char='hyun'] .character-arm-left .face-front {
+  background-image: url('../images/hyun_arm_1_front.png');
 }
-body[data-char='ragirl'] .character-arm-left .face-back {
-  background-image: url('../images/ragirl_arm_0_back.png');
+body[data-char='hyun'] .character-arm-left .face-back {
+  background-image: url('../images/hyun_arm_0_back.png');
 }
-body[data-char='ragirl'] .character-leg-right {
+body[data-char='hyun'] .character-leg-right {
   left: calc(290 / 948 * 100%);
   top: calc(1075 / 1340 * 100%);
   width: calc(186 / 948 * 100%);
   height: calc(264 / 1340 * 100%);
   transform-origin: center top;
 }
-body[data-char='ragirl'] .character-leg-right .face-front {
-  background-image: url('../images/ragirl_leg_0.png');
+body[data-char='hyun'] .character-leg-right .face-front {
+  background-image: url('../images/hyun_leg_0.png');
 }
-body[data-char='ragirl'] .character-leg-right .face-back {
-  background-image: url('../images/ragirl_leg_1.png');
+body[data-char='hyun'] .character-leg-right .face-back {
+  background-image: url('../images/hyun_leg_1.png');
 }
-body[data-char='ragirl'] .character-leg-left {
+body[data-char='hyun'] .character-leg-left {
   left: calc(474 / 948 * 100%);
   top: calc(1075 / 1340 * 100%);
   width: calc(186 / 948 * 100%);
   height: calc(264 / 1340 * 100%);
   transform-origin: center top;
 }
-body[data-char='ragirl'] .character-leg-left .face-front {
-  background-image: url('../images/ragirl_leg_1.png');
+body[data-char='hyun'] .character-leg-left .face-front {
+  background-image: url('../images/hyun_leg_1.png');
 }
-body[data-char='ragirl'] .character-leg-left .face-back {
-  background-image: url('../images/ragirl_leg_0.png');
+body[data-char='hyun'] .character-leg-left .face-back {
+  background-image: url('../images/hyun_leg_0.png');
+}
+
+.select-character {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: 100;
+}
+.select-character-btn {
+  width: 40px;
+  height: 40px;
+  margin-left: 5px;
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.select-character-btn-hun {
+  background-image: url('../images/hun_head_front.png');
+}
+.select-character-btn-hyun {
+  background-image: url('../images/hyun_head_front.png');
+  opacity: 0.5;
+}
+body[data-char='hyun'] .select-character-btn-hun {
+  opacity: 0.5;
+}
+body[data-char='hun'] .select-character-btn-hun,
+body[data-char='hyun'] .select-character-btn-hyun {
+  opacity: 1;
 }
