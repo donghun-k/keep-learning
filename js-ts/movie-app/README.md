@@ -1,6 +1,7 @@
 # Movie App
 __⟪JavaScript 마스터 & TypeScript⟫__ 실습 프로젝트입니다.
-[DEMO](front-end-basic-movie-app.vercel.app)
+
+[DEMO](https://front-end-basic-movie-app.vercel.app/)
 
 ## What I Learned
 |Language|
