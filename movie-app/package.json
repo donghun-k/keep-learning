@@ -1,0 +1,25 @@
+{
+  "name": "movie-app",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel ./index.html",
+    "build": "parcel build ./index.html",
+    "vercel": "vercel dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node-fetch": "^2.6.3",
+    "dotenv": "^16.0.3",
+    "parcel": "^2.8.3",
+    "typescript": "^5.0.4",
+    "vercel": "^29.0.3"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.9"
+  },
+  "type": "module"
+}
