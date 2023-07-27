@@ -1,5 +1,5 @@
-# HTML / CSS / JS / TS 연습 프로젝트 저장소
+# HTML / CSS 실습 프로젝트 저장소
 
-## [HTML / CSS](https://github.com/donghun-k/front-end-basic/tree/main/html-css)
+## [Starbucks](https://github.com/donghun-k/front-end-basic/tree/main/starbucks)
 
-## [JavaScript / TypeScript](https://github.com/donghun-k/front-end-basic/tree/main/js-ts)
+## [Apple iPad](https://github.com/donghun-k/front-end-basic/tree/main/apple-ipad)
