@@ -90,7 +90,23 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
 }
+.wall-front-a .wall-content {
+  background-image: url('../images/wall_a.png');
+}
+.wall-front-b .wall-content {
+  background-image: url('../images/wall_b.png');
+}
+.wall-front-c .wall-content {
+  background-image: url('../images/wall_c.png');
+}
+.wall-front-d .wall-content {
+  background-image: url('../images/wall_d.png');
+}
+
 .wall-title {
   font-size: 5rem;
 }
