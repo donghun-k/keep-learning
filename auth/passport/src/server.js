@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
+const User = require('./models/users.model');
 require('dotenv').config();
 
 const PORT = 4000;
@@ -32,6 +33,19 @@ app.get('/login', (req, res) => {
 });
 app.get('/signup', (req, res) => {
   res.render('signup');
+});
+app.post('/signup', async (req, res) => {
+  // user 객체 생성
+  const user = new User(req.body);
+  try {
+    // User 컬렉션에 user 객체 저장
+    await user.save();
+    return res.status(200).json({
+      success: true,
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.listen(PORT, () => {
