@@ -20,6 +20,15 @@ const userSchema = mongoose.Schema({
   },
 });
 
+userSchema.methods.comparePassword = function (plainPassword, cb) {
+  if (plainPassword === this.password) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+  return cb({ error: 'error' });
+};
+
 // 모델 생성
 const User = mongoose.model('User', userSchema);
 
