@@ -12,7 +12,7 @@
 
   window.addEventListener('scroll', () => {
     const scrollPercent = scrollY / maxScrollValue;
-    const zMove = scrollPercent * 930 - 500 + 50;
+    const zMove = scrollPercent * 750 - 400;
     houseEl.style.transform = `translateZ(${zMove}vw)`;
 
     barEl.style.width = scrollPercent * 100 + '%';

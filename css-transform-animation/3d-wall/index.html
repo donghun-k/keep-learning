@@ -5,18 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>3D wall</title>
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Nanum+Pen+Script&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/star.css" />
 
     <script src="./js/character.js" defer></script>
-    <script src="./js/wall3d.js" defer></script>  
+    <script src="./js/wall3d.js" defer></script>
   </head>
   <body class="fixed">
     <div class="backdrop">
-      <p>시작한 다음 스크롤을 움직이거나 <br/>좌우 방향키를 눌러봐!<br/>(소리 켜고 Desktop으로 접속하는 걸 추천!)</p>
+      <p>
+        시작한 다음 스크롤을 움직이거나 <br />좌우 방향키를 눌러봐!<br />(소리
+        켜고 Desktop으로 접속하는 걸 추천!)
+      </p>
       <h1>CLICK ANYWHERE TO START!</h1>
     </div>
     <div class="progress-bar-con">
@@ -32,52 +41,49 @@
         data-char="hyun"
       ></button>
     </div>
-
     <div class="world">
       <div class="stage">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
         <div class="house">
-          <section class="wall wall-left"></section>
-          <section class="wall wall-right"></section>
+          <section class="wall wall-down"></section>
           <section class="wall wall-front wall-front-a">
-            <div class="wall-content">
-            </div>
+            <div class="wall-content"></div>
           </section>
           <section class="wall wall-front wall-front-b">
-            <div class="wall-content">
-            </div>
+            <div class="wall-content"></div>
           </section>
           <section class="wall wall-front wall-front-c">
-            <div class="wall-content">
-            </div>
+            <div class="wall-content"></div>
           </section>
           <section class="wall wall-front wall-front-d">
-            <div class="wall-content">
-            </div>
+            <div class="wall-content"></div>
           </section>
         </div>
         <!--// house -->
-
         <!-- 캐릭터 놓이는 곳 -->
-      <!--// stage -->
+        <!--// stage -->
+      </div>
     </div>
     <!--// world -->
     <script>
-      const bgm = new Audio("./audio/bgm.mp3");      
+      const bgm = new Audio('./audio/bgm.mp3');
       bgm.volume = 0.5;
       bgm.loop = true;
 
       const startBgm = () => {
         bgm.play();
         bgm.muted = false;
-        window.removeEventListener("click", startBgm);
-      }
+        window.removeEventListener('click', startBgm);
+      };
 
-      window.addEventListener("click", startBgm);
+      window.addEventListener('click', startBgm);
 
-      const backdrop = document.querySelector(".backdrop");
-      backdrop.addEventListener("click", () => {
+      const backdrop = document.querySelector('.backdrop');
+      backdrop.addEventListener('click', () => {
         backdrop.remove();
-        document.body.classList.remove("fixed");
+        document.body.classList.remove('fixed');
       });
     </script>
   </body>
