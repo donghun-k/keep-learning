@@ -1,3 +1,12 @@
+@keyframes ani-title {
+  from {
+    filter: opacity(0.4);
+  }
+  to {
+    filter: opacity(1);
+  }
+}
+
 @keyframes ani-head {
   to {
     transform: rotateX(-10deg);
@@ -31,7 +40,36 @@ body {
   background: #333;
   transition: background 0.5s;
 }
-
+body.fixed {
+  overflow: hidden;
+}
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: 'Nanum Pen Script', cursive;
+}
+.backdrop p {
+  font-size: 3rem;
+  text-align: center;
+  line-height: 1.3;
+}
+.backdrop h1 {
+  font-size: 4rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  animation: ani-title 0.5s infinite alternate linear;
+}
 .world {
   position: fixed;
   left: 0;
@@ -51,7 +89,7 @@ body {
 .house {
   width: 100vw;
   height: 100vh;
-  transform: translateZ(-500vw);
+  transform: translateZ(-450vw);
   transform-style: preserve-3d;
 }
 .wall {
