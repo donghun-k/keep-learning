@@ -3,6 +3,7 @@ const passport = require('passport');
 const path = require('path');
 const mongoose = require('mongoose');
 const User = require('./models/users.model');
+const cookieSession = require('cookie-session');
 require('./config/passport');
 require('dotenv').config();
 
@@ -13,6 +14,26 @@ const app = express();
 // 미들웨어 설정
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  cookieSession({
+    name: 'cookie-session',
+    keys: ['secret'],
+  })
+);
+// register regenerate & save after the cookieSession middleware initialization
+app.use(function (request, response, next) {
+  if (request.session && !request.session.regenerate) {
+    request.session.regenerate = (cb) => {
+      cb();
+    };
+  }
+  if (request.session && !request.session.save) {
+    request.session.save = (cb) => {
+      cb();
+    };
+  }
+  next();
+});
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -33,6 +54,9 @@ mongoose
 app.use('/static', express.static(path.join(__dirname, 'public'))); // 정적 파일 위치 설정
 
 // 라우터 설정
+app.get('/', (req, res) => {
+  res.render('index', { user: req.user });
+});
 app.get('/login', (req, res) => {
   res.render('login');
 });
@@ -52,7 +76,7 @@ app.post('/login', (req, res, next) => {
       }
       res.redirect('/');
     });
-  });
+  })(req, res, next);
 });
 
 app.get('/signup', (req, res) => {
