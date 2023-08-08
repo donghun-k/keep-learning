@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 // 스키마 정의
 const userSchema = mongoose.Schema({
@@ -20,13 +21,26 @@ const userSchema = mongoose.Schema({
   },
 });
 
-userSchema.methods.comparePassword = function (plainPassword, cb) {
-  if (plainPassword === this.password) {
-    cb(null, true);
-  } else {
-    cb(null, false);
+const saltRounds = 10;
+userSchema.pre('save', function (next) {
+  let user = this;
+  if (user.isModified('password')) {
+    bcrypt.genSalt(saltRounds, function (err, salt) {
+      if (err) return next(err);
+      bcrypt.hash(user.password, salt, function (err, hashed) {
+        if (err) return next(err);
+        user.password = hashed;
+        next();
+      });
+    });
   }
-  return cb({ error: 'error' });
+});
+
+userSchema.methods.comparePassword = function (plainPassword, cb) {
+  bcrypt.compare(plainPassword, this.password, function (err, isMatched) {
+    if (err) return cb(err);
+    cb(null, isMatched);
+  });
 };
 
 // 모델 생성
