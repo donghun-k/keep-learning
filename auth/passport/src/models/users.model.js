@@ -22,6 +22,7 @@ const userSchema = mongoose.Schema({
 });
 
 const saltRounds = 10;
+
 userSchema.pre('save', function (next) {
   let user = this;
   if (user.isModified('password')) {
@@ -33,6 +34,8 @@ userSchema.pre('save', function (next) {
         next();
       });
     });
+  } else {
+    next();
   }
 });
 

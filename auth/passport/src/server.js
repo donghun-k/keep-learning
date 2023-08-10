@@ -107,6 +107,15 @@ app.post('/signup', async (req, res) => {
   }
 });
 
+app.get('/auth/google', passport.authenticate('google'));
+app.get(
+  '/auth/google/callback',
+  passport.authenticate('google', {
+    successReturnToOrRedirect: '/',
+    failureRedirect: '/login',
+  })
+);
+
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
