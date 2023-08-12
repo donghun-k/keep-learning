@@ -24,8 +24,10 @@ const userSchema = mongoose.Schema({
 const saltRounds = 10;
 
 userSchema.pre('save', function (next) {
+  // pre: save 메소드 실행 전에 무언가를 한다는 의미
   let user = this;
   if (user.isModified('password')) {
+    // 비밀번호가 변경되었을 때만 실행
     bcrypt.genSalt(saltRounds, function (err, salt) {
       if (err) return next(err);
       bcrypt.hash(user.password, salt, function (err, hashed) {

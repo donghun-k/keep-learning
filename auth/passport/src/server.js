@@ -24,7 +24,6 @@ app.use(
     keys: ['secret'],
   })
 );
-// register regenerate & save after the cookieSession middleware initialization
 app.use(function (request, response, next) {
   if (request.session && !request.session.regenerate) {
     request.session.regenerate = (cb) => {

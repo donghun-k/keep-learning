@@ -17,7 +17,7 @@ passport.deserializeUser((id, done) => {
   });
 });
 
-const localStrategyConfig = new LocalStrategy(
+const localStrategyConfig = new LocalStrategy( // 로컬 로그인 전략
   { usernameField: 'email', passwordField: 'password' },
   (email, password, done) => {
     User.findOne({ email: email.toLocaleLowerCase() }).then((user) => {
@@ -37,7 +37,7 @@ const localStrategyConfig = new LocalStrategy(
   }
 );
 
-const googleStrategyConfig = new GoogleStrategy(
+const googleStrategyConfig = new GoogleStrategy( // 구글 로그인 전략
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
