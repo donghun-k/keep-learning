@@ -8,10 +8,12 @@ const {
   checkAuthenticated,
   checkNotAuthenticated,
 } = require('./middlewares/auth');
+const config = require('config');
+const serverConfig = config.get('server');
 require('./config/passport');
 require('dotenv').config();
 
-const PORT = 4000;
+const PORT = serverConfig.port || 4000;
 
 const app = express();
 
