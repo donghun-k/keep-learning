@@ -1,14 +1,11 @@
 const express = require('express');
-const passport = require('passport');
 const path = require('path');
+const passport = require('passport');
 const mongoose = require('mongoose');
-const User = require('./models/users.model');
 const cookieSession = require('cookie-session');
-const {
-  checkAuthenticated,
-  checkNotAuthenticated,
-} = require('./middlewares/auth');
 const config = require('config');
+const mainRouter = require('./routes/main.router');
+const usersRouter = require('./routes/users.router');
 const serverConfig = config.get('server');
 require('./config/passport');
 require('dotenv').config();
@@ -59,63 +56,8 @@ mongoose
 app.use('/static', express.static(path.join(__dirname, 'public'))); // 정적 파일 위치 설정
 
 // 라우터 설정
-app.get('/', checkAuthenticated, (req, res) => {
-  res.render('index', { user: req.user });
-});
-app.get('/login', checkNotAuthenticated, (req, res) => {
-  res.render('login');
-});
-app.post('/login', (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
-    if (err) {
-      return next(err);
-    }
-
-    if (!user) {
-      return res.json({ msg: info });
-    }
-
-    req.logIn(user, (err) => {
-      if (err) {
-        return next(err);
-      }
-      res.redirect('/');
-    });
-  })(req, res, next);
-});
-
-app.post('/logout', (req, res, next) => {
-  req.logOut(function (err) {
-    if (err) return next(err);
-    res.redirect('/login');
-  });
-});
-
-app.get('/signup', checkNotAuthenticated, (req, res) => {
-  res.render('signup');
-});
-app.post('/signup', async (req, res) => {
-  // user 객체 생성
-  const user = new User(req.body);
-  try {
-    // User 컬렉션에 user 객체 저장
-    await user.save();
-    return res.status(200).json({
-      success: true,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-app.get('/auth/google', passport.authenticate('google'));
-app.get(
-  '/auth/google/callback',
-  passport.authenticate('google', {
-    successReturnToOrRedirect: '/',
-    failureRedirect: '/login',
-  })
-);
+app.use('/', mainRouter);
+app.use('/auth', usersRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
