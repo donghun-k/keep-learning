@@ -19,6 +19,12 @@ const userSchema = mongoose.Schema({
     unique: true,
     sparse: true,
   },
+  // 카카오 로그인
+  kakaoId: {
+    type: String,
+    unique: true,
+    sparse: true,
+  },
 });
 
 const saltRounds = 10;
