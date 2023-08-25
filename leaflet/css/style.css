@@ -8,12 +8,14 @@ body {
   justify-content: center;
   align-items: center;
   perspective: 1500px;
+  background: url(../images/tablewood.jpg);
+  background-size: auto 130px;
+  font-family: 'Playfair Display', serif;
 }
 .leaflet {
   position: relative;
   width: 30vw;
   height: 30vw;
-  outline: 2px solid #000;
   transform-style: preserve-3d;
 }
 .page {
@@ -50,4 +52,24 @@ body {
 }
 .page-face:nth-child(2) {
   transform: rotateY(180deg);
+}
+.cover-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+.cover-page::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  border: 1px solid tan;
+}
+.menu-header-title {
+  font-family: 'Courgette', cursive;
 }
