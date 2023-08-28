@@ -73,3 +73,60 @@ body {
 .menu-header-title {
   font-family: 'Courgette', cursive;
 }
+.menu-list {
+  font-size: 0.7rem;
+  transform-style: preserve-3d; /* 마우스 포인트 인식이 제대로 되도록 추가 */
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 2em;
+  transition: 0.5s;
+  transform-style: preserve-3d; /* 마우스 포인트 인식이 제대로 되도록 추가 */
+}
+.zoom-in .menu-item {
+  opacity: 0;
+}
+.zoom-in .menu-item.current-menu {
+  opacity: 1;
+}
+.back-btn {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.current-menu .back-btn {
+  display: inline-block;
+}
+.menu-item-photo {
+  width: 20%;
+  padding-bottom: 20%;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.menu-item-info {
+  flex: 1;
+  margin-left: 1em;
+}
+.member-name {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.close-btn {
+  display: none;
+  position: absolute;
+  top: -2rem;
+  right: 10px;
+  font-size: 1.2rem;
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.3) 0 1px 0;
+  backface-visibility: hidden;
+}
+.leaflet-opened .close-btn {
+  display: inline-block;
+}
