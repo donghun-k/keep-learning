@@ -11,12 +11,14 @@ body {
   background: url(../images/tablewood.jpg);
   background-size: auto 130px;
   font-family: 'Playfair Display', serif;
+  overflow: hidden;
 }
 .leaflet {
   position: relative;
   width: 30vw;
   height: 30vw;
   transform-style: preserve-3d;
+  transition: 1s;
 }
 .page {
   position: absolute;
