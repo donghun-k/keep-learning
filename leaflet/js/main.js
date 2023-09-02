@@ -23,8 +23,9 @@
         angle = 30;
         break;
     }
-
+    document.body.classList.add('zoom-in');
     leaflet.style.transform = `translate3d(${dx}px, ${dy}px, 20vw) rotateY(${angle}deg)`;
+    el.classList.add('current-menu');
   }
 
   pageEls.forEach((pageEl, i) => {
