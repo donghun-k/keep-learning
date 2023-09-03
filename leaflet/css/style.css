@@ -51,6 +51,7 @@ body {
   height: 100%;
   background-color: cornsilk;
   backface-visibility: hidden;
+  z-index: 1;
 }
 .page-face:nth-child(2) {
   transform: rotateY(180deg);
@@ -89,9 +90,11 @@ body {
 }
 .zoom-in .menu-item {
   opacity: 0;
+  pointer-events: none;
 }
 .zoom-in .menu-item.current-menu {
   opacity: 1;
+  pointer-events: all;
 }
 .back-btn {
   display: none;

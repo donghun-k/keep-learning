@@ -3,7 +3,10 @@
   const pageEls = document.querySelectorAll('.page');
   const closeBtnEl = document.querySelector('.close-btn');
   const menuItemEls = document.querySelectorAll('.menu-item');
+  const backBtnEls = document.querySelectorAll('.back-btn');
   let pageCount = 0;
+
+  console.log(backBtnEls);
 
   function zoomIn(el) {
     const rect = el.getBoundingClientRect();
@@ -28,6 +31,12 @@
     el.classList.add('current-menu');
   }
 
+  function zoomOut() {
+    document.body.classList.remove('zoom-in');
+    leaflet.style.transform = '';
+    document.querySelector('.current-menu')?.classList.remove('current-menu');
+  }
+
   pageEls.forEach((pageEl, i) => {
     if (i == 1) return;
     pageEl.addEventListener('click', (e) => {
@@ -42,6 +51,7 @@
 
   closeBtnEl.addEventListener('click', () => {
     pageCount = 0;
+    zoomOut();
     pageEls[2].classList.remove('page-flipped');
     setTimeout(() => {
       pageEls[0].classList.remove('page-flipped');
@@ -50,7 +60,16 @@
 
   menuItemEls.forEach((menuItemEl) => {
     menuItemEl.addEventListener('click', (e) => {
+      if (e.target.classList.contains('back-btn')) return;
+      if (document.body.classList.contains('zoom-in')) return;
       zoomIn(menuItemEl);
+    });
+  });
+
+  backBtnEls.forEach((backBtnEl) => {
+    backBtnEl.addEventListener('click', (e) => {
+      console.log('back');
+      zoomOut();
     });
   });
 })();
