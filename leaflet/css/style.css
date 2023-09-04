@@ -3,6 +3,7 @@ html {
 }
 body {
   display: flex;
+  position: relative;
   width: 100vw;
   height: 100vh;
   justify-content: center;
@@ -12,6 +13,19 @@ body {
   background-size: auto 130px;
   font-family: 'Playfair Display', serif;
   overflow: hidden;
+}
+.hand {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 400px;
+  z-index: 10;
+}
+.hand img {
+  transition: 0.5s;
+}
+.zoom-in .hand img {
+  transform: scale(2);
 }
 .leaflet {
   position: relative;

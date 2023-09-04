@@ -1,4 +1,5 @@
 (() => {
+  const handEl = document.querySelector('.hand');
   const leaflet = document.querySelector('.leaflet');
   const pageEls = document.querySelectorAll('.page');
   const closeBtnEl = document.querySelector('.close-btn');
@@ -71,5 +72,9 @@
       console.log('back');
       zoomOut();
     });
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    handEl.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
   });
 })();
