@@ -25,6 +25,7 @@ body {
   transition: 0.5s;
 }
 .zoom-in .hand img {
+  transform-origin: top left;
   transform: scale(2);
 }
 .leaflet {

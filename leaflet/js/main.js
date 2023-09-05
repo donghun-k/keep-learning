@@ -7,7 +7,10 @@
   const backBtnEls = document.querySelectorAll('.back-btn');
   let pageCount = 0;
 
-  console.log(backBtnEls);
+  const handPos = { x: 0, y: 0 };
+  const targetPos = { x: 0, y: 0 };
+  let distX = 0;
+  let distY = 0;
 
   function zoomIn(el) {
     const rect = el.getBoundingClientRect();
@@ -37,6 +40,26 @@
     leaflet.style.transform = '';
     document.querySelector('.current-menu')?.classList.remove('current-menu');
   }
+
+  function render() {
+    distX = targetPos.x - handPos.x;
+    distY = targetPos.y - handPos.y;
+    handPos.x += distX * 0.1;
+    handPos.y += distY * 0.1;
+    if (document.body.classList.contains('zoom-in')) {
+      handEl.style.transform = `translate(${handPos.x - 130}px, ${
+        handPos.y + 5
+      }px)`;
+    } else {
+      handEl.style.transform = `translate(${handPos.x - 65}px, ${
+        handPos.y + 10
+      }px)`;
+    }
+
+    requestAnimationFrame(render);
+  }
+
+  render();
 
   pageEls.forEach((pageEl, i) => {
     if (i == 1) return;
@@ -75,6 +98,7 @@
   });
 
   window.addEventListener('mousemove', (e) => {
-    handEl.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    targetPos.x = e.clientX;
+    targetPos.y = e.clientY;
   });
 })();
