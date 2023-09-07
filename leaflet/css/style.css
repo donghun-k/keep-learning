@@ -1,3 +1,12 @@
+@keyframes start {
+  0% {
+    transform: translate(-100%, 100%) rotate(-540deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+}
+
 html {
   font-size: 1rem;
 }
@@ -34,6 +43,7 @@ body {
   height: 30vw;
   transform-style: preserve-3d;
   transition: 1s;
+  animation: start 1s ease-in-out;
 }
 .page {
   position: absolute;
