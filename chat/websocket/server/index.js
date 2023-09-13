@@ -1,10 +1,19 @@
-const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: 7071 });
+const http = require('http').createServer();
 
-wss.on('connection', (ws) => {
-  ws.send('Connected');
-  ws.on('message', (message) => {
-    message = JSON.parse(message);
-    console.log(message);
+const io = require('socket.io')(http, {
+  cors: { origin: '*' },
+});
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+  socket.on('message', (message) => {
+    io.emit('message', `${socket.id.substr(0, 2)} said: ${message}`);
   });
+});
+
+const PORT = 8080;
+
+http.listen(PORT, () => {
+  console.log(`listening on *:${PORT}`);
 });
