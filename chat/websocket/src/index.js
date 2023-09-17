@@ -14,7 +14,15 @@ const io = new Server(server);
 io.on('connection', (socket) => {
   console.log('socket', socket);
 
-  socket.on('join', () => {});
+  socket.on('join', (options, callback) => {
+    const { error, user } = addUser({ id: socket.id, ...options });
+
+    if (error) {
+      return callback(error);
+    }
+
+    socket.join(user.room);
+  });
   socket.on('sendMessage', () => {});
   socket.on('disconnect', () => {});
 });
