@@ -22,6 +22,22 @@ io.on('connection', (socket) => {
     }
 
     socket.join(user.room);
+
+    socket.emit(
+      'message',
+      generateMessage('Admin', `${user.room}방에 오신 것을 환영합니다!`)
+    );
+    socket.broadcast
+      .to(user.room)
+      .emit(
+        'message',
+        generateMessage('Admin', `${user.username}님이 입장하셨습니다.`)
+      );
+
+    io.to(user.room).emit('roomData', {
+      room: user.room,
+      users: getUsersInRoom(user.room),
+    });
   });
   socket.on('sendMessage', () => {});
   socket.on('disconnect', () => {});
