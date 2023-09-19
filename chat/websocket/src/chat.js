@@ -11,3 +11,14 @@ socket.emit('join', { username, room }, (error) => {
     location.href = '/';
   }
 });
+
+const sidebarTempate = document.querySelector('#sidebar-template').innerHTML;
+
+socket.on('roodData', ({ room, users }) => {
+  const html = Mustache.render(sidebarTempate, {
+    room,
+    users,
+  });
+
+  document.querySelector('#sidebar').innerHTML = html;
+});
