@@ -10,7 +10,7 @@ const addUser = ({ id, username, room }) => {
     };
   }
 
-  const existingUser = user.find((user) => {
+  const existingUser = users.find((user) => {
     return user.room === room && user.username === username;
   });
 
@@ -21,9 +21,10 @@ const addUser = ({ id, username, room }) => {
   }
 
   const user = { id, username, room };
+  console.log('user', user);
 
   users.push(user);
-  return user;
+  return { user };
 };
 
 const getUsersInRoom = (room) => {

@@ -1,21 +1,16 @@
 const express = require('express');
-const path = require('path');
 
 const app = express();
 
-const PORT = 4000;
-
+const path = require('path');
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
+const { addUser, getUsersInRoom } = require('./utils/users');
+const { generateMessage } = require('./utils/messages');
 const io = new Server(server);
 
-const PUBLIC_DIR_PATH = path.join(__dirname, '../public');
-app.use(express.static(PUBLIC_DIR_PATH));
-
 io.on('connection', (socket) => {
-  console.log('socket', socket);
-
   socket.on('join', (options, callback) => {
     const { error, user } = addUser({ id: socket.id, ...options });
 
@@ -27,13 +22,13 @@ io.on('connection', (socket) => {
 
     socket.emit(
       'message',
-      generateMessage('Admin', `${user.room}방에 오신 것을 환영합니다!`)
+      generateMessage('Admin', `${user.room} 방에 오신 걸 환영합니다.`)
     );
     socket.broadcast
       .to(user.room)
       .emit(
         'message',
-        generateMessage('Admin', `${user.username}님이 입장하셨습니다.`)
+        generateMessage('Admin', `${user.username}가 방에 참여했습니다.`)
       );
 
     io.to(user.room).emit('roomData', {
@@ -45,6 +40,10 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {});
 });
 
-app.listen(PORT, () => {
+const PUBLIC_DIR_PATH = path.join(__dirname, '../public');
+app.use(express.static(PUBLIC_DIR_PATH));
+
+const PORT = 4000;
+server.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
