@@ -22,3 +22,20 @@ socket.on('roomData', ({ room, users }) => {
 
   document.querySelector('#sidebar').innerHTML = html;
 });
+
+const messageTemplate = document.querySelector('#message-template').innerHTML;
+const messages = document.querySelector('#messages');
+
+const scrollToBottom = () => {
+  messages.scrollTop = messages.scrollHeight;
+};
+
+socket.on('message', ({ username, text, createdAt }) => {
+  const html = Mustache.render(messageTemplate, {
+    username,
+    text,
+    createdAt: moment(createdAt).format('h:mm a'),
+  });
+  messages.insertAdjacentHTML('beforeend', html);
+  scrollToBottom();
+});
