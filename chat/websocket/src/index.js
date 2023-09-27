@@ -6,7 +6,7 @@ const path = require('path');
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
-const { addUser, getUsersInRoom } = require('./utils/users');
+const { addUser, getUsersInRoom, getUser } = require('./utils/users');
 const { generateMessage } = require('./utils/messages');
 const io = new Server(server);
 
@@ -36,7 +36,11 @@ io.on('connection', (socket) => {
       users: getUsersInRoom(user.room),
     });
   });
-  socket.on('sendMessage', () => {});
+  socket.on('sendMessage', (message, callback) => {
+    const user = getUser(socket.id);
+    io.to(user.room).emit('message', generateMessage(user.username, message));
+    callback();
+  });
   socket.on('disconnect', () => {});
 });
 
