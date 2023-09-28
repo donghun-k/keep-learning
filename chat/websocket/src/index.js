@@ -6,7 +6,12 @@ const path = require('path');
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
-const { addUser, getUsersInRoom, getUser } = require('./utils/users');
+const {
+  addUser,
+  getUsersInRoom,
+  getUser,
+  removeUser,
+} = require('./utils/users');
 const { generateMessage } = require('./utils/messages');
 const io = new Server(server);
 
@@ -28,7 +33,7 @@ io.on('connection', (socket) => {
       .to(user.room)
       .emit(
         'message',
-        generateMessage('Admin', `${user.username}가 방에 참여했습니다.`)
+        generateMessage('Admin', `${user.username} 님이 방에 참여했습니다.`)
       );
 
     io.to(user.room).emit('roomData', {
@@ -41,7 +46,21 @@ io.on('connection', (socket) => {
     io.to(user.room).emit('message', generateMessage(user.username, message));
     callback();
   });
-  socket.on('disconnect', () => {});
+  socket.on('disconnect', () => {
+    console.log('socket disconnected');
+    const user = removeUser(socket.id);
+
+    if (user) {
+      io.to(user.room).emit(
+        'message',
+        generateMessage('Admin', `${user.username} 님이 방을 떠났습니다.`)
+      );
+      io.to(user.room).emit('roomData', {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
+    }
+  });
 });
 
 const PUBLIC_DIR_PATH = path.join(__dirname, '../public');
