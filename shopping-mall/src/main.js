@@ -22,6 +22,7 @@ const findEl = (startingEl, selector) => {
 
 const main = async () => {
   const products = await getProducts();
+  const countMap = {};
   document.querySelector('#products').innerHTML = products
     .map(
       (product, i) => /* html */ `
@@ -31,8 +32,8 @@ const main = async () => {
         <div class="flex items-center justify-between">
           <span>Price: ${product.regularPrice}</span>
           <div>
-            <button type="button" class="btn-decrease bg-green-200 hover:bg-green-300 text-green-800 py-1 px-3 rounded-full">-</button>
-            <span class="text-green-800">0</span>
+            <button type="button" disabled class="btn-decrease disabled:cursor-not-allowed disabled:opacity-50 bg-green-200 hover:bg-green-300 text-green-800 py-1 px-3 rounded-full">-</button>
+            <span class="cart-count text-green-800">0</span>
             <button type="button" class="btn-increase bg-green-200 hover:bg-green-300 text-green-800 py-1 px-3 rounded-full">+</button>
           </div>
         </div>
@@ -48,21 +49,39 @@ const main = async () => {
     const productIndex = productEl.dataset.productIndex;
     const product = products[productIndex];
 
-    console.log(
-      'productId',
-      productId,
-      'productIndex',
-      productIndex,
-      'product',
-      product
-    );
+    if (
+      targetEl.matches('.btn-decrease') ||
+      targetEl.matches('.btn-increase')
+    ) {
+      if (countMap[productId] === undefined) {
+        countMap[productId] = 0;
+      }
+      if (targetEl.matches('.btn-decrease')) {
+        if (countMap[productId] === 0) {
+          return;
+        }
+        countMap[productId] -= 1;
+      }
+      if (targetEl.matches('.btn-increase')) {
+        countMap[productId] += 1;
+      }
 
-    console.log(productId);
-    if (targetEl.matches('.btn-decrease')) {
-      console.log('decrease!');
-    }
-    if (targetEl.matches('.btn-increase')) {
-      console.log('increase!');
+      const btnDecreaseEl = productEl.querySelector('.btn-decrease');
+
+      if (countMap[productId] === 0) {
+        btnDecreaseEl.setAttribute('disabled', true);
+      } else {
+        btnDecreaseEl.removeAttribute('disabled');
+      }
+
+      const cartCountEl = productEl.querySelector('.cart-count');
+      cartCountEl.textContent = countMap[productId];
+
+      const cartCount = Object.values(countMap).reduce(
+        (acc, cur) => acc + cur,
+        0
+      );
+      document.querySelector('.total_count').innerHTML = `${cartCount}`;
     }
   });
 };
