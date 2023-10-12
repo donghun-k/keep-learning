@@ -15,7 +15,10 @@
             >My Store</span
           >
         </h1>
-        <button type="button" class="text-green-900 hover:bg-green-100 p-2">
+        <button
+          type="button"
+          class="btn-cart text-green-900 hover:bg-green-100 p-2"
+        >
           <span>Cart</span>
           <span class="total_count text-xs"></span>
         </button>
@@ -23,17 +26,19 @@
     </div>
     <div id="products" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
     <div class="hidden cart-layer fixed inset-0 w-1/2">
-      <div class="fixed left-0 top-0 bottom-0 w-1/2 bg-black opacity-30"></div>
+      <div
+        class="cart-dimmed-bg fixed left-0 top-0 bottom-0 w-1/2 bg-black opacity-30"
+      ></div>
       <div class="fixed right-0 top-0 bottom-0 w-1/2 bg-white py-2 px-4">
         <div class="flex justify-end">
           <button
             type="button"
-            class="text-green-800 hover:bg-green-100 rounded-lg py-2 px-4"
+            class="btn-close-cart text-green-800 hover:bg-green-100 rounded-lg py-2 px-4"
           >
             Close
           </button>
-          <div class="cart-items"></div>
         </div>
+        <div class="cart-items"></div>
       </div>
     </div>
     <script type="module" src="/src/main.js"></script>
