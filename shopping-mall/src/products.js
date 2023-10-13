@@ -1,3 +1,4 @@
+import { findEl } from './utils.js';
 import test from './test.json?raw'; // vite의 기능, 파일의 내용을 string으로 가져옴
 
 const getProducts = async () => {
@@ -29,7 +30,11 @@ export const getProductEl = (product, cartCount = 0) => {
   return productEl;
 };
 
-export const setUpProducts = async ({ container }) => {
+export const setUpProducts = async ({
+  container,
+  onDecreaseClick,
+  onIncreaseClick,
+}) => {
   const products = await getProducts();
   const productMap = {};
   products.forEach((product) => {
@@ -39,6 +44,24 @@ export const setUpProducts = async ({ container }) => {
   products.forEach((product) => {
     const productEl = getProductEl(product);
     container.appendChild(productEl);
+  });
+
+  container.addEventListener('click', (e) => {
+    const targetEl = e.target;
+    const productEl = findEl(targetEl, '.product');
+    const productId = productEl.dataset.productId;
+
+    if (
+      targetEl.matches('.btn-decrease') ||
+      targetEl.matches('.btn-increase')
+    ) {
+      if (targetEl.matches('.btn-decrease')) {
+        onDecreaseClick({ productId });
+      }
+      if (targetEl.matches('.btn-increase')) {
+        onIncreaseClick({ productId });
+      }
+    }
   });
 
   const updateCount = ({ productId, count }) => {
