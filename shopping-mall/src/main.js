@@ -1,31 +1,6 @@
-import { get } from 'mobx';
-import test from './test.json?raw'; // vite의 기능, 파일의 내용을 string으로 가져옴
-
-const getProducts = async () => {
-  if (process.env.NODE_ENV === 'development') {
-    return JSON.parse(test);
-  } else {
-    const response = await fetch('/products.json');
-    return response.json();
-  }
-};
-
-const getProductHTML = (product, cartCount = 0) => {
-  return /* html */ `
-  <div class="product" data-product-id="${product.id}">
-    <img src="${product.images[0]}" alt="${product.name}" />
-    <p>${product.name}</p>
-    <div class="flex items-center justify-between">
-      <span>Price: ${product.regularPrice}</span>
-      <div>
-        <button type="button" class="btn-decrease disabled:cursor-not-allowed disabled:opacity-50 bg-green-200 hover:bg-green-300 text-green-800 py-1 px-3 rounded-full">-</button>
-        <span class="cart-count text-green-800">${cartCount}</span>
-        <button type="button" class="btn-increase bg-green-200 hover:bg-green-300 text-green-800 py-1 px-3 rounded-full">+</button>
-      </div>
-    </div>
-  </div>
-`;
-};
+import { setUpProducts } from './products.js';
+import { setUpCart } from './cart.js';
+import { setUpCounter } from './counter.js';
 
 const findEl = (startingEl, selector) => {
   let currentEl = startingEl;
@@ -39,60 +14,46 @@ const findEl = (startingEl, selector) => {
 };
 
 const main = async () => {
-  const products = await getProducts();
-  const productMap = {};
-  products.forEach((product) => {
-    productMap[product.id] = product;
+  const { updateCount: updateProductCount, getProductById } =
+    await setUpProducts({
+      container: document.querySelector('#products'),
+    });
+
+  const {
+    addProduct,
+    removeProduct,
+    updateCount: updateCartCount,
+  } = setUpCart({
+    container: document.querySelector('.cart-items'),
   });
-  const countMap = {};
 
-  const updateProductCount = (productId) => {
-    const productEl = document.querySelector(
-      `.product[data-product-id="${productId}"]`
-    );
-    const cartCountEl = productEl.querySelector('.cart-count');
-    cartCountEl.textContent = countMap[productId];
-  };
+  const { increase, decrease, getTotalCount } = setUpCounter();
 
-  const updateCart = () => {
-    const productsIds = Object.keys(countMap);
-
-    document.querySelector('.cart-items').innerHTML = productsIds
-      .map((productId) => {
-        const productInCart = productMap[productId];
-        return countMap[productId] === 0
-          ? ''
-          : getProductHTML(productInCart, countMap[productId]);
-      })
-      .join('');
-
-    document.querySelector('.total_count').innerHTML = Object.values(
-      countMap
-    ).reduce((acc, cur) => acc + cur, 0);
+  const updateTotalCount = (totalCount) => {
+    document.querySelector('.total_count').textContent = totalCount;
   };
 
   const increaseCount = (productId) => {
-    if (countMap[productId] === undefined) {
-      countMap[productId] = 0;
+    const count = increase({ productId });
+    updateProductCount({ productId, count });
+    if (count === 1) {
+      const product = getProductById({ productId });
+      addProduct({ product });
     }
-    countMap[productId] += 1;
-    updateProductCount(productId);
-    updateCart();
+    updateCartCount({ productId, count });
+    updateTotalCount(getTotalCount());
   };
   const decreaseCount = (productId) => {
-    if (countMap[productId] === undefined) {
-      countMap[productId] = 0;
+    const count = decrease({ productId });
+    updateProductCount({ productId, count });
+    if (count === 0) {
+      const product = getProductById({ productId });
+      removeProduct({ product });
+    } else {
+      updateCartCount({ productId, count });
     }
-    if (countMap[productId] > 0) {
-      countMap[productId] -= 1;
-      updateProductCount(productId);
-      updateCart();
-    }
+    updateTotalCount(getTotalCount());
   };
-
-  document.querySelector('#products').innerHTML = products
-    .map((product) => getProductHTML(product))
-    .join('');
 
   document.querySelector('#products').addEventListener('click', (e) => {
     const targetEl = e.target;
