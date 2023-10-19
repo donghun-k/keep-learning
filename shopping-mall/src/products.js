@@ -10,7 +10,7 @@ const getProducts = async () => {
   }
 };
 
-export const getProductEl = (product, cartCount = 0) => {
+export const getProductEl = (product) => {
   const productEl = document.createElement('div');
   productEl.classList.add('product');
   productEl.setAttribute('data-product-id', product.id);
@@ -22,7 +22,7 @@ export const getProductEl = (product, cartCount = 0) => {
     <span>Price: ${product.regularPrice}</span>
     <div>
       <button type="button" class="btn-decrease disabled:cursor-not-allowed disabled:opacity-50 bg-green-200 hover:bg-green-300 text-green-800 py-1 px-3 rounded-full">-</button>
-      <span class="cart-count text-green-800">${cartCount}</span>
+      <span class="cart-count text-green-800" data-subscribe-to="countMap" data-subscription-path="${product.id}">0</span>
       <button type="button" class="btn-increase bg-green-200 hover:bg-green-300 text-green-800 py-1 px-3 rounded-full">+</button>
     </div>
   </div>

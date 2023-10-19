@@ -11,8 +11,8 @@ const main = async () => {
     });
 
   const {
-    addProduct,
-    removeProduct,
+    addProduct: addProductToCart,
+    removeProduct: removeProductFromCart,
     updateCount: updateCartCount,
   } = setUpCart({
     container: document.querySelector('.cart-items'),
@@ -20,26 +20,28 @@ const main = async () => {
     onIncreaseClick,
   });
 
-  const { increase, decrease, getTotalCount } = setUpCounter();
+  const { increase, decrease, getTotalCount, getCountByProductId } =
+    setUpCounter();
 
   function onIncreaseClick({ productId }) {
-    const count = increase({ productId });
-    updateProductCount({ productId, count });
-    if (count === 1) {
+    if (getCountByProductId({ productId }) === 0) {
       const product = getProductById({ productId });
-      addProduct({ product });
+      addProductToCart({ product });
     }
-    updateCartCount({ productId, count });
+    const count = increase({ productId });
+    // updateProductCount({ productId, count });
+    // updateCartCount({ productId, count });
     updateTotalCount(getTotalCount());
   }
   function onDecreaseClick({ productId }) {
+    if (getCountByProductId({ productId }) === 0) return;
     const count = decrease({ productId });
-    updateProductCount({ productId, count });
-    if (count === 0) {
+    // updateProductCount({ productId, count });
+    if (getCountByProductId({ productId }) === 0) {
       const product = getProductById({ productId });
-      removeProduct({ product });
+      removeProductFromCart({ product });
     } else {
-      updateCartCount({ productId, count });
+      // updateCartCount({ productId, count });
     }
     updateTotalCount(getTotalCount());
   }
