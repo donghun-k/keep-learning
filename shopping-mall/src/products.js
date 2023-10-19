@@ -49,6 +49,7 @@ export const setUpProducts = async ({
   container.addEventListener('click', (e) => {
     const targetEl = e.target;
     const productEl = findEl(targetEl, '.product');
+    if (!productEl) return;
     const productId = productEl.dataset.productId;
 
     if (
