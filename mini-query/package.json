@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "yarn workspace @donghun-k/mini-query build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "yarn workspace @donghun-k/mini-query test"
   },
   "author": "",
   "license": "ISC"
