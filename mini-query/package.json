@@ -5,9 +5,11 @@
   "main": "index.js",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "apps/*"
   ],
   "scripts": {
+    "example": "yarn workspace example dev",
     "build": "yarn workspace @donghun-k/mini-query build",
     "test": "yarn workspace @donghun-k/mini-query test"
   },

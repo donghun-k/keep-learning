@@ -5,6 +5,12 @@ class MiniQuery {
       (container ?? document).querySelectorAll(selector)
     );
   }
+
+  click(handler: EventListener) {
+    this.elements.forEach((element) => {
+      element.addEventListener('click', handler);
+    });
+  }
   length() {
     return this.elements.length;
   }
