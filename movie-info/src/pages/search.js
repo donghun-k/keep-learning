@@ -1,8 +1,12 @@
-export const renderSearch = async ({ searchParams }) => {
-  document.querySelector('#app').innerHTML = /* html */ `
+export const getInitialHTML = () => {
+  return /* html */ `
     <h1>Search Results</h1>
-    <p>Searching for: ${searchParams.query}...</p>
+    <p>Searching for: </p>
   `;
+};
+
+export const renderSearch = async ({ searchParams }) => {
+  document.querySelector('#app').innerHTML = getInitialHTML();
 
   const res = await fetch(
     `http://localhost:3000/search?query=${searchParams.query}`
