@@ -11,15 +11,37 @@ app.use(express.static('dist'));
 
 app.get('/', (req, res) => {
   fs.readFile('index.html', (err, file) => {
-    res.send(file.toString().replace('<!--app-->', getInitialHTML['/']));
+    const renderedHTML = file
+      .toString()
+      .replace('<!-- app -->', getInitialHTML['/']);
+    res.send(renderedHTML);
   });
 });
 
-app.get('/search', (req, res) => {
-  const query = req.query.query;
-  const filteredMovies = movies.filter((movie) =>
+const getFilteredMovies = (query) => {
+  return movies.filter((movie) =>
     movie.title.toLowerCase().includes(query.toLowerCase())
   );
+};
+
+app.get('/search', (req, res) => {
+  const query = req.query.query;
+  const filteredMovies = getFilteredMovies(query);
+
+  fs.readFile('index.html', (err, file) => {
+    const renderedHTML = file.toString().replace(
+      '<!-- app -->',
+      getInitialHTML['/search']({
+        movies: filteredMovies,
+      })
+    );
+    res.send(renderedHTML);
+  });
+});
+
+app.get('/api/search', (req, res) => {
+  const query = req.query.query;
+  const filteredMovies = getFilteredMovies(query);
   res.json(filteredMovies);
 });
 
