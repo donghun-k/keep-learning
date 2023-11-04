@@ -1,44 +1,35 @@
-export const getInitialHTML = ({ movies } = {}) => {
-  if (movies) {
-    console.log('movies is defined');
-    return /* html */ `
+export const getInitialHTML = (initialData) => {
+  return /* html */ `
     <h1>Search Results</h1>
-      ${movies
+      ${initialData.movies
         .map(
           (movie) => /* html */ `
-          <div>
-            <p>${movie.title}</p>          
+          <div class="movie">
+            <p>${movie.title}</p>
+            <button type="button">click</button>          
           </div>
         `
         )
         .join('')}
     `;
-  }
-  return /* html */ `
-    <h1>Search Results</h1>
-    <p>Searching for: </p>
-  `;
 };
 
-export const renderSearch = async ({ searchParams }) => {
-  document.querySelector('#app').innerHTML = getInitialHTML();
+export const renderSearch = async ({ searchParams, initialData }) => {
+  if (!initialData) {
+    document.querySelector('#app').innerHTML = getInitialHTML();
 
-  const res = await fetch(
-    (import.meta.env.DEV ? 'http://localhost:3000' : '') +
-      `/api/search?query=${searchParams.query}`
-  );
-  const movies = await res.json();
+    const res = await fetch(
+      (import.meta.env.DEV ? 'http://localhost:3000' : '') +
+        `/api/search?query=${searchParams.query}`
+    );
+    const movies = await res.json();
 
-  document.querySelector('#app').innerHTML = /* html */ `
-    <h1>Search Results</h1>
-    ${movies
-      .map(
-        (movie) => /* html */ `
-        <div>
-          <p>${movie.title}</p>          
-        </div>
-      `
-      )
-      .join('')}
-  `;
+    document.querySelector('#app').innerHTML = getInitialHTML({ movies });
+  }
+
+  Array.from(document.querySelectorAll('.movie button')).forEach((button) => {
+    button.addEventListener('click', () => {
+      console.log('clicked');
+    });
+  });
 };
