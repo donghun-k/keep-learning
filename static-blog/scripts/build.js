@@ -8,6 +8,7 @@ const DIST = config.build.dist;
 const PAGES = config.build.pages;
 const CONTENTS = config.build.contents;
 const COTENTS_SLUG = config.build.contentsSlug;
+const ASSETS = config.build.assets;
 
 async function renderFile(source, dest) {
   const recentPosts = await getRecentPosts();
@@ -66,8 +67,17 @@ async function buildContentsFiles() {
   }
 }
 
+async function copyAssets() {
+  const files = await fs.readdir(ASSETS);
+  for (const file of files) {
+    await fs.copy(`${ASSETS}/${file}`, `${DIST}/${file}`);
+  }
+}
+
 async function build() {
   await fs.mkdir(DIST);
+
+  await copyAssets();
   await buildHTMLFiles();
   await buildContentsFiles();
 }
