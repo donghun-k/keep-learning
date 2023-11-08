@@ -7,5 +7,10 @@
   </head>
   <body>
     <h1>Welcome to {{ site.title }}</h1>
+    <a href="/about">Read about me</a>
+    <p>Posts</p>
+    {{#recentPosts}}
+    <p><a href="{{path}}">{{title}}</a></p>
+    {{/recentPosts}}
   </body>
 </html>

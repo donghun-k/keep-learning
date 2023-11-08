@@ -10,9 +10,24 @@ const CONTENTS = config.build.contents;
 const COTENTS_SLUG = config.build.contentsSlug;
 
 async function renderFile(source, dest) {
+  const recentPosts = await getRecentPosts();
   const file = await fs.readFile(source);
-  const result = Mustache.render(file.toString(), config);
+  const result = Mustache.render(file.toString(), { ...config, recentPosts });
   await fs.writeFile(dest, result);
+}
+
+async function getRecentPosts() {
+  const files = await fs.readdir(CONTENTS);
+  const result = [];
+  for (const file of files) {
+    const content = await fs.readFile(`${CONTENTS}/${file}/index.md`);
+    const { attributes } = frontMatter(content.toString());
+    result.push({
+      ...attributes,
+      path: `/${COTENTS_SLUG}/${attributes.slug}`,
+    });
+  }
+  return result;
 }
 
 async function buildHTMLFiles() {
@@ -43,7 +58,7 @@ async function buildContentsFiles() {
 
     const html = Mustache.render(template.toString(), {
       ...config,
-      post: { ...attributes, body: bodyHtml },
+      post: config.updatePost({ ...attributes, body: bodyHtml }),
     });
 
     await fs.mkdir(`${DIST}/${COTENTS_SLUG}/${file}`);
