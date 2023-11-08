@@ -1,9 +1,13 @@
 import fs from 'fs-extra';
 import config from '../config.js';
 import Mustache from 'mustache';
+import frontMatter from 'front-matter';
+import Showdown from 'showdown';
 
 const DIST = config.build.dist;
 const PAGES = config.build.pages;
+const CONTENTS = config.build.contents;
+const COTENTS_SLUG = config.build.contentsSlug;
 
 async function renderFile(source, dest) {
   const file = await fs.readFile(source);
@@ -11,9 +15,7 @@ async function renderFile(source, dest) {
   await fs.writeFile(dest, result);
 }
 
-async function build() {
-  await fs.mkdir(DIST);
-
+async function buildHTMLFiles() {
   const files = await fs.readdir(PAGES);
 
   for (const file of files) {
@@ -25,6 +27,34 @@ async function build() {
       await fs.copy(`${PAGES}/${file}`, `${DIST}/${folderName}/index.html`);
     }
   }
+}
+
+async function buildContentsFiles() {
+  const files = await fs.readdir(CONTENTS);
+
+  await fs.mkdir(`${DIST}/${COTENTS_SLUG}`);
+
+  for (const file of files) {
+    const content = await fs.readFile(`${CONTENTS}/${file}/index.md`);
+    const { attributes, body } = frontMatter(content.toString());
+
+    const template = await fs.readFile('templates/post.html');
+    const bodyHtml = new Showdown.Converter().makeHtml(body);
+
+    const html = Mustache.render(template.toString(), {
+      ...config,
+      post: { ...attributes, body: bodyHtml },
+    });
+
+    await fs.mkdir(`${DIST}/${COTENTS_SLUG}/${file}`);
+    await fs.writeFile(`${DIST}/${COTENTS_SLUG}/${file}/index.html`, html);
+  }
+}
+
+async function build() {
+  await fs.mkdir(DIST);
+  await buildHTMLFiles();
+  await buildContentsFiles();
 }
 
 build();
