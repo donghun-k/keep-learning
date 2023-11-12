@@ -10,15 +10,12 @@ export interface Post {
   featured: boolean;
 }
 
+export const getNonFeaturedPosts = async (): Promise<Post[]> => {
+  return getAllPosts().then((posts) => posts.filter((post) => !post.featured));
+};
+
 export const getFeaturedPosts = async (): Promise<Post[]> => {
-  const filePath = path.join(process.cwd(), 'data', 'posts.json');
-  return readFile(filePath, 'utf-8')
-    .then<Post[]>(JSON.parse)
-    .then((posts) =>
-      posts
-        .filter((post) => post.featured)
-        .sort((a, b) => (a.date > b.date ? -1 : 1))
-    );
+  return getAllPosts().then((posts) => posts.filter((post) => post.featured));
 };
 
 export const getAllPosts = async (): Promise<Post[]> => {
