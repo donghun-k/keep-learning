@@ -2,6 +2,8 @@
 
 import { ChangeEvent, FormEvent, useState } from 'react';
 
+import { sendContactEmail } from '@/service/contact';
+
 import Banner, { BannerData } from './Banner';
 
 interface Form {
@@ -10,27 +12,39 @@ interface Form {
   message: string;
 }
 
+const DEFAULT_FORM: Form = {
+  from: '',
+  subject: '',
+  message: '',
+};
+
 const ContactForm = () => {
-  const [form, setForm] = useState<Form>({
-    from: '',
-    subject: '',
-    message: '',
-  });
+  const [form, setForm] = useState<Form>(DEFAULT_FORM);
   const [banner, setBanner] = useState<BannerData | null>(null);
   const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('form', form);
-    setBanner({
-      message: 'Your message has been sent!',
-      state: 'success',
-    });
-    // setTimeout(() => {
-    //   setBanner(null);
-    // }, 3000);
+    try {
+      const data = await sendContactEmail(form);
+      console.log('data', data);
+      setBanner({
+        message: 'Your message has been sent!',
+        state: 'success',
+      });
+      setForm(DEFAULT_FORM);
+    } catch (err) {
+      setBanner({
+        message: 'Something went wrong. Please try again later.',
+        state: 'error',
+      });
+    } finally {
+      setTimeout(() => {
+        setBanner(null);
+      }, 3000);
+    }
   };
   return (
     <section className="w-full max-w-md">
