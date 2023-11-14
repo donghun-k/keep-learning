@@ -1,6 +1,12 @@
 import { AiFillGithub } from 'react-icons/ai';
+import { Metadata } from 'next';
 
 import ContactForm from '@/components/ContactForm';
+
+export const metadata: Metadata = {
+  title: 'Contact Me',
+  description: 'Contact DongHun, Kim',
+};
 
 const ContactPage = () => {
   return (

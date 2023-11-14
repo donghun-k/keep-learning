@@ -9,6 +9,15 @@ const sans = Open_Sans({
   subsets: ['latin'],
 });
 
+export const metadata = {
+  title: {
+    default: `DongHun's Blog`,
+    template: `DongHun's Blog | %s`,
+  },
+  description: '프론트엔드 엔지니어 DongHun, Kim의 블로그',
+  icons: '/favicon.ico',
+};
+
 export default function RootLayout({
   children,
 }: {

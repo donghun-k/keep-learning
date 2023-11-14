@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Metadata } from 'next';
 
 import { getPostData } from '@/service/posts';
 import PostContent from '@/components/PostContent';
@@ -9,6 +10,17 @@ interface Props {
     slug: string;
   };
 }
+
+export const generateMetadata = async ({
+  params: { slug },
+}: Props): Promise<Metadata> => {
+  const { title, description } = await getPostData(slug);
+  return {
+    title,
+    description,
+  };
+};
+
 const PostPage = async ({ params: { slug } }: Props) => {
   const post = await getPostData(slug);
   const { title, path, next, prev } = post;
