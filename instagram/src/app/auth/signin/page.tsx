@@ -1,8 +1,8 @@
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import SignIn from '@/components/SignIn';
-import { getServerSession } from 'next-auth';
-import { getProviders } from 'next-auth/react';
-import { redirect } from 'next/navigation';
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import SignIn from "@/components/SignIn";
+import { getServerSession } from "next-auth";
+import { getProviders } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 interface Props {
   searchParams: {
@@ -14,14 +14,14 @@ const SignInPage = async ({ searchParams: { callbackUrl } }: Props) => {
   const session = await getServerSession(authOptions);
 
   if (session) {
-    redirect('/');
+    redirect("/");
   }
 
   const providers = (await getProviders()) ?? {};
 
   return (
-    <section className="flex justify-center mt-[30%]">
-      <SignIn providers={providers} callbackUrl={callbackUrl ?? '/'} />
+    <section className="mt-24 flex justify-center">
+      <SignIn providers={providers} callbackUrl={callbackUrl ?? "/"} />
     </section>
   );
 };
