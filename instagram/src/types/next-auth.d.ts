@@ -1,9 +1,7 @@
-import NextAuth, { DefaultSession } from 'next-auth';
+import { User } from "@/app/model/user";
 
-declare module 'next-auth' {
+declare module "next-auth" {
   interface Session {
-    user: {
-      username: string;
-    } & DefaultSession['user'];
+    user: User;
   }
 }
