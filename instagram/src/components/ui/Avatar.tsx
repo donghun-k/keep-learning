@@ -9,7 +9,7 @@ const Avatar = ({ image, size = "normal", highlight = false }: Props) => {
     <div className={getContainerStyle(size, highlight)}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        className={`rounded-full bg-white p-[0.1rem] ${getImageSizeStyle(
+        className={`rounded-full bg-white object-cover p-[0.1rem] ${getImageSizeStyle(
           size,
         )}`}
         alt="user profile"

@@ -1,14 +1,15 @@
-import type { Metadata } from 'next';
-import { Open_Sans } from 'next/font/google';
-import './globals.css';
-import Navbar from '@/components/Navbar';
-import AuthContext from '@/contexts/AuthContext';
+import type { Metadata } from "next";
+import { Open_Sans } from "next/font/google";
+import "./globals.css";
+import Navbar from "@/components/Navbar";
+import AuthContext from "@/contexts/AuthContext";
+import SWRConfigContext from "@/contexts/SWRConfigContext";
 
-const openSans = Open_Sans({ subsets: ['latin'] });
+const openSans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Instagram',
-  description: 'Instagram clone built with Next.js',
+  title: "Instagram",
+  description: "Instagram clone built with Next.js",
 };
 
 export default function RootLayout({
@@ -18,12 +19,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={openSans.className}>
-      <body className="w-full max-w-screen-xl overflow-auto mx-auto">
+      <body className="mx-auto w-full max-w-screen-xl overflow-auto">
         <AuthContext>
-          <header className="sticky top-0 bg-white z-10 border-b">
+          <header className="sticky top-0 z-10 border-b bg-white">
             <Navbar />
           </header>
-          <main>{children}</main>
+          <main className="flex min-h-full w-full justify-center bg-neutral-50">
+            <SWRConfigContext>{children}</SWRConfigContext>
+          </main>
         </AuthContext>
       </body>
     </html>
