@@ -1,11 +1,18 @@
 "use client";
 
-import { DeatilUser } from "@/app/model/user";
 import useSWR from "swr";
-import PropagateLoader from "react-spinners/PropagateLoader";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+import { DeatilUser } from "@/app/model/user";
+
 import Avatar from "./Avatar";
 import ScrollableBar from "./ScrollableBar";
+
+const PropagateLoader = dynamic(
+  () => import("react-spinners/PropagateLoader"),
+  { ssr: false },
+);
 
 const FollowingBar = () => {
   const { data, isLoading } = useSWR<DeatilUser>("/api/me");
