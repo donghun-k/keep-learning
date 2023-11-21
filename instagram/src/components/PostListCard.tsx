@@ -1,10 +1,15 @@
+"use client";
 import Image from "next/image";
+import { useState } from "react";
 
 import { SimplePost } from "@/app/model/post";
 
-import Avatar from "./ui/Avatar";
 import CommentForm from "./CommentForm";
 import ActionBar from "./ActionBar";
+import ModalPortal from "./ModalPortal";
+import PostModal from "./PostModal";
+import PostDetail from "./PostDetail";
+import PostUserAvatar from "./PostUserAvatar";
 
 interface Props {
   post: SimplePost;
@@ -13,12 +18,10 @@ interface Props {
 
 const PostListCard = ({ post, priority = false }: Props) => {
   const { userImage, username, image, createdAt, likes, text } = post;
+  const [openModal, setOpenModal] = useState(false);
   return (
     <article className="rounded-lg border border-gray-200 shadow-md">
-      <div className="flex items-center p-2">
-        <Avatar image={userImage} size="medium" highlight />
-        <span className="ml-2 font-bold text-gray-900">{username}</span>
-      </div>
+      <PostUserAvatar userImage={userImage} username={username} />
       <Image
         className="aspect-square w-full object-cover"
         src={image}
@@ -26,6 +29,7 @@ const PostListCard = ({ post, priority = false }: Props) => {
         width={500}
         height={500}
         priority={priority}
+        onClick={() => setOpenModal(true)}
       />
       <ActionBar
         likes={likes}
@@ -34,6 +38,13 @@ const PostListCard = ({ post, priority = false }: Props) => {
         createdAt={createdAt}
       />
       <CommentForm />
+      {openModal && (
+        <ModalPortal>
+          <PostModal onClose={() => setOpenModal(false)}>
+            <PostDetail post={post} />
+          </PostModal>
+        </ModalPortal>
+      )}
     </article>
   );
 };

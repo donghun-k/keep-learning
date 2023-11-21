@@ -6,8 +6,8 @@ import BookmarkIcon from "./ui/icons/BookmarkIcon";
 interface Props {
   likes: string[];
   username: string;
-  text: string;
   createdAt: string;
+  text?: string;
 }
 
 const ActionBar = ({ likes, username, text, createdAt }: Props) => {
@@ -21,10 +21,12 @@ const ActionBar = ({ likes, username, text, createdAt }: Props) => {
         <p className="mb-2 text-sm font-bold">{`${likes?.length ?? 0} ${
           likes?.length > 1 ? "likes" : "like"
         }`}</p>
-        <p>
-          <span className="mr-1 font-bold">{username}</span>
-          {text}
-        </p>
+        {text && (
+          <p>
+            <span className="mr-1 font-bold">{username}</span>
+            {text}
+          </p>
+        )}
         <p className="my-2 text-xs uppercase text-neutral-500">
           {parseDate(createdAt)}
         </p>
