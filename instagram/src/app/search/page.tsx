@@ -1,5 +1,11 @@
+import UserSearch from "@/components/UserSearch";
+
 const SearchPage = () => {
-  return <div>SearchPage</div>;
+  return (
+    <>
+      <UserSearch />
+    </>
+  );
 };
 
 export default SearchPage;
