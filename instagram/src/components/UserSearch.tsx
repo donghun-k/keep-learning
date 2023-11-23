@@ -4,7 +4,7 @@ import { FormEventHandler, useState } from "react";
 import useSWR from "swr";
 import dynamic from "next/dynamic";
 
-import { ProfileUser } from "@/app/model/user";
+import { SearchUser } from "@/app/model/user";
 import useDebounce from "@/hooks/useDebounce";
 
 import UserCard from "./UserCard";
@@ -20,7 +20,7 @@ const UserSearch = () => {
     data: users,
     isLoading,
     error,
-  } = useSWR<ProfileUser[]>(`/api/search/${debouncedKeyword}`);
+  } = useSWR<SearchUser[]>(`/api/search/${debouncedKeyword}`);
 
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault();

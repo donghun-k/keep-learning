@@ -4,7 +4,7 @@ import useSWR from "swr";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
-import { DeatilUser } from "@/app/model/user";
+import { HomeUser } from "@/app/model/user";
 
 import Avatar from "./Avatar";
 import ScrollableBar from "./ScrollableBar";
@@ -15,7 +15,7 @@ const PropagateLoader = dynamic(
 );
 
 const FollowingBar = () => {
-  const { data, isLoading } = useSWR<DeatilUser>("/api/me");
+  const { data, isLoading } = useSWR<HomeUser>("/api/me");
   const users = data?.following;
   return (
     <section className="relative z-0 mb-4 flex min-h-[90px] w-full items-center justify-center overflow-x-auto rounded-lg p-4 shadow-sm shadow-neutral-300">

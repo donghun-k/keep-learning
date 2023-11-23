@@ -1,19 +1,23 @@
-export interface User {
+export interface AuthUser {
   name: string;
   username: string;
   email: string;
   image?: string;
 }
 
-export type SimpleUser = Pick<User, "username" | "image">;
+export type SimpleUser = Pick<AuthUser, "username" | "image">;
 
-export interface DeatilUser extends User {
+export interface HomeUser extends AuthUser {
   following: SimpleUser[];
   followers: SimpleUser[];
   bookmarks: string[];
 }
 
-export interface ProfileUser extends User {
+export interface SearchUser extends AuthUser {
   following: number;
   followers: number;
+}
+
+export interface ProfileUser extends SearchUser {
+  posts: number;
 }

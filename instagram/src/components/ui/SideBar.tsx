@@ -1,8 +1,8 @@
-import { User } from "@/app/model/user";
+import { AuthUser } from "@/app/model/user";
 import Avatar from "./Avatar";
 
 interface Props {
-  user: User;
+  user: AuthUser;
 }
 
 const SideBar = ({ user: { name, username, image } }: Props) => {

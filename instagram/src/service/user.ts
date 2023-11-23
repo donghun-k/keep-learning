@@ -1,4 +1,4 @@
-import { ProfileUser } from "@/app/model/user";
+import { SearchUser } from "@/app/model/user";
 
 import { client } from "./sanity";
 
@@ -42,7 +42,7 @@ export const getUserByUsername = (username: string) => {
   );
 };
 
-export const searchUsers = (keyword?: string) => {
+export const searchUsers = async (keyword?: string) => {
   const query = keyword
     ? `&& (name match "${keyword}*" || username match "${keyword}*")`
     : "";
@@ -57,10 +57,34 @@ export const searchUsers = (keyword?: string) => {
     `,
     )
     .then((users) =>
-      users.map((user: ProfileUser) => ({
+      users.map((user: SearchUser) => ({
         ...user,
         following: user.following ?? 0,
         followers: user.followers ?? 0,
       })),
     );
+};
+
+export const getUserForProfile = async (username: string) => {
+  return client
+    .fetch(
+      `
+      *[_type == "user" && username == "${username}"][0]{
+        ...,
+        "id": _id,
+        "following": count(following),
+        "followers": count(followers),
+        "posts": count(*[_type == "post" && author->username == "${username}"]),
+      }
+    `,
+    )
+    .then((user) => {
+      console.log("user", user);
+      return {
+        ...user,
+        following: user.following ?? 0,
+        followers: user.followers ?? 0,
+        posts: user.posts ?? 0,
+      };
+    });
 };

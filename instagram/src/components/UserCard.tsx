@@ -1,11 +1,11 @@
 import Link from "next/link";
 
-import { ProfileUser } from "@/app/model/user";
+import { SearchUser } from "@/app/model/user";
 
 import Avatar from "./ui/Avatar";
 
 interface Props {
-  user: ProfileUser;
+  user: SearchUser;
 }
 
 const UserCard = ({
