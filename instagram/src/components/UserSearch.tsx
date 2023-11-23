@@ -5,6 +5,7 @@ import useSWR from "swr";
 import dynamic from "next/dynamic";
 
 import { ProfileUser } from "@/app/model/user";
+import useDebounce from "@/hooks/useDebounce";
 
 import UserCard from "./UserCard";
 
@@ -14,11 +15,12 @@ const GridLoader = dynamic(() => import("react-spinners/GridLoader"), {
 
 const UserSearch = () => {
   const [keyword, setKeyword] = useState("");
+  const debouncedKeyword = useDebounce(keyword);
   const {
     data: users,
     isLoading,
     error,
-  } = useSWR<ProfileUser[]>(`/api/search/${keyword}`);
+  } = useSWR<ProfileUser[]>(`/api/search/${debouncedKeyword}`);
 
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault();
