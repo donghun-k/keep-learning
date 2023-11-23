@@ -9,7 +9,7 @@ import SWRConfigContext from "@/contexts/SWRConfigContext";
 const openSans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Instagram",
+  title: { default: "Instagram", template: "Instagram | %s" },
   description: "Instagram clone built with Next.js",
 };
 

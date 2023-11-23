@@ -1,9 +1,15 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import SignIn from "@/components/SignIn";
 import { getServerSession } from "next-auth";
 import { getProviders } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
 
+import SignIn from "@/components/SignIn";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
+export const metadata: Metadata = {
+  title: "Sign In",
+  description: "Sign in to Instagram",
+};
 interface Props {
   searchParams: {
     callbackUrl: string;

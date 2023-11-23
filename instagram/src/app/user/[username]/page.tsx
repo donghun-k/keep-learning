@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
+import { cache } from "react";
 
 import { getUserForProfile } from "@/service/user";
 import UserProfile from "@/components/UserProfile";
@@ -10,8 +12,20 @@ interface Props {
   };
 }
 
+const getUser = cache(async (username: string) => getUserForProfile(username));
+
+export const generateMetadata = async ({
+  params: { username },
+}: Props): Promise<Metadata> => {
+  const user = await getUser(username);
+  return {
+    title: `${user?.name} (@${user?.username}) • Instagram Photos`,
+    description: `${user?.name}'s all Instagram posts`,
+  };
+};
+
 const UserPage = async ({ params: { username } }: Props) => {
-  const user = await getUserForProfile(username);
+  const user = await getUser(username);
 
   if (!user) {
     notFound();
