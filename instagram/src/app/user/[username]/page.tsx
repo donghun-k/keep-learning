@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 
 import { getUserForProfile } from "@/service/user";
 import UserProfile from "@/components/UserProfile";
+import UserPost from "@/components/UserPost";
 
 interface Props {
   params: {
@@ -15,7 +16,12 @@ const UserPage = async ({ params: { username } }: Props) => {
   if (!user) {
     notFound();
   }
-  return <UserProfile user={user} />;
+  return (
+    <section className="w-full">
+      <UserProfile user={user} />
+      <UserPost user={user} />
+    </section>
+  );
 };
 
 export default UserPage;
