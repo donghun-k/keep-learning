@@ -1,9 +1,7 @@
 "use client";
-
-import useSWR from "swr";
 import dynamic from "next/dynamic";
 
-import { SimplePost } from "@/app/model/post";
+import usePosts from "@/hooks/usePosts";
 
 import PostListCard from "../PostListCard";
 
@@ -12,7 +10,7 @@ const GridLoader = dynamic(() => import("react-spinners/GridLoader"), {
 });
 
 const PostList = () => {
-  const { data: posts, isLoading } = useSWR<SimplePost[]>("/api/posts");
+  const { posts, isLoading } = usePosts();
 
   return (
     <section>
