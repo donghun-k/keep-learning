@@ -9,15 +9,25 @@ interface Props {
   user: ProfileUser;
 }
 
-const FollowButton = ({ user: { username } }: Props) => {
-  const { user: loggedInUser } = useMe();
+const FollowButton = ({ user: { username, id } }: Props) => {
+  const { user: loggedInUser, toggleFollow } = useMe();
 
   const showButton = loggedInUser?.username !== username;
   const following = loggedInUser?.following.find(
     (item) => item.username === username,
   );
   const text = following ? "Unfollow" : "Follow";
-  return <>{showButton && <Button text={text} onClick={() => {}} red />}</>;
+
+  const handleFollow = () => {
+    toggleFollow(id, !following);
+  };
+  return (
+    <>
+      {showButton && (
+        <Button text={text} onClick={handleFollow} red={!!following} />
+      )}
+    </>
+  );
 };
 
 export default FollowButton;
