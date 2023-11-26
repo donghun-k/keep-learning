@@ -26,17 +26,13 @@ const UserPost = ({ user: { username } }: Props) => {
         {tabs.map(({ type, icon }) => {
           return (
             <li
+              onClick={() => setQuery(type)}
               className={`m-12 cursor-pointer border-black p-4 ${
                 type === query && "border-t font-bold"
               }`}
               key={type}
             >
-              <button
-                onClick={() => setQuery(type)}
-                className="scale-150 md:scale-100"
-              >
-                {icon}
-              </button>
+              <button className="scale-150 md:scale-100">{icon}</button>
               <span className="hidden md:inline">{type}</span>
             </li>
           );

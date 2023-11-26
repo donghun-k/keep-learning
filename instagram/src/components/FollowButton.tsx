@@ -1,8 +1,7 @@
 "use client";
 
-import useSWR from "swr";
-
-import { HomeUser, ProfileUser } from "@/app/model/user";
+import { ProfileUser } from "@/app/model/user";
+import useMe from "@/hooks/useMe";
 
 import Button from "./ui/Button";
 
@@ -11,7 +10,7 @@ interface Props {
 }
 
 const FollowButton = ({ user: { username } }: Props) => {
-  const { data: loggedInUser } = useSWR<HomeUser>("/api/me");
+  const { user: loggedInUser } = useMe();
 
   const showButton = loggedInUser?.username !== username;
   const following = loggedInUser?.following.find(

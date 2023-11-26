@@ -1,6 +1,7 @@
 import { SearchUser } from "@/app/model/user";
 
 import { client } from "./sanity";
+import post from "../../sanity-studio/schemas/post";
 
 interface OAuthUser {
   id: string;
@@ -87,4 +88,26 @@ export const getUserForProfile = async (username: string) => {
         posts: user.posts ?? 0,
       };
     });
+};
+
+export const addBookmark = async (userId: string, postId: string) => {
+  return client
+    .patch(userId)
+    .setIfMissing({ bookmarks: [] })
+    .append("bookmarks", [
+      {
+        _ref: postId,
+        _type: "reference",
+      },
+    ])
+    .commit({
+      autoGenerateArrayKeys: true,
+    });
+};
+
+export const removeBookmark = async (userId: string, postId: string) => {
+  return client
+    .patch(userId)
+    .unset([`bookmarks[_ref == "${postId}"]`])
+    .commit();
 };

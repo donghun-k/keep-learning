@@ -6,6 +6,7 @@ import { useSWRConfig } from "swr";
 import { parseDate } from "@/utils/date";
 import { SimplePost } from "@/app/model/post";
 import usePosts from "@/hooks/usePosts";
+import useMe from "@/hooks/useMe";
 
 import HeartIcon from "./ui/icons/HeartIcon";
 import BookmarkIcon from "./ui/icons/BookmarkIcon";
@@ -18,16 +19,21 @@ interface Props {
 }
 
 const ActionBar = ({ post }: Props) => {
-  const { likes, username, text, createdAt } = post;
-  const { data: session } = useSession();
-  const user = session?.user;
-  const liked = user ? likes.includes(user.username) : false;
-  const [bookmarked, setBookmarked] = useState(false);
+  const { id, likes, username, text, createdAt } = post;
+  const { user, setBookmark } = useMe();
   const { setLike } = usePosts();
+
+  const liked = user ? likes.includes(user.username) : false;
+  const bookmarked = user ? user.bookmarks.includes(post.id) : false;
 
   const handleLike = (like: boolean) => {
     if (!user) return;
     setLike(post, user.username, like);
+  };
+
+  const handleBookmark = (bookmark: boolean) => {
+    if (!user) return;
+    setBookmark(id, bookmark);
   };
 
   return (
@@ -41,7 +47,7 @@ const ActionBar = ({ post }: Props) => {
         />
         <ToggleButton
           toggled={bookmarked}
-          onToggle={setBookmarked}
+          onToggle={handleBookmark}
           onIcon={<BookmarkFillIcon />}
           offIcon={<BookmarkIcon />}
         />
