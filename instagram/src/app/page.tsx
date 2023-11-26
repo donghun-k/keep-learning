@@ -1,9 +1,11 @@
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+
 import FollowingBar from "@/components/ui/FollowingBar";
 import PostList from "@/components/ui/PostList";
 import SideBar from "@/components/ui/SideBar";
-import { getServerSession } from "next-auth";
+
 import { authOptions } from "./api/auth/[...nextauth]/route";
-import { redirect } from "next/navigation";
 
 const HomePage = async () => {
   const session = await getServerSession(authOptions);

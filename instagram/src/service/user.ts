@@ -1,7 +1,6 @@
 import { SearchUser } from "@/app/model/user";
 
 import { client } from "./sanity";
-import post from "../../sanity-studio/schemas/post";
 
 interface OAuthUser {
   id: string;

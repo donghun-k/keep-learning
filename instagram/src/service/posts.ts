@@ -1,6 +1,7 @@
 import { SimplePost } from "@/app/model/post";
 
 import { client, urlFor } from "./sanity";
+import post from "../../sanity-studio/schemas/post";
 
 const simplePostProjection = `
     ...,
@@ -108,4 +109,24 @@ export const dislikePost = async (postId: string, userId: string) => {
     .patch(postId)
     .unset([`likes[_ref == "${userId}"]`])
     .commit();
+};
+
+export const addComment = async (
+  postId: string,
+  userId: string,
+  comment: string,
+) => {
+  console.log(postId, userId, comment);
+  return client
+    .patch(postId)
+    .setIfMissing({ comments: [] })
+    .append("comments", [
+      {
+        comment,
+        author: { _ref: userId, _type: "reference" },
+      },
+    ])
+    .commit({
+      autoGenerateArrayKeys: true,
+    });
 };
