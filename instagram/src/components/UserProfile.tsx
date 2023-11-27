@@ -1,4 +1,8 @@
+import { revalidatePath } from "next/cache";
+import { getServerSession } from "next-auth";
+
 import { ProfileUser } from "@/app/model/user";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 import Avatar from "./ui/Avatar";
 import FollowButton from "./FollowButton";
@@ -6,13 +10,15 @@ import FollowButton from "./FollowButton";
 interface Props {
   user: ProfileUser;
 }
-const UserProfile = ({ user }: Props) => {
+const UserProfile = async ({ user }: Props) => {
+  const session = await getServerSession(authOptions);
   const { image, username, name, followers, following, posts } = user;
   const info = [
     { title: "posts", data: posts },
     { title: "followers", data: followers },
     { title: "following", data: following },
   ];
+
   return (
     <section className="flex w-full flex-col items-center border-b border-neutral-300 py-12 md:flex-row">
       <Avatar image={image} highlight size="xlarge" />

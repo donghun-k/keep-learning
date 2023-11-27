@@ -1,7 +1,5 @@
 "use client";
-import { ReactNode, useState } from "react";
-import { useSession } from "next-auth/react";
-import { useSWRConfig } from "swr";
+import { ReactNode } from "react";
 
 import { parseDate } from "@/utils/date";
 import { Comment, SimplePost } from "@/app/model/post";

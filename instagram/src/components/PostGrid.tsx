@@ -1,3 +1,4 @@
+"use client";
 import dynamic from "next/dynamic";
 import useSWR from "swr";
 
@@ -15,11 +16,9 @@ interface Props {
 }
 
 const PostGrid = ({ username, query }: Props) => {
-  const {
-    data: posts,
-    isLoading,
-    error,
-  } = useSWR<SimplePost[]>(`/api/users/${username}/${query}`);
+  const { data: posts, isLoading } = useSWR<SimplePost[]>(
+    `/api/users/${username}/${query}`,
+  );
   return (
     <div className="w-full text-center">
       {isLoading && <GridLoader />}

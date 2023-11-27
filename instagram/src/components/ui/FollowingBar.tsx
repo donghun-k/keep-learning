@@ -23,7 +23,7 @@ const FollowingBar = () => {
       ) : (
         (!users || users.length === 0) && <p>{`You don't have following`}</p>
       )}
-      {users && users.length && (
+      {users && users.length > 0 && (
         <ScrollableBar>
           {users.map(({ image, username }) => (
             <Link
