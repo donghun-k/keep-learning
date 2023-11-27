@@ -2,11 +2,13 @@
 import { useState } from "react";
 
 import { ProfileUser } from "@/app/model/user";
+import { CacheKeysContext } from "@/contexts/CacheKeysContext";
 
 import PostIcon from "./ui/icons/PostIcon";
 import BookmarkIcon from "./ui/icons/BookmarkIcon";
 import HeartIcon from "./ui/icons/HeartIcon";
 import PostGrid from "./PostGrid";
+import post from "../../sanity-studio/schemas/post";
 
 interface Props {
   user: ProfileUser;
@@ -38,7 +40,13 @@ const UserPost = ({ user: { username } }: Props) => {
           );
         })}
       </ul>
-      <PostGrid username={username} query={query} />
+      <CacheKeysContext.Provider
+        value={{
+          postsKey: `/api/users/${username}/${query}`,
+        }}
+      >
+        <PostGrid />
+      </CacheKeysContext.Provider>
     </section>
   );
 };

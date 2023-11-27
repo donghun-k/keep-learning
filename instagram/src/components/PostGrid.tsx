@@ -1,8 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
-import useSWR from "swr";
 
-import { SimplePost } from "@/app/model/post";
+import usePosts from "@/hooks/usePosts";
 
 import PostGridCard from "./PostGridCard";
 
@@ -10,15 +9,8 @@ const GridLoader = dynamic(() => import("react-spinners/GridLoader"), {
   ssr: false,
 });
 
-interface Props {
-  username: string;
-  query: string;
-}
-
-const PostGrid = ({ username, query }: Props) => {
-  const { data: posts, isLoading } = useSWR<SimplePost[]>(
-    `/api/users/${username}/${query}`,
-  );
+const PostGrid = () => {
+  const { posts, isLoading } = usePosts();
   return (
     <div className="w-full text-center">
       {isLoading && <GridLoader />}
