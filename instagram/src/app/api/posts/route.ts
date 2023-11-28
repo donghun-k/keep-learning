@@ -1,18 +1,28 @@
-import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-import { getFollowingPostsOf } from "@/service/posts";
-
-import { authOptions } from "../auth/[...nextauth]/route";
+import { createPost, getFollowingPostsOf } from "@/service/posts";
+import { withSession } from "@/utils/session";
 
 export async function GET() {
-  const session = await getServerSession(authOptions);
-  const user = session?.user;
+  return withSession(async (user) => {
+    return getFollowingPostsOf(user.username).then((data) =>
+      NextResponse.json(data),
+    );
+  });
+}
 
-  if (!user) {
-    return new Response("Authentication Error", { status: 401 });
-  }
+export async function POST(req: NextRequest) {
+  return withSession(async (user) => {
+    const form = await req.formData();
+    const text = form.get("text")?.toString();
+    const file = form.get("file") as Blob;
 
-  return getFollowingPostsOf(user.username) //
-    .then((data) => NextResponse.json(data));
+    if (!text || !file) {
+      return new NextResponse("Bad Request", { status: 400 });
+    }
+
+    return createPost(user.id, text, file).then((data) =>
+      NextResponse.json(data),
+    );
+  });
 }
