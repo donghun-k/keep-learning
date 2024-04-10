@@ -1,0 +1,167 @@
+@keyframes start {
+  0% {
+    transform: translate(-100%, 100%) rotate(-540deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+}
+
+html {
+  font-size: 1rem;
+}
+body {
+  display: flex;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  perspective: 1500px;
+  background: url(../images/tablewood.jpg);
+  background-size: auto 130px;
+  font-family: 'Playfair Display', serif;
+  overflow: hidden;
+}
+.hand {
+  top: 70%;
+  left: 70%;
+  position: absolute;
+  width: 400px;
+  z-index: 10;
+  pointer-events: none;
+}
+.hand img {
+  transition: 0.5s;
+}
+.zoom-in .hand img {
+  transform-origin: top left;
+  transform: scale(2);
+}
+.leaflet {
+  position: relative;
+  width: 30vw;
+  height: 30vw;
+  transform-style: preserve-3d;
+  transition: 1s;
+  animation: start 1s ease-in-out;
+}
+.page {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: 0.5s;
+}
+.page:nth-child(1) {
+  transform-origin: left;
+  z-index: 2;
+}
+.page.page-flipped:nth-child(1) {
+  transform: rotateY(-150deg);
+}
+.page:nth-child(3) {
+  transform-origin: right;
+  z-index: 1;
+}
+.page.page-flipped:nth-child(3) {
+  transform: rotateY(150deg);
+}
+.page-face {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: cornsilk;
+  backface-visibility: hidden;
+  z-index: 1;
+}
+.page-face:nth-child(2) {
+  transform: rotateY(180deg);
+}
+.cover-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+.cover-page::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  border: 1px solid tan;
+}
+.menu-header-title {
+  font-family: 'Courgette', cursive;
+}
+.menu-list {
+  font-size: 0.7rem;
+  transform-style: preserve-3d; /* 마우스 포인트 인식이 제대로 되도록 추가 */
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 2em;
+  transition: 0.5s;
+  transform-style: preserve-3d; /* 마우스 포인트 인식이 제대로 되도록 추가 */
+  cursor: pointer;
+}
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.zoom-in .menu-item {
+  opacity: 0;
+  pointer-events: none;
+}
+.zoom-in .menu-item.current-menu {
+  opacity: 1;
+  pointer-events: all;
+}
+.back-btn {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.current-menu .back-btn {
+  display: inline-block;
+}
+.menu-item-photo {
+  width: 20%;
+  padding-bottom: 20%;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.menu-item-info {
+  flex: 1;
+  margin-left: 1em;
+}
+.member-name {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.close-btn {
+  display: none;
+  position: absolute;
+  top: -2rem;
+  right: 10px;
+  font-size: 1.2rem;
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.3) 0 1px 0;
+  backface-visibility: hidden;
+}
+.leaflet-opened .close-btn {
+  display: inline-block;
+}
