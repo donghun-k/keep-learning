@@ -1,0 +1,31 @@
+<section class="prompt">
+  <h1>Sign In</h1>
+  <form action="/auth/login" method="post">
+    <div>
+      <label for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Email"
+        required
+      />
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="password"
+        required
+      />
+    </div>
+    <button type="submit">Sign In</button>
+  </form>
+  <br />
+  <a href="/auth/google">Sign In with Google</a>
+  <br />
+  <a href="/auth/kakao">Sign In with Kakao</a>
+  <p>아직 계정이 없다면<a href="/signup">Sign UP</a></p>
+</section>

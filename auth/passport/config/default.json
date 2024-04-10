@@ -1,0 +1,12 @@
+{
+  "server": {
+    "port": 3000,
+    "host": "localhost"
+  },
+  "db": {
+    "type": "mongodb"
+  },
+  "cokkie": {
+    "expiresIn": 120960000
+  }
+}

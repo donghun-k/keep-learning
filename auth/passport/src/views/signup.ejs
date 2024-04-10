@@ -1,0 +1,27 @@
+<section class="prompt">
+  <h1>Sign Up</h1>
+  <form action="/auth/signup" method="post">
+    <div>
+      <label for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Email"
+        required
+      />
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="password"
+        required
+      />
+    </div>
+    <button type="submit">Sign Up</button>
+    <p>이미 계정이 있다면<a href="/login">Sign In</a></p>
+  </form>
+</section>
