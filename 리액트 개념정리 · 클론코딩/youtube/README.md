@@ -1,8 +1,6 @@
 # YouTube
 __⟪드림코딩 아카데미 - 리액트 개념정리 · 클론코딩⟫__ 실습 프로젝트입니다.
 
-[DEMO](https://front-end-react-youtube.vercel.app/)
-
 ## What I Learned
 |Library|
 |:---:|
@@ -14,8 +12,7 @@ __⟪드림코딩 아카데미 - 리액트 개념정리 · 클론코딩⟫__ 실
 - **React Router**
   - `RouterProvider`를 사용해 라우팅
 - **React Query**
-  - `useEffect`대신 `useQuery`로 데이터 페칭
-  - 데이터 캐싱
-- **Axios**를 사용한 HTTP 비동기 통신
+  - `useQuery`를 사용한 서버 데이터 관리
+- **Axios**
   - **Axios 인스턴스** 사용
   - **Mock data**를 사용한 Fake 서비스

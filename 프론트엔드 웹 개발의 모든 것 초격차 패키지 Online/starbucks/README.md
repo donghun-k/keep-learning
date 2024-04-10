@@ -2,7 +2,7 @@
 
 __⟪HTML/CSS/JS로 만드는 스타벅스 웹사이트)⟫__ 실습 프로젝트입니다.
 
-[DEMO](https://donghun-k.github.io/front-end-basic/starbucks/)
+[DEMO](https://donghun-k.github.io/keep-learning/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C%20%EC%9B%B9%20%EA%B0%9C%EB%B0%9C%EC%9D%98%20%EB%AA%A8%EB%93%A0%20%EA%B2%83%20%EC%B4%88%EA%B2%A9%EC%B0%A8%20%ED%8C%A8%ED%82%A4%EC%A7%80%20Online/starbucks/)
 
 ## What I Learned
 |Language|
