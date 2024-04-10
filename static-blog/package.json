@@ -1,0 +1,21 @@
+{
+  "name": "static-blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "static-server pages",
+    "build": "rm -rf dist && node ./scripts/build.js",
+    "build:window": "(if exist dist rmdir /q /s dist) && node ./scripts/build.js",
+    "serve": "static-server dist"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "front-matter": "^4.0.2",
+    "fs-extra": "^11.1.1",
+    "mustache": "^4.2.0",
+    "showdown": "^2.1.0",
+    "static-server": "^2.2.1"
+  },
+  "dependencies": {}
+}

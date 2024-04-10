@@ -1,0 +1,29 @@
+{
+  "name": "@donghun-k/mini-query",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/mini-query.umd.cjs",
+  "module": "./dist/mini-query.js",
+  "exports": {
+    ".": {
+      "import": "./dist/mini-query.js",
+      "require": "./dist/mini-query.umd.cjs"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "jsdom": "^22.1.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vitest": "^0.34.6"
+  }
+}

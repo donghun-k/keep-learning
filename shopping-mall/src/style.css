@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.displaying_cart {
+  overflow-y: hidden;
+}
+
+.cart-layer {
+  display: none;
+}
+
+.displaying_cart .cart-layer {
+  display: block;
+}
