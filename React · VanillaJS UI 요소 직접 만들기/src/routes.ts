@@ -1,3 +1,5 @@
+import Accordions from './components/accordion';
+
 export const routePaths = [
   '/',
   '/accordion',
@@ -73,7 +75,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     key: '/accordion',
     link: '/accordion',
     name: '01. 아코디언',
-    children: null,
+    children: Accordions,
   },
   '/tabMenu': {
     key: '/tabMenu',

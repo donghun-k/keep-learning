@@ -1,0 +1,125 @@
+.Accordions {
+  .container {
+    // 전체 감싸는 클래스
+    border: 1px solid #ccc;
+    border-bottom: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    overflow: hidden;
+  }
+  .tab {
+    // 타이틀 영역
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+
+    &::before {
+      content: '+';
+      margin: 0 8px 0 -5px;
+    }
+  }
+
+  .description {
+    // 상세내용 영역
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    background-color: #eff;
+  }
+
+  .item {
+    &.current {
+      .tab {
+        background-color: #ace;
+
+        &::before {
+          content: '-';
+        }
+      }
+    }
+  }
+
+  .item2 {
+    .description {
+      display: none;
+    }
+    &.current {
+      .description {
+        display: block;
+      }
+    }
+  }
+
+  .item3 {
+    overflow: hidden;
+
+    .description {
+      padding: 0 15px;
+      border-bottom-width: 0;
+      max-height: 0;
+      transition: ease 0.3s;
+    }
+    &.current .description {
+      padding: 15px;
+      border-bottom-width: 1px;
+      max-height: 300px;
+    }
+  }
+
+  .item5 {
+    overflow: hidden;
+
+    .input {
+      display: none;
+    }
+    .tab {
+      display: block;
+    }
+    .description {
+      padding: 0 15px;
+      border-bottom-width: 0;
+      max-height: 0;
+      transition: ease 0.3s;
+    }
+    .input:checked {
+      + .tab {
+        background-color: #ace;
+
+        &::before {
+          content: '-';
+        }
+      }
+      ~ .description {
+        padding: 15px;
+        border-bottom-width: 1px;
+        max-height: 300px;
+      }
+    }
+  }
+  
+  details[open] summary {
+    background-color: #ace;
+    padding: 15px;
+    border-bottom-width: 0;
+  }
+
+  details[open] .description {
+    padding: 15px;
+    border-bottom-width: 0;
+  }
+
+  summary{
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+  }
+
+  summary::marker{
+    content: "+ ";
+  }
+  details[open] summary::marker {
+    content: "- ";
+  }
+}
+
