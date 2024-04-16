@@ -28,7 +28,9 @@ const Accordion1 = () => {
   };
   return (
     <>
-      <h3>#1. React</h3>
+      <h3>
+        #1. React <sub>현재 항목만 렌더링</sub>
+      </h3>
       <ul className={cx('container')}>
         {data.map((item) => (
           <AccordionItem
