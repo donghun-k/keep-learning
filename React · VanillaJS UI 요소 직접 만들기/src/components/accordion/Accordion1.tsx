@@ -34,6 +34,7 @@ const Accordion1 = () => {
       <ul className={cx('container')}>
         {data.map((item) => (
           <AccordionItem
+            key={item.id}
             item={item}
             current={currentId === item.id}
             toggle={toggleCurrent(item.id)}
