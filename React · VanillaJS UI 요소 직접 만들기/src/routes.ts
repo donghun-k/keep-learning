@@ -1,4 +1,5 @@
 import Accordions from './components/accordion';
+import TabMenus from './components/tabMenu';
 
 export const routePaths = [
   '/',
@@ -81,7 +82,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     key: '/tabMenu',
     link: '/tabMenu',
     name: '02. 탭메뉴',
-    children: null,
+    children: TabMenus,
   },
   '/tooltip': {
     key: '/tooltip',

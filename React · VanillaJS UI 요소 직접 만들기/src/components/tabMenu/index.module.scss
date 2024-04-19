@@ -1,0 +1,33 @@
+.TabMenus {
+  .container {
+    border: 1px solid #ccc;
+  }
+  .tabList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    border-bottom: 1px solid #ccc
+  }
+  .tab {
+    flex: 0 0 25%;
+    box-sizing: border-box;
+    padding: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    & + .tab {
+      border-left: 1px solid #ccc;
+    }
+    &.current {
+      background-color: #bde;
+    }
+  }
+  
+  .description {
+    padding: 15px;
+  } 
+}
