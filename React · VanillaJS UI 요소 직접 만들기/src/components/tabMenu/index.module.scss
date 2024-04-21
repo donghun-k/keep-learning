@@ -37,4 +37,52 @@
       display: block;
     }
   }
+
+  .tabMenu3 {
+    position: relative;
+    .item {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      &:nth-child(1) .tab {
+        left: 0;
+        border-left-width: 0;
+      }
+      &:nth-child(2) .tab {
+        left: 25%;
+      }
+      &:nth-child(3) .tab {
+        left: 50%;
+      }
+      &:nth-child(4) .tab {
+        left: 75%;
+      }
+    }
+    .tab {
+      position: absolute;
+      top: 0;
+      width: 25%;
+      box-sizing: border-box;
+      padding: 15px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      border-bottom: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+    }
+    .description {
+      display: none;
+      padding-top: 65px;
+    }
+    .item.current {
+      .tab {
+        background-color: #bde;
+      }
+      .description {
+        display: block;
+      }
+    }
+  }
 }
