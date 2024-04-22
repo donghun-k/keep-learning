@@ -2,7 +2,7 @@ import { useState } from 'react';
 import cx from './cx';
 import data from './data';
 
-interface AccordionItemProps {
+interface TabItemProps {
   item: {
     id: string;
     title: string;
@@ -12,7 +12,7 @@ interface AccordionItemProps {
   toggle: () => void;
 }
 
-const TabItem = ({ item, current, toggle }: AccordionItemProps) => {
+const TabItem = ({ item, current, toggle }: TabItemProps) => {
   return (
     <li onClick={toggle} className={cx('tab', { current })} key={item.id}>
       {item.title}
@@ -43,6 +43,7 @@ const TabMenu2 = () => {
         </ul>
         {data.map((d) => (
           <div
+            key={d.id}
             className={cx('description', {
               current: currentId === d.id,
             })}

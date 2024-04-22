@@ -2,7 +2,7 @@ import { useState } from 'react';
 import cx from './cx';
 import data from './data';
 
-interface AccordionItemProps {
+interface TabItemProps {
   item: {
     id: string;
     title: string;
@@ -12,7 +12,7 @@ interface AccordionItemProps {
   toggle: () => void;
 }
 
-const TabItem = ({ item, current, toggle }: AccordionItemProps) => {
+const TabItem = ({ item, current, toggle }: TabItemProps) => {
   return (
     <li onClick={toggle} className={cx('tab', { current })} key={item.id}>
       {item.title}
@@ -21,9 +21,9 @@ const TabItem = ({ item, current, toggle }: AccordionItemProps) => {
 };
 
 const TabMenu1 = () => {
-  const [currentId, setCurrentId] = useState<string | null>(data[0].id);
+  const [currentId, setCurrentId] = useState(data[0].id);
   const toggleCurrent = (id: string) => () => {
-    setCurrentId((prev) => (prev === id ? null : id));
+    setCurrentId(id);
   };
   const currentData =
     data.find((item) => item.id === currentId)?.description ?? '';
