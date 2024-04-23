@@ -1,0 +1,72 @@
+.Tooltips {
+  .container {
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+  }
+  .trigger {
+    font-size: 1rem;
+    line-height: 1.3rem;
+    display: inline-block;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    text-align: initial;
+    &::after {
+      display: inline-block;
+      content: '!';
+      text-align: center;
+      border: 1px solid #ccc;
+      width: 1rem;
+      height: 1rem;
+      font-size: 0.8rem;
+      line-height: 1rem;
+      vertical-align: text-bottom;
+      border-radius: 50%;
+      margin-left: 5px;
+    }
+  }
+  .tooltip {
+    position: absolute;
+    display: block;
+    top: 1.4rem;
+    left: 30px;
+    min-width: 40vw;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    z-index: 2;
+  }
+
+  .details {
+    position: relative;
+    margin-right: 10px;
+    display: inline-block;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    margin-left: 10px;
+  }
+
+  .summary {
+    &::marker {
+      content: '';
+      display: none;
+    }
+    &::after {
+      display: inline-block;
+      content: '!';
+      text-align: center;
+      border: 1px solid #ccc;
+      width: 1rem;
+      height: 1rem;
+      font-size: 0.8rem;
+      line-height: 1rem;
+      vertical-align: text-bottom;
+      border-radius: 50%;
+      margin-left: 5px;
+    }
+  }
+}
