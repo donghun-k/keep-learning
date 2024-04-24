@@ -1,4 +1,5 @@
-import { SyntheticEvent, useEffect, useState } from 'react';
+import { SyntheticEvent, useEffect } from 'react';
+import SingleOpenContextProvider, { useSingleOpen } from './SingleOpenContext';
 import cx from './cx';
 import data from './data';
 
@@ -11,17 +12,17 @@ const Tooltip = ({
   title: string;
   description: string;
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, toggle] = useSingleOpen(id);
 
   const handleToggle = (e: SyntheticEvent) => {
     e.stopPropagation();
-    setIsOpen(!isOpen);
+    toggle((p) => (p === id ? null : id));
   };
 
   useEffect(() => {
-    const close = () => setIsOpen(false);
+    const close = () => toggle(null);
     if (isOpen) {
-      window.addEventListener('click', close);
+      window.addEventListener('click', close, { once: true });
     }
     return () => {
       window.removeEventListener('click', close);
@@ -42,17 +43,19 @@ const Tooltip = ({
   );
 };
 
-const Tooltip1 = () => {
+const Tooltip2 = () => {
   return (
     <>
       <h3>
-        #1. React<sub>외부 클릭 시 닫힘 처리</sub>
+        #2. React<sub>Context를 이용해 하나만 열리도록 처리</sub>
       </h3>
-      {data.map((item) => (
-        <Tooltip key={item.id} {...item} />
-      ))}
+      <SingleOpenContextProvider>
+        {data.map((item) => (
+          <Tooltip key={item.id} {...item} />
+        ))}
+      </SingleOpenContextProvider>
     </>
   );
 };
 
-export default Tooltip1;
+export default Tooltip2;
