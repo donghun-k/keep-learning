@@ -13,9 +13,7 @@ const Tooltip = ({
 }) => {
   return (
     <details className={cx('details')} data-tooltip={id}>
-      <summary className={cx('summary')} data-tooltip-summary>
-        {title}
-      </summary>
+      <summary className={cx('summary')}>{title}</summary>
       <div className={cx('tooltip')} onClick={(e) => e.stopPropagation()}>
         {description}
       </div>
@@ -27,8 +25,6 @@ const Tooltip3 = () => {
   useEffect(() => {
     const closeAllTooltip = (e: Event) => {
       const target = e.target as HTMLElement;
-      const isSummary = !!target.dataset.tooltipSummary;
-      if (isSummary) return;
       document.querySelectorAll('[data-tooltip]').forEach((tooltip) => {
         if (tooltip !== target.parentElement) {
           tooltip.removeAttribute('open');
