@@ -1,0 +1,23 @@
+.TextBoxes {
+  .container {
+    width: 50vw;
+    position: relative;
+  }
+  textarea {
+    line-height: 1;
+    box-sizing: border-box;
+    width: 100%;
+    resize: none;
+    overflow-y: scroll;
+    margin: 0;
+    padding: 0;
+  }
+  .clone {
+    position: absolute;
+    padding-top: 0;
+    padding-bottom: 0;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+  }
+}
