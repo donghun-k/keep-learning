@@ -25,7 +25,7 @@ const TextBox2 = () => {
   return (
     <>
       <h3>
-        #2<sub>Uncontrolled</sub>
+        #2<sub>Uncontrolled - canvas</sub>
       </h3>
       <div className={cx('container')}>
         <textarea ref={textareaRef} className={cx('textarea')} rows={3} />
