@@ -1,0 +1,54 @@
+.LineClamps {
+  .content {
+    position: relative;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    line-height: 1.67; // 2번 방식에서는 필수
+  }
+  .text {
+    white-space: pre-line;
+  }
+  .buttonMore {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    border: 0;
+    background-color: transparent;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: transparent #333 #333 transparent;
+
+      transform: rotate(45deg);
+      vertical-align: middle;
+    }
+  }
+  .content.clamped {
+    .text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  .text-clone {
+    position: absolute;
+    box-sizing: border-box;
+    left: 10px;
+    top: 10px;
+    white-space: pre-line;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+  }
+}
