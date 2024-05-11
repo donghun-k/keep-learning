@@ -31,20 +31,13 @@ const LazyImage = ({ src, width, height }: LazyImageProps) => {
   }, [src, entries]);
 
   return (
-    <div
-      style={{
-        width: `${width}px`,
-        height: `${height}px`,
-      }}
-    >
-      <img
-        className={cx({ lazy: !loaded })}
-        ref={imgRef}
-        width={width}
-        height={height}
-        alt="image"
-      />
-    </div>
+    <img
+      className={cx({ lazy: !loaded })}
+      ref={imgRef}
+      width={width}
+      height={height}
+      alt="image"
+    />
   );
 };
 
@@ -67,7 +60,7 @@ const LazyLoading1 = () => {
   return (
     <>
       <h2>
-        지연 로딩<sub>#1</sub>
+        지연 로딩<sub>React</sub>
       </h2>
       {data.map((url, i) => (
         <ImageComponent key={i} src={url} width={600} height={320} />
