@@ -13,7 +13,7 @@ const options: IntersectionObserverInit = {
   threshold: 0,
 };
 
-const LazyImage = ({ src, width, height }: LazyImageProps) => {
+export const LazyImage = ({ src, width, height }: LazyImageProps) => {
   const imgRef = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
   const { entries, observerRef } = useIntersectionObserver(imgRef, options);

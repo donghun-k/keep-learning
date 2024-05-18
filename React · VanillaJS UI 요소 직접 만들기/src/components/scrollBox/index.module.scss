@@ -1,0 +1,109 @@
+.scrollBox {
+  position: relative;
+  .list {
+    display: flex;
+    flex-wrap: nowrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+  .item {
+    flex: 0;
+  }
+  .observer {
+    flex: 0 0 1px;
+    margin-right: -1px;
+  }
+
+  .nav-button {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 0;
+    border-radius: 5px;
+    display: none;
+    cursor: pointer;
+
+    &.on {
+      display: block;
+      opacity: 0.4;
+      transition: opacity ease-out 0.2s;
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      height: 12px;
+      background-color: #fff;
+    }
+    &::before {
+      top: calc(50% - 10px);
+    }
+    &::after {
+      top: calc(50% + 2px);
+    }
+
+    &.prev {
+      left: 0;
+      &::before {
+        left: 13px;
+        transform-origin: 0 100%;
+        rotate: 30deg;
+      }
+      &::after {
+        left: 13px;
+        transform-origin: 0 0;
+        rotate: -30deg;
+      }
+    }
+    &.next {
+      right: 0;
+      &::before {
+        right: 13px;
+        top: calc(50% - 10px);
+        transform-origin: 100% 100%;
+        rotate: -30deg;
+      }
+      &::after {
+        right: 13px;
+        top: calc(50% + 2px);
+        transform-origin: 100% 0;
+        rotate: 30deg;
+      }
+    }
+  }
+}
+
+.ScrollBoxPage .scrollBox {
+  .item {
+    margin-left: 10px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    &:nth-of-type(2) {
+      margin-left: 0;
+    }
+    img {
+      border-radius: 5px;
+    }
+    span {
+      display: block;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+  .observer {
+    flex: 0 0 1px;
+    margin-right: -1px;
+  }
+}
