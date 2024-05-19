@@ -9,7 +9,7 @@ interface LazyImageProps {
   height: number;
 }
 
-const lazyImageBuilder = ({ src, width, height }: LazyImageProps) => {
+export const lazyImageBuilder = ({ src, width, height }: LazyImageProps) => {
   const $el = document.createElement('img');
   $el.classList.add(cx('lazy'));
   $el.setAttribute('width', width + 'px');
