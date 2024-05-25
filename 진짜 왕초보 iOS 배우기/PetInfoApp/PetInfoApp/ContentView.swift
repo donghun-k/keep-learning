@@ -15,7 +15,7 @@ struct ContentView: View {
           )
         VStack(alignment: .leading) {
           Text("이름: 멍뭉이")
-          Text("시바견")
+          Text("누렁이")
           Text("2024년 12월생")
         }
         .font(.system(size: 20))
@@ -52,6 +52,31 @@ struct ContentView: View {
           .opacity(0.2)
           .shadow(radius: 5)
       )
+
+      ScrollView(.horizontal) {
+        HStack {
+          Image("dog1")
+            .resizable()
+            .frame(width: 160, height: 160)
+            .overlay(Rectangle().stroke(Color.mint, lineWidth: 4))
+          Image("dog2")
+            .resizable()
+            .frame(width: 160, height: 160)
+            .overlay(Rectangle().stroke(Color.blue, lineWidth: 4))
+          Image("dog3")
+            .resizable()
+            .frame(width: 160, height: 160)
+            .overlay(Rectangle().stroke(Color.yellow, lineWidth: 4))
+        }
+        .padding()
+        .background(
+          RoundedRectangle(cornerRadius: 15)
+            .fill(Color.yellow)
+            .opacity(0.2)
+            .shadow(radius: 5)
+        )
+      }
+      .scrollIndicators(.hidden)
     }
     .padding()
   }
