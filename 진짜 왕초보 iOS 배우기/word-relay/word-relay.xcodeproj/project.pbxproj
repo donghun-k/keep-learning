@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7ABD4D952C026602002BFAFA /* word_relayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABD4D942C026602002BFAFA /* word_relayApp.swift */; };
+		7ABD4D952C026602002BFAFA /* wordRelayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABD4D942C026602002BFAFA /* wordRelayApp.swift */; };
 		7ABD4D972C026602002BFAFA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABD4D962C026602002BFAFA /* ContentView.swift */; };
 		7ABD4D992C026603002BFAFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ABD4D982C026603002BFAFA /* Assets.xcassets */; };
 		7ABD4D9C2C026603002BFAFA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ABD4D9B2C026603002BFAFA /* Preview Assets.xcassets */; };
@@ -15,7 +15,7 @@
 
 /* Begin PBXFileReference section */
 		7ABD4D912C026602002BFAFA /* word-relay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "word-relay.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7ABD4D942C026602002BFAFA /* word_relayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = word_relayApp.swift; sourceTree = "<group>"; };
+		7ABD4D942C026602002BFAFA /* wordRelayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordRelayApp.swift; sourceTree = "<group>"; };
 		7ABD4D962C026602002BFAFA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7ABD4D982C026603002BFAFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7ABD4D9B2C026603002BFAFA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -51,7 +51,7 @@
 		7ABD4D932C026602002BFAFA /* word-relay */ = {
 			isa = PBXGroup;
 			children = (
-				7ABD4D942C026602002BFAFA /* word_relayApp.swift */,
+				7ABD4D942C026602002BFAFA /* wordRelayApp.swift */,
 				7ABD4D962C026602002BFAFA /* ContentView.swift */,
 				7ABD4D982C026603002BFAFA /* Assets.xcassets */,
 				7ABD4D9A2C026603002BFAFA /* Preview Content */,
@@ -138,7 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7ABD4D972C026602002BFAFA /* ContentView.swift in Sources */,
-				7ABD4D952C026602002BFAFA /* word_relayApp.swift in Sources */,
+				7ABD4D952C026602002BFAFA /* wordRelayApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

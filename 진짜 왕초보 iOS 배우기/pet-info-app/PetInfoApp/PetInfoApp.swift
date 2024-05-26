@@ -8,10 +8,12 @@
 import SwiftUI
 
 @main
-struct PetInfoAppApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+struct PetInfoApp:
+  App
+{
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
     }
+  }
 }

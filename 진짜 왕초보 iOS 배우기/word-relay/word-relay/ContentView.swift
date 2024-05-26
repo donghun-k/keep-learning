@@ -1,14 +1,9 @@
-//
-//  ContentView.swift
-//  word-relay
-//
-//  Created by DorMon on 5/26/24.
-//
-
 import SwiftUI
 
 struct ContentView: View {
   let TITLE: String = "끝말잇기 게임"
+  @State var nextWord: String = ""
+
   var body: some View {
     VStack {
       Text(TITLE)
@@ -23,6 +18,7 @@ struct ContentView: View {
             .shadow(radius: 5)
         )
         .padding(.top, 10)
+      TextField("단어를 입력하세요", text: $nextWord)
       Spacer()
     }
   }
