@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
   let TITLE: String = "끝말잇기 게임"
-  var words: [String] = ["도라에몽", "몽모랑시", "시에스타"]
+  @State var words: [String] = ["도라에몽", "몽모랑시", "시에스타"]
   @State var nextWord: String = ""
 
   var body: some View {
@@ -28,7 +28,8 @@ struct ContentView: View {
           )
         Button(
           action: {
-            print(nextWord)
+            words.append(nextWord)
+            nextWord = ""
           },
           label: {
             Text("확인")
