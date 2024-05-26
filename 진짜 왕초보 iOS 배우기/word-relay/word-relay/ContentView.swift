@@ -18,7 +18,30 @@ struct ContentView: View {
             .shadow(radius: 5)
         )
         .padding(.top, 10)
-      TextField("단어를 입력하세요", text: $nextWord)
+      HStack {
+        TextField("단어를 입력하세요", text: $nextWord)
+          .padding()
+          .background(
+            RoundedRectangle(cornerRadius: 10)
+              .stroke(lineWidth: 2)
+          )
+        Button(
+          action: {
+            print(nextWord)
+          },
+          label: {
+            Text("확인")
+              .foregroundStyle(Color.white)
+              .padding(.horizontal)
+              .padding(.vertical, 12)
+              .background(
+                RoundedRectangle(cornerRadius: 10)
+              )
+          }
+        )
+      }
+      .padding(.horizontal)
+      .padding(.top)
       Spacer()
     }
   }
