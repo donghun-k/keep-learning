@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
   let TITLE: String = "끝말잇기 게임"
+  var words: [String] = ["도라에몽", "몽모랑시", "시에스타"]
   @State var nextWord: String = ""
 
   var body: some View {
@@ -42,7 +43,12 @@ struct ContentView: View {
       }
       .padding(.horizontal)
       .padding(.top)
-      Spacer()
+      List { ForEach(words.reversed(), id: \.self) { word in
+        Text(word)
+          .font(.title2)
+      }
+
+      }.listStyle(.plain)
     }
   }
 }
