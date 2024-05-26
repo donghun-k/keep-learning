@@ -2,8 +2,10 @@ import SwiftUI
 
 struct ContentView: View {
   let TITLE: String = "끝말잇기 게임"
-  @State var words: [String] = ["도라에몽", "몽모랑시", "시에스타"]
+  @State var words: [String] = ["Apple"]
   @State var nextWord: String = ""
+
+  @State var showAlert: Bool = false
 
   var body: some View {
     VStack {
@@ -28,7 +30,11 @@ struct ContentView: View {
           )
         Button(
           action: {
-            words.append(nextWord)
+            if words.last?.last?.lowercased() == nextWord.first?.lowercased() {
+              words.append(nextWord)
+            } else {
+              showAlert = true
+            }
             nextWord = ""
           },
           label: {
@@ -41,16 +47,21 @@ struct ContentView: View {
               )
           }
         )
+        .alert("끝말이 이어지는 단어를 입력해주세요.", isPresented: $showAlert) {
+          Button("확인", role: .cancel) {
+            showAlert = false
+          }
+        }
       }
-      .padding(.horizontal)
-      .padding(.top)
-      List { ForEach(words.reversed(), id: \.self) { word in
-        Text(word)
-          .font(.title2)
-      }
-
-      }.listStyle(.plain)
     }
+    .padding(.horizontal)
+    .padding(.top)
+    List { ForEach(words.reversed(), id: \.self) { word in
+      Text(word)
+        .font(.title2)
+    }
+
+    }.listStyle(.plain)
   }
 }
 
