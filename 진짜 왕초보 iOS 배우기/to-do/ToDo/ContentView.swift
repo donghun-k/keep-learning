@@ -6,6 +6,13 @@ struct ContentView: View {
     Todo(title: "영화")
   ]
 
+  func addTodo() {
+    withAnimation {
+      let newTodo = Todo(title: "새로운 투두")
+      todoList.append(newTodo)
+    }
+  }
+
   var body: some View {
     NavigationStack {
       List {
@@ -35,10 +42,7 @@ struct ContentView: View {
         }
         ToolbarItem {
           Button(
-            action: {
-              let newTodo = Todo(title: "새로운 투두")
-              todoList.append(newTodo)
-            }, label: {
+            action: addTodo, label: {
               Image(systemName: "plus")
             }
           )
