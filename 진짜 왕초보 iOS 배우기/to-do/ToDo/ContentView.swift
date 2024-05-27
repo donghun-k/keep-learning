@@ -21,11 +21,29 @@ struct ContentView: View {
             } label: {
               Text(todo.title)
                 .strikethrough(todo.isCompleted, color: Color.gray)
+                .foregroundStyle(todo.isCompleted ? Color.gray : Color.primary)
             }
           }
+          .listRowSeparator(.hidden)
         }
       }
-      .navigationTitle("ToDo 📋")
+      .listStyle(.plain)
+      .navigationTitle("📋 To-Do")
+      .toolbar {
+        ToolbarItem {
+          EditButton()
+        }
+        ToolbarItem {
+          Button(
+            action: {
+              let newTodo = Todo(title: "새로운 투두")
+              todoList.append(newTodo)
+            }, label: {
+              Image(systemName: "plus")
+            }
+          )
+        }
+      }
     }
   }
 }
