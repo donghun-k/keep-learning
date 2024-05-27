@@ -13,6 +13,14 @@ struct ContentView: View {
     }
   }
 
+  func deleteTodo(indexSet: IndexSet) {
+    withAnimation {
+      for index in indexSet {
+        todoList.remove(at: index)
+      }
+    }
+  }
+
   var body: some View {
     NavigationStack {
       List {
@@ -33,6 +41,7 @@ struct ContentView: View {
           }
           .listRowSeparator(.hidden)
         }
+        .onDelete(perform: deleteTodo)
       }
       .listStyle(.plain)
       .navigationTitle("📋 To-Do")
