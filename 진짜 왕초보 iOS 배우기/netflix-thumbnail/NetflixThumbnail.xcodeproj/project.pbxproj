@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7AE410E92C06967400D27130 /* Drama.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE410E82C06967400D27130 /* Drama.swift */; };
 		7AF38FEB2C057D0500DCB310 /* NetflixThumbnailApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF38FEA2C057D0500DCB310 /* NetflixThumbnailApp.swift */; };
 		7AF38FED2C057D0500DCB310 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF38FEC2C057D0500DCB310 /* ContentView.swift */; };
 		7AF38FEF2C057D0600DCB310 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AF38FEE2C057D0600DCB310 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7AE410E82C06967400D27130 /* Drama.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drama.swift; sourceTree = "<group>"; };
 		7AF38FE72C057D0500DCB310 /* NetflixThumbnail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetflixThumbnail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AF38FEA2C057D0500DCB310 /* NetflixThumbnailApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetflixThumbnailApp.swift; sourceTree = "<group>"; };
 		7AF38FEC2C057D0500DCB310 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 		7AF38FE92C057D0500DCB310 /* NetflixThumbnail */ = {
 			isa = PBXGroup;
 			children = (
+				7AE410E82C06967400D27130 /* Drama.swift */,
 				7AF38FEA2C057D0500DCB310 /* NetflixThumbnailApp.swift */,
 				7AF38FEC2C057D0500DCB310 /* ContentView.swift */,
 				7AF38FF82C057E2200DCB310 /* HomeView.swift */,
@@ -143,6 +146,7 @@
 				7AF38FF92C057E2200DCB310 /* HomeView.swift in Sources */,
 				7AF38FED2C057D0500DCB310 /* ContentView.swift in Sources */,
 				7AF38FEB2C057D0500DCB310 /* NetflixThumbnailApp.swift in Sources */,
+				7AE410E92C06967400D27130 /* Drama.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
