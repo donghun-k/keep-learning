@@ -8,6 +8,7 @@ import cx from './cx';
 const Accordions = () => {
   return (
     <div className={cx('Accordions')}>
+      <h2>Accordion</h2>
       <Accordion1 />
       <Accordion2 />
       <Accordion3 />

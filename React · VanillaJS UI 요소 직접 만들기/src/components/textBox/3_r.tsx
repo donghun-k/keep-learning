@@ -24,7 +24,7 @@ const TextBox3 = () => {
   return (
     <>
       <h3>
-        #3<sub>Uncontrolled - Clone element</sub>
+        #3. React<sub>Uncontrolled - Clone element</sub>
       </h3>
       <div className={cx('container')}>
         <textarea ref={cloneRef} className={cx('clone')} rows={1} readOnly />

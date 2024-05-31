@@ -59,9 +59,8 @@ const LazyLoading1 = () => {
 
   return (
     <>
-      <h2>
-        지연 로딩<sub>React</sub>
-      </h2>
+      <h2>Lazy Loading</h2>
+      <h3>#1. React</h3>
       {data.map((url, i) => (
         <ImageComponent key={i} src={url} width={600} height={320} />
       ))}

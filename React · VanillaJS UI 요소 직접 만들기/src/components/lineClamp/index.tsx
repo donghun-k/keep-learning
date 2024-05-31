@@ -5,7 +5,7 @@ import cx from './cx';
 
 const LineClamps = () => (
   <div className={cx('LineClamps')}>
-    <h2>여러줄 말줄임</h2>
+    <h2>Line Clamp</h2>
     <LineClamp1 />
     <LineClamp2 />
     <LineClamp3 />

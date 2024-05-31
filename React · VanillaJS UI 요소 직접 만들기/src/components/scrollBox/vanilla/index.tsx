@@ -6,8 +6,6 @@ const initiator = (wrapper: HTMLElement) => {
   wrapper.append($scrollBox);
 };
 
-const ScrollBox2 = () => (
-  <VanillaWrapper title="ScrollBox" initiator={initiator} />
-);
+const ScrollBox2 = () => <VanillaWrapper title="#2" initiator={initiator} />;
 
 export default ScrollBox2;

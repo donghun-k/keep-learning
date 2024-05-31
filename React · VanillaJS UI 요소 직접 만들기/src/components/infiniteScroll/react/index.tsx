@@ -28,6 +28,7 @@ const InfiniteScroll1 = () => {
   const { state, data, moreRef } = useInfinteScroll();
   return (
     <>
+      <h2>Infinite Scroll</h2>
       <h3>#1. React</h3>
       <ul>
         {data.map((page, i) =>

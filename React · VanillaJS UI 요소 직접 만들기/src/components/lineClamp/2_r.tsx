@@ -40,7 +40,7 @@ const LineClamp2 = () => {
   return (
     <>
       <h3>
-        #2<sub>Clone - 3줄 말줄임</sub>
+        #2. React<sub>Clone - 3줄 말줄임</sub>
       </h3>
       {data.map((text, index) => (
         <LineClampText key={index} text={text} />

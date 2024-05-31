@@ -33,10 +33,8 @@ const initiator = (wrapper: HTMLDivElement) => {
 
 const LazyLoading2 = () => (
   <>
-    <h2>
-      지연 로딩<sub>Vanilla</sub>
-    </h2>
-    <VanillaWrapper initiator={initiator} />
+    <h2>Lazy Loading</h2>
+    <VanillaWrapper initiator={initiator} title="#2" />
   </>
 );
 

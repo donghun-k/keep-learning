@@ -14,7 +14,7 @@ const TextBox1 = () => {
   return (
     <>
       <h3>
-        #1<sub>Controlled</sub>
+        #1. React<sub>Controlled</sub>
       </h3>
       <div className={cx('container')}>
         <textarea

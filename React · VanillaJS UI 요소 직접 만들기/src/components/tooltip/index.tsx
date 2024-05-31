@@ -8,7 +8,7 @@ import Tooltip5 from './5_v';
 const Tooltips = () => {
   return (
     <div className={cx('Tooltips')}>
-      <h2>툴팁</h2>
+      <h2>Tooltip</h2>
       <Tooltip1 />
       <Tooltip2 />
       <Tooltip3 />

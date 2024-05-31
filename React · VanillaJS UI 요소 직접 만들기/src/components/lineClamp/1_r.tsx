@@ -34,7 +34,7 @@ const LineClamp1 = () => {
   return (
     <>
       <h3>
-        #1<sub>canvas - 3줄 말줄임</sub>
+        #1. React<sub>canvas - 3줄 말줄임</sub>
       </h3>
       {data.map((text, index) => (
         <LineClampText key={index} text={text} />

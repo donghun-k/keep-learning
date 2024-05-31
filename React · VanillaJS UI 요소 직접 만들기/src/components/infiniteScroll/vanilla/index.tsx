@@ -69,6 +69,7 @@ const initiator = (wrapper: HTMLDivElement) => {
 const InfiniteScroll2 = () => {
   return (
     <div style={{ minHeight: '100vh' }}>
+      <h2>Infinite Scroll</h2>
       <VanillaWrapper title="#2" initiator={initiator} />
     </div>
   );
