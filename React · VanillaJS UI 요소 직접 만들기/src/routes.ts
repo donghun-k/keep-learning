@@ -6,6 +6,7 @@ import LazyLoading2 from './components/lazyLoading/2_v';
 import LineClamps from './components/lineClamp';
 import ScrollBoxes from './components/scrollBox';
 import ScrollSpy1 from './components/scrollSpy/1_r';
+import ScrollSpy2 from './components/scrollSpy/2_r';
 import TabMenus from './components/tabMenu';
 import TextBoxes from './components/textBox';
 import Tooltips from './components/tooltip';
@@ -166,14 +167,14 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
   '/scrollSpy/1_r': {
     key: '/scrollSpy/1_r',
     link: '/scrollSpy/1_r',
-    name: 'R - scroll',
+    name: 'R - Scroll',
     children: ScrollSpy1,
   },
   '/scrollSpy/2_r': {
     key: '/scrollSpy/2_r',
     link: '/scrollSpy/2_r',
-    name: 'R - IO',
-    children: null,
+    name: 'R - IntersectionOserver',
+    children: ScrollSpy2,
   },
   '/scrollSpy/3_v': {
     key: '/scrollSpy/3_v',
