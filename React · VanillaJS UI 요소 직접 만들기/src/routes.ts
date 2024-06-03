@@ -7,6 +7,7 @@ import LineClamps from './components/lineClamp';
 import ScrollBoxes from './components/scrollBox';
 import ScrollSpy1 from './components/scrollSpy/1_r';
 import ScrollSpy2 from './components/scrollSpy/2_r';
+import ScrollSpy3 from './components/scrollSpy/3_v';
 import TabMenus from './components/tabMenu';
 import TextBoxes from './components/textBox';
 import Tooltips from './components/tooltip';
@@ -173,14 +174,14 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
   '/scrollSpy/2_r': {
     key: '/scrollSpy/2_r',
     link: '/scrollSpy/2_r',
-    name: 'R - IntersectionOserver',
+    name: 'R - IO',
     children: ScrollSpy2,
   },
   '/scrollSpy/3_v': {
     key: '/scrollSpy/3_v',
     link: '/scrollSpy/3_v',
     name: 'Vanilla',
-    children: null,
+    children: ScrollSpy3,
   },
   '/scrollSpy/4_r': {
     key: '/scrollSpy/4_r',

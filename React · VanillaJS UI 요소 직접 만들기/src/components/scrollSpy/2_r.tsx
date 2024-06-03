@@ -72,7 +72,7 @@ const ScrollSpy2 = () => {
   return (
     <div className={cx('ScrollSpy')}>
       <header className={cx('floatingHeader')}>
-        <h2 className={cx('title')}>Scroll Spy</h2>
+        <h2 className={cx('title')}>Scrollspy</h2>
         <h3 className={cx('subTitle')}>#2. React</h3>
         <ul className={cx('nav')}>
           {data.map((item, i) => (
