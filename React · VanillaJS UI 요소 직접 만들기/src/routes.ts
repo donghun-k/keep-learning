@@ -8,6 +8,7 @@ import ScrollBoxes from './components/scrollBox';
 import ScrollSpy1 from './components/scrollSpy/1_r';
 import ScrollSpy2 from './components/scrollSpy/2_r';
 import ScrollSpy3 from './components/scrollSpy/3_v';
+import ScrollSpy4 from './components/scrollSpy/4_r';
 import TabMenus from './components/tabMenu';
 import TextBoxes from './components/textBox';
 import Tooltips from './components/tooltip';
@@ -187,7 +188,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     key: '/scrollSpy/4_r',
     link: '/scrollSpy/4_r',
     name: 'R - ScrollBox',
-    children: null,
+    children: ScrollSpy4,
   },
   '/snackbar': {
     key: '/snackbar',

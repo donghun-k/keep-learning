@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import cx from './cx';
 import data from './data';
 import useIntersectionObserver from '@/hook/useIntersectionObserverV2';
+import ScrollBox from '../scrollBox/react/ScrollBox';
 
 const HEADER_HEIGHT = 60;
 
@@ -34,7 +35,17 @@ const ListItem = ({ number, title, description, id }: ListItemProps) => {
   );
 };
 
-const ScrollSpy2 = () => {
+interface NavItemProps {
+  id: string;
+  index: number;
+  handleClick?: () => void;
+}
+
+const NavItem = ({ index, handleClick }: NavItemProps) => (
+  <button onClick={handleClick}>{index + 1}</button>
+);
+
+const ScrollSpy4 = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsRef = useRef<(HTMLElement | null)[]>([]);
   const navsRef = useRef<(HTMLLIElement | null)[]>([]);
@@ -49,12 +60,15 @@ const ScrollSpy2 = () => {
     });
   }, []);
 
-  const handleNavClick = useCallback((index: number) => {
-    const scrollTop = document.scrollingElement?.scrollTop!;
-    const itemY = itemsRef.current[index]?.getBoundingClientRect().top || 0;
-    const top = scrollTop + itemY - HEADER_HEIGHT;
-    window.scrollTo({ top, behavior: 'smooth' });
-  }, []);
+  const handleNavClick = useCallback(
+    (item: unknown, index: number) => () => {
+      const scrollTop = document.scrollingElement?.scrollTop!;
+      const itemY = itemsRef.current[index]?.getBoundingClientRect().top || 0;
+      const top = scrollTop + itemY - HEADER_HEIGHT;
+      window.scrollTo({ top, behavior: 'smooth' });
+    },
+    []
+  );
 
   useEffect(() => {
     itemsRef.current = data.map((d, i) => document.getElementById(d.id));
@@ -74,9 +88,14 @@ const ScrollSpy2 = () => {
       <header className={cx('floatingHeader')}>
         <h2 className={cx('title')}>Scrollspy</h2>
         <h3 className={cx('subTitle')}>
-          #2. React<sub>Intersection Observer</sub>
+          #4. React<sub>Intersection Observer + Scroll Box</sub>
         </h3>
-        <ul className={cx('nav')}>
+        <ScrollBox
+          data={data}
+          Item={NavItem}
+          handleItemClick={handleNavClick}
+        />
+        {/* <ul className={cx('nav')}>
           {data.map((item, i) => (
             <li
               key={i}
@@ -88,7 +107,7 @@ const ScrollSpy2 = () => {
               <button onClick={() => handleNavClick(i)}>{i + 1}</button>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </header>
       <ul>
         {data.map((item, i) => (
@@ -99,4 +118,4 @@ const ScrollSpy2 = () => {
   );
 };
 
-export default ScrollSpy2;
+export default ScrollSpy4;

@@ -7,12 +7,6 @@ import useIntersectionObserver from '@/hook/useIntersectionObserverV2';
 type Direction = 'prev' | 'next';
 type ItemElementType = HTMLLIElement | null;
 
-interface ItemProps {
-  id: string;
-  description: string;
-  imgUrl: string;
-}
-
 const getVisibleEdgeItems = (
   $list: HTMLUListElement,
   $items: ItemElementType[]
@@ -33,18 +27,23 @@ const getVisibleEdgeItems = (
   return { left: $items[leftIndex], right: $items[rightIndex] };
 };
 
-const Item = ({ id, description, imgUrl }: ItemProps) => {
-  return (
-    <div>
-      <LazyImage src={imgUrl} width={250} height={400} />
-      <span>{description}</span>
-    </div>
-  );
-};
-
 const DEFAULT_BUTTON_ENABLED = { prev: true, next: true };
 
-const ScrollBox = () => {
+interface Props<T extends { id: string }> {
+  data: T[];
+  Item: (props: T & { handleClick?: () => void }) => JSX.Element;
+  iniitialIndex?: number;
+  currentIndex?: number;
+  handleItemClick?: (item: T, index: number) => () => void;
+}
+
+const ScrollBox = <T extends { id: string }>({
+  data,
+  Item,
+  iniitialIndex = 0,
+  currentIndex = 0,
+  handleItemClick,
+}: Props<T>) => {
   const [buttonEnabled, setButtonEnabled] = useState<{
     prev: boolean;
     next: boolean;
@@ -104,10 +103,10 @@ const ScrollBox = () => {
             ref={(r) => {
               itemsRef.current[i] = r;
             }}
-            className={cx('item')}
+            className={cx('item', { current: currentIndex === i })}
             key={i}
           >
-            <Item {...item} key={i} />
+            <Item {...item} key={i} handleClick={handleItemClick?.(item, i)} />
           </li>
         ))}
         <li
