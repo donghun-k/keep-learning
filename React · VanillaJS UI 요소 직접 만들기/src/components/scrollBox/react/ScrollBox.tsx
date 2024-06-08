@@ -34,6 +34,7 @@ interface Props<T extends { id: string }> {
   Item: (props: T & { handleClick?: () => void }) => JSX.Element;
   iniitialIndex?: number;
   currentIndex?: number;
+  wrapperClassName?: string;
   handleItemClick?: (item: T, index: number) => () => void;
 }
 
@@ -42,6 +43,7 @@ const ScrollBox = <T extends { id: string }>({
   Item,
   iniitialIndex = 0,
   currentIndex = 0,
+  wrapperClassName = '',
   handleItemClick,
 }: Props<T>) => {
   const [buttonEnabled, setButtonEnabled] = useState<{
@@ -89,7 +91,7 @@ const ScrollBox = <T extends { id: string }>({
   }, [move]);
 
   return (
-    <div className={cx('scrollBox')}>
+    <div className={cx('scrollBox', wrapperClassName)}>
       <ul ref={listRef} className={cx('list')}>
         <li
           ref={(r) => {

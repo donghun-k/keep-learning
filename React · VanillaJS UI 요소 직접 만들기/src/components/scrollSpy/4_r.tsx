@@ -93,21 +93,11 @@ const ScrollSpy4 = () => {
         <ScrollBox
           data={data}
           Item={NavItem}
+          currentIndex={currentIndex}
+          iniitialIndex={currentIndex}
+          wrapperClassName={cx('nav', 'with-scrollbox')}
           handleItemClick={handleNavClick}
         />
-        {/* <ul className={cx('nav')}>
-          {data.map((item, i) => (
-            <li
-              key={i}
-              className={cx('navItem', {
-                current: currentIndex === i,
-              })}
-              ref={(r) => (navsRef.current[i] = r)}
-            >
-              <button onClick={() => handleNavClick(i)}>{i + 1}</button>
-            </li>
-          ))}
-        </ul> */}
       </header>
       <ul>
         {data.map((item, i) => (
