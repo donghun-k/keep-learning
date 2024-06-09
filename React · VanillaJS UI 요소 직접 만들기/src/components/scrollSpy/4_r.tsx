@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import cx from './cx';
 import data from './data';
 import useIntersectionObserver from '@/hook/useIntersectionObserverV2';
-import ScrollBox from '../scrollBox/react/ScrollBox';
+import ScrollBox, { ScrollBoxHandle } from '../scrollBox/react/ScrollBox';
 
 const HEADER_HEIGHT = 60;
 
@@ -48,16 +48,12 @@ const NavItem = ({ index, handleClick }: NavItemProps) => (
 const ScrollSpy4 = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsRef = useRef<(HTMLElement | null)[]>([]);
-  const navsRef = useRef<(HTMLLIElement | null)[]>([]);
+  const scrollBoxRef = useRef<ScrollBoxHandle>(null);
   const { entries } = useIntersectionObserver(itemsRef, IO_OPTIONS);
 
   const setCurrentItem = useCallback((index: number) => {
     setCurrentIndex(index);
-    navsRef.current[index]?.scrollIntoView({
-      block: 'nearest',
-      inline: 'center',
-      behavior: 'instant',
-    });
+    scrollBoxRef.current?.focusCurrent(index);
   }, []);
 
   const handleNavClick = useCallback(
@@ -91,10 +87,10 @@ const ScrollSpy4 = () => {
           #4. React<sub>Intersection Observer + Scroll Box</sub>
         </h3>
         <ScrollBox
+          ref={scrollBoxRef}
           data={data}
           Item={NavItem}
           currentIndex={currentIndex}
-          iniitialIndex={currentIndex}
           wrapperClassName={cx('nav', 'with-scrollbox')}
           handleItemClick={handleNavClick}
         />
