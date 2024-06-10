@@ -1,4 +1,13 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  ForwardedRef,
+  Ref,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import { LazyImage } from '../../lazyLoading/1_r';
 import cx from '../cx';
 import data from '../data';
@@ -32,18 +41,25 @@ const DEFAULT_BUTTON_ENABLED = { prev: true, next: true };
 interface Props<T extends { id: string }> {
   data: T[];
   Item: (props: T & { handleClick?: () => void }) => JSX.Element;
-  iniitialIndex?: number;
   currentIndex?: number;
+  wrapperClassName?: string;
   handleItemClick?: (item: T, index: number) => () => void;
 }
 
-const ScrollBox = <T extends { id: string }>({
-  data,
-  Item,
-  iniitialIndex = 0,
-  currentIndex = 0,
-  handleItemClick,
-}: Props<T>) => {
+export type ScrollBoxHandle = {
+  focusCurrent: (index: number, behavior?: 'instant' | 'smooth') => void;
+};
+
+const ScrollBox = <T extends { id: string }>(
+  {
+    data,
+    Item,
+    currentIndex = 0,
+    wrapperClassName = '',
+    handleItemClick,
+  }: Props<T>,
+  ref: ForwardedRef<unknown>
+) => {
   const [buttonEnabled, setButtonEnabled] = useState<{
     prev: boolean;
     next: boolean;
@@ -53,6 +69,25 @@ const ScrollBox = <T extends { id: string }>({
   const itemsRef = useRef<ItemElementType[]>([]);
   const watcherRef = useRef<ItemElementType[]>([]);
   const { entries } = useIntersectionObserver(watcherRef);
+
+  const focusCurrent = useCallback(
+    (index: number, behavior: 'instant' | 'smooth' = 'instant') => {
+      itemsRef.current[index]?.scrollIntoView({
+        inline: 'center',
+        block: 'nearest',
+        behavior,
+      });
+    },
+    []
+  );
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      focusCurrent,
+    }),
+    []
+  );
 
   useEffect(() => {
     if (!entries.length) setButtonEnabled(DEFAULT_BUTTON_ENABLED);
@@ -89,7 +124,7 @@ const ScrollBox = <T extends { id: string }>({
   }, [move]);
 
   return (
-    <div className={cx('scrollBox')}>
+    <div className={cx('scrollBox', wrapperClassName)}>
       <ul ref={listRef} className={cx('list')}>
         <li
           ref={(r) => {
@@ -129,4 +164,6 @@ const ScrollBox = <T extends { id: string }>({
   );
 };
 
-export default ScrollBox;
+export default forwardRef(ScrollBox) as <T extends { id: string }>(
+  props: Props<T> & { ref: Ref<ScrollBoxHandle> }
+) => JSX.Element;
