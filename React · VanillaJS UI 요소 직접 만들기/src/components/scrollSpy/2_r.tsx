@@ -61,7 +61,10 @@ const ScrollSpy2 = () => {
   }, []);
 
   useEffect(() => {
-    const $target = entries[0]?.target as HTMLElement;
+    const entryTops = entries.map((e) => e.boundingClientRect.top);
+    const topMin = Math.min(...entryTops);
+    const $target = entries.find((e) => e.boundingClientRect.top === topMin)
+      ?.target as HTMLElement;
     const index = $target?.dataset.index;
 
     if (typeof index === 'string') {
