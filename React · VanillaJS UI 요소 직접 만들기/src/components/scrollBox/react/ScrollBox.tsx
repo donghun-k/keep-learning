@@ -58,7 +58,7 @@ const ScrollBox = <T extends { id: string }>(
     wrapperClassName = '',
     handleItemClick,
   }: Props<T>,
-  ref: ForwardedRef<unknown>
+  ref?: ForwardedRef<unknown>
 ) => {
   const [buttonEnabled, setButtonEnabled] = useState<{
     prev: boolean;
@@ -165,5 +165,5 @@ const ScrollBox = <T extends { id: string }>(
 };
 
 export default forwardRef(ScrollBox) as <T extends { id: string }>(
-  props: Props<T> & { ref: Ref<ScrollBoxHandle> }
+  props: Props<T> & { ref?: Ref<ScrollBoxHandle> }
 ) => JSX.Element;
