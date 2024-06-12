@@ -96,11 +96,11 @@ const initiator = (wrapper: HTMLDivElement) => {
 
   vanillaIntersectionObserverV2($items, IO_OPTIONS, handleIntersect);
 
-  wrapper.classList.add(cx('ScrollSpy'));
+  wrapper.classList.add(cx('Scrollspy'));
   wrapper.appendChild($header);
   wrapper.appendChild($list);
 };
 
-const ScrollSpy3 = () => <VanillaWrapper initiator={initiator} />;
+const Scrollspy3 = () => <VanillaWrapper initiator={initiator} />;
 
-export default ScrollSpy3;
+export default Scrollspy3;

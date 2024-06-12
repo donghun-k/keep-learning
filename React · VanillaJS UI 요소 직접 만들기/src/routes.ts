@@ -5,10 +5,10 @@ import LazyLoading1 from './components/lazyLoading/1_r';
 import LazyLoading2 from './components/lazyLoading/2_v';
 import LineClamps from './components/lineClamp';
 import ScrollBoxes from './components/scrollBox';
-import ScrollSpy1 from './components/scrollSpy/1_r';
-import ScrollSpy2 from './components/scrollSpy/2_r';
-import ScrollSpy3 from './components/scrollSpy/3_v';
-import ScrollSpy4 from './components/scrollSpy/4_r';
+import Scrollspy1 from './components/scrollspy/1_r';
+import Scrollspy2 from './components/scrollspy/2_r';
+import Scrollspy3 from './components/scrollspy/3_v';
+import Scrollspy4 from './components/scrollspy/4_r';
 import TabMenus from './components/tabMenu';
 import TextBoxes from './components/textBox';
 import Tooltips from './components/tooltip';
@@ -27,11 +27,11 @@ export const routePaths = [
   '/infiniteScroll/react',
   '/infiniteScroll/vanilla',
   '/scrollBox',
-  '/scrollSpy',
-  '/scrollSpy/1_r',
-  '/scrollSpy/2_r',
-  '/scrollSpy/3_v',
-  '/scrollSpy/4_r',
+  '/scrollspy',
+  '/scrollspy/1_r',
+  '/scrollspy/2_r',
+  '/scrollspy/3_v',
+  '/scrollspy/4_r',
   '/snackbar',
   '/modal',
   '/popover',
@@ -71,7 +71,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
       '/lazyLoading',
       '/infiniteScroll',
       '/scrollBox',
-      '/scrollSpy',
+      '/scrollspy',
       '/snackbar',
       '/modal',
       '/popover',
@@ -155,40 +155,40 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     name: '08. 횡 스크롤 박스',
     children: ScrollBoxes,
   },
-  '/scrollSpy': {
-    key: '/scrollSpy',
-    link: '/scrollSpy/1_r',
-    name: '09. 스크롤 스파이',
+  '/scrollspy': {
+    key: '/scrollspy',
+    link: '/scrollspy/1_r',
+    name: '09. 스크롤스파이',
     children: [
-      '/scrollSpy/1_r',
-      '/scrollSpy/2_r',
-      '/scrollSpy/3_v',
-      '/scrollSpy/4_r',
+      '/scrollspy/1_r',
+      '/scrollspy/2_r',
+      '/scrollspy/3_v',
+      '/scrollspy/4_r',
     ],
   },
-  '/scrollSpy/1_r': {
-    key: '/scrollSpy/1_r',
-    link: '/scrollSpy/1_r',
+  '/scrollspy/1_r': {
+    key: '/scrollspy/1_r',
+    link: '/scrollspy/1_r',
     name: 'R - Scroll',
-    children: ScrollSpy1,
+    children: Scrollspy1,
   },
-  '/scrollSpy/2_r': {
-    key: '/scrollSpy/2_r',
-    link: '/scrollSpy/2_r',
+  '/scrollspy/2_r': {
+    key: '/scrollspy/2_r',
+    link: '/scrollspy/2_r',
     name: 'R - IO',
-    children: ScrollSpy2,
+    children: Scrollspy2,
   },
-  '/scrollSpy/3_v': {
-    key: '/scrollSpy/3_v',
-    link: '/scrollSpy/3_v',
+  '/scrollspy/3_v': {
+    key: '/scrollspy/3_v',
+    link: '/scrollspy/3_v',
     name: 'Vanilla',
-    children: ScrollSpy3,
+    children: Scrollspy3,
   },
-  '/scrollSpy/4_r': {
-    key: '/scrollSpy/4_r',
-    link: '/scrollSpy/4_r',
+  '/scrollspy/4_r': {
+    key: '/scrollspy/4_r',
+    link: '/scrollspy/4_r',
     name: 'R - ScrollBox',
-    children: ScrollSpy4,
+    children: Scrollspy4,
   },
   '/snackbar': {
     key: '/snackbar',

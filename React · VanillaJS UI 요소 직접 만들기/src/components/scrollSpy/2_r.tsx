@@ -34,7 +34,7 @@ const ListItem = ({ number, title, description, id }: ListItemProps) => {
   );
 };
 
-const ScrollSpy2 = () => {
+const Scrollspy2 = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsRef = useRef<(HTMLElement | null)[]>([]);
   const navsRef = useRef<(HTMLLIElement | null)[]>([]);
@@ -73,7 +73,7 @@ const ScrollSpy2 = () => {
   }, [entries]);
 
   return (
-    <div className={cx('ScrollSpy')}>
+    <div className={cx('Scrollspy')}>
       <header className={cx('floatingHeader')}>
         <h2 className={cx('title')}>Scrollspy</h2>
         <h3 className={cx('subTitle')}>
@@ -102,4 +102,4 @@ const ScrollSpy2 = () => {
   );
 };
 
-export default ScrollSpy2;
+export default Scrollspy2;

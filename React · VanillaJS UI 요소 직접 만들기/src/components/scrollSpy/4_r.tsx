@@ -45,7 +45,7 @@ const NavItem = ({ index, handleClick }: NavItemProps) => (
   <button onClick={handleClick}>{index + 1}</button>
 );
 
-const ScrollSpy4 = () => {
+const Scrollspy4 = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsRef = useRef<(HTMLElement | null)[]>([]);
   const scrollBoxRef = useRef<ScrollBoxHandle>(null);
@@ -80,7 +80,7 @@ const ScrollSpy4 = () => {
   }, [entries]);
 
   return (
-    <div className={cx('ScrollSpy')}>
+    <div className={cx('Scrollspy')}>
       <header className={cx('floatingHeader')}>
         <h2 className={cx('title')}>Scrollspy</h2>
         <h3 className={cx('subTitle')}>
@@ -104,4 +104,4 @@ const ScrollSpy4 = () => {
   );
 };
 
-export default ScrollSpy4;
+export default Scrollspy4;

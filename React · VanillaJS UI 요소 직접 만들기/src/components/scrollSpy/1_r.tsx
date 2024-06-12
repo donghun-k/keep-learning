@@ -38,15 +38,15 @@ const ListItem = ({ number, title, description, id }: ListItemProps) => {
   );
 };
 
-const ScrollSpy1 = () => {
+const Scrollspy1 = () => {
   return (
     <ViewportContextProvider>
-      <ScrollSpy />
+      <Scrollspy />
     </ViewportContextProvider>
   );
 };
 
-const ScrollSpy = () => {
+const Scrollspy = () => {
   const { top: viewportTop, scrollHeight } = useViewportRect();
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsRef = useRef<ItemInfo[]>([]);
@@ -105,7 +105,7 @@ const ScrollSpy = () => {
   }, [setCurrentItem, viewportTop]);
 
   return (
-    <div className={cx('ScrollSpy')}>
+    <div className={cx('Scrollspy')}>
       <header className={cx('floatingHeader')}>
         <h2 className={cx('title')}>Scrollspy</h2>
         <h3 className={cx('subTitle')}>
@@ -132,4 +132,4 @@ const ScrollSpy = () => {
   );
 };
 
-export default ScrollSpy1;
+export default Scrollspy1;
