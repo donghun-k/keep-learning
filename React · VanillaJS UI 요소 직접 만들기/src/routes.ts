@@ -9,6 +9,7 @@ import Scrollspy1 from './components/scrollspy/1_r';
 import Scrollspy2 from './components/scrollspy/2_r';
 import Scrollspy3 from './components/scrollspy/3_v';
 import Scrollspy4 from './components/scrollspy/4_r';
+import Snackbar1 from './components/snackbar/1_r';
 import TabMenus from './components/tabMenu';
 import TextBoxes from './components/textBox';
 import Tooltips from './components/tooltip';
@@ -33,11 +34,23 @@ export const routePaths = [
   '/scrollspy/3_v',
   '/scrollspy/4_r',
   '/snackbar',
+  '/snackbar/1_r',
+  '/snackbar/2_r',
+  '/snackbar/3_v',
   '/modal',
+  '/modal/1_r',
+  '/modal/2_r',
+  '/modal/3_v',
+  '/modal/4_r',
   '/popover',
+  '/popover/1_r',
+  '/popover/2_r',
+  '/popover/3_r',
   '/imageSlide',
   '/carousel',
   '/gallery',
+  '/gallery/1_r',
+  '/gallery/2_r',
   '/selectBox',
   '/autoComplete',
   '/dnd',
@@ -192,20 +205,80 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
   },
   '/snackbar': {
     key: '/snackbar',
-    link: '/snackbar',
+    link: '/snackbar/1_r',
     name: '10. 스낵바',
+    children: ['/snackbar/1_r', '/snackbar/2_r', '/snackbar/3_v'],
+  },
+  '/snackbar/1_r': {
+    key: '/snackbar/1_r',
+    link: '/snackbar/1_r',
+    name: 'R - Context',
+    children: Snackbar1,
+  },
+  '/snackbar/2_r': {
+    key: '/snackbar/2_r',
+    link: '/snackbar/2_r',
+    name: 'R - createPortal',
+    children: null,
+  },
+  '/snackbar/3_v': {
+    key: '/snackbar/3_v',
+    link: '/snackbar/3_v',
+    name: 'Vanilla',
     children: null,
   },
   '/modal': {
     key: '/modal',
-    link: '/modal',
+    link: '/modal/1_r',
     name: '11. 모달',
+    children: ['/modal/1_r', '/modal/2_r', '/modal/3_v', '/modal/4_r'],
+  },
+  '/modal/1_r': {
+    key: '/modal/1_r',
+    link: '/modal/1_r',
+    name: 'R - Context',
+    children: null,
+  },
+  '/modal/2_r': {
+    key: '/modal/2_r',
+    link: '/modal/2_r',
+    name: 'R - createPortal',
+    children: null,
+  },
+  '/modal/3_v': {
+    key: '/modal/3_v',
+    link: '/modal/3_v',
+    name: 'Vanilla',
+    children: null,
+  },
+  '/modal/4_r': {
+    key: '/modal/4_r',
+    link: '/modal/4_r',
+    name: 'R - HTML Dialog',
     children: null,
   },
   '/popover': {
     key: '/popover',
-    link: '/popover',
+    link: '/popover/1_r',
     name: '12. 팝오버',
+    children: ['/popover/1_r', '/popover/2_r', '/popover/3_r'],
+  },
+  '/popover/1_r': {
+    key: '/popover/1_r',
+    link: '/popover/1_r',
+    name: 'R - Basic',
+    children: null,
+  },
+  '/popover/2_r': {
+    key: '/popover/2_r',
+    link: '/popover/2_r',
+    name: 'R - createPortal',
+    children: null,
+  },
+  '/popover/3_r': {
+    key: '/popover/3_r',
+    link: '/popover/3_r',
+    name: 'R - HTML Dialog',
     children: null,
   },
   '/imageSlide': {
@@ -222,8 +295,20 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
   },
   '/gallery': {
     key: '/gallery',
-    link: '/gallery',
+    link: '/gallery/1_r',
     name: '15. 갤러리',
+    children: ['/gallery/1_r', '/gallery/2_r'],
+  },
+  '/gallery/1_r': {
+    key: '/gallery/1_r',
+    link: '/gallery/1_r',
+    name: 'R - w/Carousel',
+    children: null,
+  },
+  '/gallery/2_r': {
+    key: '/gallery/2_r',
+    link: '/gallery/2_r',
+    name: 'R - Viewer',
     children: null,
   },
   '/selectBox': {

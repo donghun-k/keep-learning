@@ -1,5 +1,6 @@
 import {
   Dispatch,
+  EventHandler,
   ReactNode,
   createContext,
   useCallback,
@@ -8,10 +9,14 @@ import {
 } from 'react';
 import SnackbarRoot from './SnackbarRoot';
 
+const SNACKBAR_DURATION = 3000;
 export interface Snackbar {
   id: string;
   children: ReactNode;
+  isOpen: boolean;
   timeoutId: number | null;
+  onMouseEnter?: EventHandler<any>;
+  onMouseLeave?: EventHandler<any>;
 }
 
 type SnackbarState = Snackbar[];
@@ -25,15 +30,35 @@ const SnackbarSetContext = createContext<
   }>
 >(() => {});
 
+const DefaultSnackbar: Snackbar = {
+  id: '',
+  children: null,
+  isOpen: true,
+  timeoutId: null,
+};
+
 const snackbarReducerMap: Record<
   SnackbarActionType,
   (state: SnackbarState, payload: any) => SnackbarState
 > = {
   upsert: (state, payload: Partial<Snackbar>) => {
-    return state;
+    const targetIndex = state.findIndex((item) => item.id === payload.id);
+    if (targetIndex > -1) {
+      const newSnackbars = state.map((item, i) => {
+        if (i === targetIndex) {
+          return {
+            ...state[targetIndex],
+            ...payload,
+          };
+        }
+        return item;
+      });
+      return newSnackbars;
+    }
+    return [...state, { ...DefaultSnackbar, ...payload }];
   },
   remove: (state, { id }: { id: string }) => {
-    return state;
+    return state.filter((item) => item.id !== id);
   },
 };
 
@@ -60,8 +85,36 @@ export const useSnackbar = () => useContext(SnackbarContext);
 export const useSetSnackbar = () => {
   const dispatch = useContext(SnackbarSetContext);
 
-  const createSnackbar = useCallback(() => {}, []);
-  const removeSnackbar = useCallback(() => {}, []);
+  const createSnackbar = useCallback((id: string, children: ReactNode) => {
+    const newItem: Snackbar = {
+      id,
+      children,
+      isOpen: true,
+      timeoutId: window.setTimeout(() => {
+        dispatch({
+          type: 'upsert',
+          payload: { id, isOpen: false, timeoutId: null },
+        });
+      }, SNACKBAR_DURATION),
+      onMouseEnter: () => {
+        if (newItem.timeoutId) {
+          window.clearTimeout(newItem.timeoutId);
+        }
+      },
+      onMouseLeave: () => {
+        newItem.timeoutId = window.setTimeout(() => {
+          dispatch({
+            type: 'upsert',
+            payload: { id, isOpen: false, timeoutId: null },
+          });
+        }, SNACKBAR_DURATION);
+      },
+    };
+    dispatch({ type: 'upsert', payload: newItem });
+  }, []);
+  const removeSnackbar = useCallback((id: string) => {
+    dispatch({ type: 'remove', payload: { id } });
+  }, []);
 
   return {
     createSnackbar,
