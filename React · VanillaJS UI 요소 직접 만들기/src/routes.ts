@@ -10,6 +10,7 @@ import Scrollspy2 from './components/scrollspy/2_r';
 import Scrollspy3 from './components/scrollspy/3_v';
 import Scrollspy4 from './components/scrollspy/4_r';
 import Snackbar1 from './components/snackbar/1_r';
+import Snackbar2 from './components/snackbar/2_r';
 import TabMenus from './components/tabMenu';
 import TextBoxes from './components/textBox';
 import Tooltips from './components/tooltip';
@@ -219,7 +220,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     key: '/snackbar/2_r',
     link: '/snackbar/2_r',
     name: 'R - createPortal',
-    children: null,
+    children: Snackbar2,
   },
   '/snackbar/3_v': {
     key: '/snackbar/3_v',
