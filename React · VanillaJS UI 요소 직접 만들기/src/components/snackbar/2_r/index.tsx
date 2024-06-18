@@ -17,7 +17,7 @@ const ListItem = ({ id, name, index }: ListItemProps) => {
 
   return (
     <span className={cx('listItem')} id={id}>
-      #{index + 1} <button onClick={open}>{name}</button>
+      #{index + 1} <button onClick={open}>Open Snackbar</button>
       {snackbar}
     </span>
   );

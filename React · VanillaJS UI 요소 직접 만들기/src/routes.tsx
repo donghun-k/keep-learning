@@ -11,6 +11,7 @@ import Scrollspy3 from './components/scrollspy/3_v';
 import Scrollspy4 from './components/scrollspy/4_r';
 import Snackbar1 from './components/snackbar/1_r';
 import Snackbar2 from './components/snackbar/2_r';
+import Snackbar3 from './components/snackbar/3_v';
 import TabMenus from './components/tabMenu';
 import TextBoxes from './components/textBox';
 import Tooltips from './components/tooltip';
@@ -226,7 +227,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     key: '/snackbar/3_v',
     link: '/snackbar/3_v',
     name: 'Vanilla',
-    children: null,
+    children: Snackbar3,
   },
   '/modal': {
     key: '/modal',

@@ -15,14 +15,14 @@ const ListItem = ({ id, name, index }: ListItemProps) => {
     createSnackbar(
       `snackbar_${id}`,
       <p>
-        {index + 1}.<strong>{name}</strong> is clicked!
+        {index + 1}. {name}
       </p>
     );
   };
 
   return (
     <span className={cx('listItem')} id={id}>
-      #{index + 1} <button onClick={handleClick}>{name}</button>
+      #{index + 1} <button onClick={handleClick}>Open Snackbar</button>
     </span>
   );
 };
