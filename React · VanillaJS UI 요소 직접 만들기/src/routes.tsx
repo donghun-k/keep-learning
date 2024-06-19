@@ -4,6 +4,7 @@ import InfiniteScroll2 from './components/infiniteScroll/vanilla';
 import LazyLoading1 from './components/lazyLoading/1_r';
 import LazyLoading2 from './components/lazyLoading/2_v';
 import LineClamps from './components/lineClamp';
+import Modal1 from './components/modal/1_r';
 import ScrollBoxes from './components/scrollBox';
 import Scrollspy1 from './components/scrollspy/1_r';
 import Scrollspy2 from './components/scrollspy/2_r';
@@ -239,7 +240,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     key: '/modal/1_r',
     link: '/modal/1_r',
     name: 'R - Context',
-    children: null,
+    children: Modal1,
   },
   '/modal/2_r': {
     key: '/modal/2_r',
