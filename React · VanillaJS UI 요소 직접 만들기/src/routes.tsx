@@ -5,6 +5,7 @@ import LazyLoading1 from './components/lazyLoading/1_r';
 import LazyLoading2 from './components/lazyLoading/2_v';
 import LineClamps from './components/lineClamp';
 import Modal1 from './components/modal/1_r';
+import Modal2 from './components/modal/2_r';
 import ScrollBoxes from './components/scrollBox';
 import Scrollspy1 from './components/scrollspy/1_r';
 import Scrollspy2 from './components/scrollspy/2_r';
@@ -221,7 +222,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
   '/snackbar/2_r': {
     key: '/snackbar/2_r',
     link: '/snackbar/2_r',
-    name: 'R - createPortal',
+    name: 'R - Portal',
     children: Snackbar2,
   },
   '/snackbar/3_v': {
@@ -245,8 +246,8 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
   '/modal/2_r': {
     key: '/modal/2_r',
     link: '/modal/2_r',
-    name: 'R - createPortal',
-    children: null,
+    name: 'R - Portal',
+    children: Modal2,
   },
   '/modal/3_v': {
     key: '/modal/3_v',
@@ -275,7 +276,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
   '/popover/2_r': {
     key: '/popover/2_r',
     link: '/popover/2_r',
-    name: 'R - createPortal',
+    name: 'R - Portal',
     children: null,
   },
   '/popover/3_r': {
