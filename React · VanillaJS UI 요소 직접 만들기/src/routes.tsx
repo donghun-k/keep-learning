@@ -6,6 +6,7 @@ import LazyLoading2 from './components/lazyLoading/2_v';
 import LineClamps from './components/lineClamp';
 import Modal1 from './components/modal/1_r';
 import Modal2 from './components/modal/2_r';
+import Modal3 from './components/modal/3_v';
 import ScrollBoxes from './components/scrollBox';
 import Scrollspy1 from './components/scrollspy/1_r';
 import Scrollspy2 from './components/scrollspy/2_r';
@@ -253,7 +254,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     key: '/modal/3_v',
     link: '/modal/3_v',
     name: 'Vanilla',
-    children: null,
+    children: Modal3,
   },
   '/modal/4_r': {
     key: '/modal/4_r',
