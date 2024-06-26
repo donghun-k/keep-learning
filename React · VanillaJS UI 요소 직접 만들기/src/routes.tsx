@@ -7,6 +7,7 @@ import LineClamps from './components/lineClamp';
 import Modal1 from './components/modal/1_r';
 import Modal2 from './components/modal/2_r';
 import Modal3 from './components/modal/3_v';
+import Modal4 from './components/modal/4_r';
 import ScrollBoxes from './components/scrollBox';
 import Scrollspy1 from './components/scrollspy/1_r';
 import Scrollspy2 from './components/scrollspy/2_r';
@@ -260,7 +261,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     key: '/modal/4_r',
     link: '/modal/4_r',
     name: 'R - HTML Dialog',
-    children: null,
+    children: Modal4,
   },
   '/popover': {
     key: '/popover',
