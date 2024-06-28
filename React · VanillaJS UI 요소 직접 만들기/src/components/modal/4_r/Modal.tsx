@@ -1,4 +1,10 @@
-import { MouseEvent, PropsWithChildren, ReactNode, RefObject } from 'react';
+import {
+  MouseEvent,
+  PropsWithChildren,
+  ReactNode,
+  RefObject,
+  useCallback,
+} from 'react';
 import cx from '../cx';
 
 interface ModalProps extends PropsWithChildren {
@@ -17,13 +23,17 @@ const Modal = ({
   closeOnClickOutside = false,
   children,
 }: ModalProps) => {
+  const handleClick = useCallback(
+    (e: MouseEvent) => {
+      if (closeOnClickOutside && modalRef.current === e.target) {
+        close?.();
+      }
+    },
+    [closeOnClickOutside, close]
+  );
   return (
-    <dialog
-      className={cx('Dialog')}
-      onClick={closeOnClickOutside ? close : undefined}
-      ref={modalRef}
-    >
-      {children}
+    <dialog className={cx('Dialog')} onClick={handleClick} ref={modalRef}>
+      <div className={cx('inner')}>{children}</div>
     </dialog>
   );
 };
