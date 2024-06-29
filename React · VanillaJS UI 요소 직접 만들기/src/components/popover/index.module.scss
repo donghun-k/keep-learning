@@ -1,0 +1,108 @@
+.Popovers {
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .list-item {
+    position: relative;
+    padding: 20px 40px 20px 20px;
+    margin: 10px 0;
+    border: 1px solid #eee;
+  }
+  .popover-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    border: 0;
+    background-color: transparent;
+    font-size: 1.3rem;
+    &:before {
+      content: '\022ee';
+    }
+  }
+}
+
+.MenuPopover {
+  &::before {
+    content: '';
+    position: fixed;
+    display: block;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .menus {
+    position: absolute;
+    z-index: 2;
+    top: 40px;
+    right: 5px;
+    width: 160px;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    list-style: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+
+    li {
+      padding: 10px 20px;
+      border-top: 1px solid #ccc;
+      background-color: #fff;
+      transition: background-color ease-out 0.2s;
+      cursor: pointer;
+      &:first-of-type {
+        border-top: 0;
+      }
+      &:hover {
+        background-color: #f0f0f0;
+      }
+    }
+  }
+}
+
+.MenuDialog {
+  position: absolute;
+  background-color: #fff;
+  border: 0;
+  border-radius: 5px;
+  z-index: 10;
+  padding: 0;
+  width: 160px;
+
+  &::backdrop {
+    background-color: transparent;
+  }
+
+  .menus {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    list-style: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+
+    li {
+      padding: 10px 20px;
+      border-top: 1px solid #ccc;
+      background-color: #fff;
+      transition: background-color ease-out 0.2s;
+      cursor: pointer;
+      &:first-of-type {
+        border-top: 0;
+      }
+      &:hover {
+        background-color: #f0f0f0;
+      }
+    }
+  }
+  &:not[open] {
+    display: none;
+  }
+}
