@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import cx from './cx';
 import data from './data';
-import useStyleView from './useStyleInView';
+import useStyleInView from './useStyleInView';
 
 const tooltipPosition = {
   top: '100%',
@@ -21,7 +21,7 @@ const Tooltip = ({
 }) => {
   const wrapperRef = useRef<HTMLDetailsElement>(null);
   const targetRef = useRef<HTMLDivElement>(null);
-  const style = useStyleView(wrapperRef, targetRef, tooltipPosition);
+  const style = useStyleInView(wrapperRef, targetRef, tooltipPosition);
 
   return (
     <details className={cx('details')} data-tooltip={id} ref={wrapperRef}>

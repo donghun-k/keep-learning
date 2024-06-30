@@ -5,10 +5,11 @@ type PositionKey = 'left' | 'right' | 'top' | 'bottom';
 type Position = Partial<Record<PositionKey, string | number>>;
 type Style = Partial<Record<'left' | 'right' | 'top' | 'bottom', number>>;
 
-const useStyleView = (
+const useStyleInView = (
   wrapperRef: RefObject<HTMLElement>,
   targetRef: RefObject<HTMLElement>,
-  position: Position
+  position: Position,
+  positionType: 'absolute' | 'relative' = 'relative'
 ) => {
   const [style, setStyle] = useState<Style>({});
   const viewportRect = useViewportRect();
@@ -25,15 +26,32 @@ const useStyleView = (
       wrapperRect.right + targetRect.width < viewportRect.width
         ? 'left'
         : 'right';
-    setStyle({
-      [verticalKey]: position[verticalKey] || 0,
-      [verticalKey === 'top' ? 'bottom' : 'top']: 'auto',
-      [horizontalKey]: position[horizontalKey] || 0,
-      [horizontalKey === 'left' ? 'right' : 'left']: 'auto',
-    });
+
+    if (positionType === 'absolute') {
+      const absoluteTop = -viewportRect.top + wrapperRect.top;
+      setStyle({
+        [verticalKey]:
+          verticalKey === 'top'
+            ? absoluteTop + +(position.top || 0)
+            : viewportRect.height - absoluteTop + +(position.bottom || 0),
+        [verticalKey === 'top' ? 'bottom' : 'top']: 'auto',
+        [horizontalKey]:
+          horizontalKey === 'left'
+            ? wrapperRect.left - +(position.left || 0)
+            : viewportRect.width - wrapperRect.right + +(position.right || 0),
+        [horizontalKey === 'left' ? 'right' : 'left']: 'auto',
+      });
+    } else {
+      setStyle({
+        [verticalKey]: position[verticalKey] || 0,
+        [verticalKey === 'top' ? 'bottom' : 'top']: 'auto',
+        [horizontalKey]: position[horizontalKey] || 0,
+        [horizontalKey === 'left' ? 'right' : 'left']: 'auto',
+      });
+    }
   }, [viewportRect, wrapperRef, targetRef, position]);
 
   return style;
 };
 
-export default useStyleView;
+export default useStyleInView;

@@ -1,6 +1,7 @@
 import useStyleInView from '@/components/tooltip/useStyleInView';
 import cx from '../cx';
 import { RefObject, useRef } from 'react';
+import { createPortal } from 'react-dom';
 
 interface Props {
   id: string;
@@ -10,15 +11,15 @@ interface Props {
 
 const menuPosition = {
   top: 39,
-  bottom: 'calc(100% - 5px)',
+  bottom: -2,
   left: 5,
   right: 5,
 };
 
 const MenuPopover = ({ id, close, wrapperRef }: Props) => {
   const targetRef = useRef<HTMLUListElement>(null);
-  const style = useStyleInView(wrapperRef, targetRef, menuPosition);
-  return (
+  const style = useStyleInView(wrapperRef, targetRef, menuPosition, 'absolute');
+  return createPortal(
     <div className={cx('MenuPopover')} onClick={close}>
       <ul
         className={cx('menus')}
@@ -33,7 +34,8 @@ const MenuPopover = ({ id, close, wrapperRef }: Props) => {
         <li>읽지 않음으로 표시</li>
         <li>삭제</li>
       </ul>
-    </div>
+    </div>,
+    document.getElementById('popoverRoot') as HTMLElement
   );
 };
 

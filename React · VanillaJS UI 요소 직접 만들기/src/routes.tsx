@@ -9,6 +9,7 @@ import Modal2 from './components/modal/2_r';
 import Modal3 from './components/modal/3_v';
 import Modal4 from './components/modal/4_r';
 import Popover1 from './components/popover/1_r';
+import Popover2 from './components/popover/2_r';
 import ScrollBoxes from './components/scrollBox';
 import Scrollspy1 from './components/scrollspy/1_r';
 import Scrollspy2 from './components/scrollspy/2_r';
@@ -280,7 +281,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     key: '/popover/2_r',
     link: '/popover/2_r',
     name: 'R - Portal',
-    children: null,
+    children: Popover2,
   },
   '/popover/3_r': {
     key: '/popover/3_r',

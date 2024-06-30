@@ -37,13 +37,13 @@ const ListItem = ({ id, title, index }: ListItemProps) => {
   );
 };
 
-const Popover1 = () => {
+const Popover2 = () => {
   const { data, state, moreRef } = useInfiniteScroll();
   return (
     <ViewportContextProvider>
       <div className={cx('Popovers')}>
         <h2>
-          #1. <sub>컨텐츠 내부에서 그대로 렌더링</sub>
+          #2. <sub>Portal</sub>
         </h2>
         <ul className={cx('list')}>
           {data.map((page, i) =>
@@ -53,8 +53,9 @@ const Popover1 = () => {
           {state === 'loading' && <div>Loading...</div>}
         </ul>
       </div>
+      <div id="popoverRoot" />
     </ViewportContextProvider>
   );
 };
 
-export default Popover1;
+export default Popover2;
