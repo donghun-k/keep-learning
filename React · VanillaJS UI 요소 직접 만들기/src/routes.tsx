@@ -10,6 +10,7 @@ import Modal3 from './components/modal/3_v';
 import Modal4 from './components/modal/4_r';
 import Popover1 from './components/popover/1_r';
 import Popover2 from './components/popover/2_r';
+import Popover3 from './components/popover/3_r';
 import ScrollBoxes from './components/scrollBox';
 import Scrollspy1 from './components/scrollspy/1_r';
 import Scrollspy2 from './components/scrollspy/2_r';
@@ -287,7 +288,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     key: '/popover/3_r',
     link: '/popover/3_r',
     name: 'R - HTML Dialog',
-    children: null,
+    children: Popover3,
   },
   '/imageSlide': {
     key: '/imageSlide',
