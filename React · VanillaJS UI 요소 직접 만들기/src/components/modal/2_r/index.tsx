@@ -70,7 +70,7 @@ const FormTrigger = ({ id }: Pick<FormModalProps, 'id'>) => {
 const Modal2 = () => {
   return (
     <>
-      <h2>모달</h2>
+      <h2>Modal</h2>
       <h3>
         #2. React<sub>Portal</sub>
       </h3>

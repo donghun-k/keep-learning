@@ -42,9 +42,10 @@ const Popover1 = () => {
   return (
     <ViewportContextProvider>
       <div className={cx('Popovers')}>
-        <h2>
-          #1. <sub>컨텐츠 내부에서 그대로 렌더링</sub>
-        </h2>
+        <h2>Popover</h2>
+        <h3>
+          #1. React<sub>컨텐츠 내부에서 그대로 렌더링</sub>
+        </h3>
         <ul className={cx('list')}>
           {data.map((page, i) =>
             page.map((item, j) => <ListItem {...item} key={i + j} />)

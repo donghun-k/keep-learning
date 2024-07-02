@@ -50,9 +50,10 @@ const Popover3 = () => {
   return (
     <ViewportContextProvider>
       <div className={cx('Popovers')}>
-        <h2>
-          #3. <sub>HTML Dialog</sub>
-        </h2>
+        <h2>Popover</h2>
+        <h3>
+          #3. React<sub>HTML Dialog</sub>
+        </h3>
         <ul className={cx('list')}>
           {data.map((page, i) =>
             page.map((item, j) => <ListItem {...item} key={i + j} />)

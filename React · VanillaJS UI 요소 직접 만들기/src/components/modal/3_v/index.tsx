@@ -78,6 +78,11 @@ const initiator = (wrapper: HTMLDivElement) => {
   wrapper.append(stringToDOM('<div id="modalRoot" />'));
 };
 
-const Modal3 = () => <VanillaWrapper title="#3" initiator={initiator} />;
+const Modal3 = () => (
+  <>
+    <h2>Modal</h2>
+    <VanillaWrapper title="#3" initiator={initiator} />
+  </>
+);
 
 export default Modal3;

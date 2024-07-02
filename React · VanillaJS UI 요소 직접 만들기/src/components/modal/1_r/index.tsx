@@ -72,7 +72,7 @@ const FormTrigger = ({ id }: Pick<FormModalProps, 'id'>) => {
 const Modal1 = () => {
   return (
     <ModalContextProvider>
-      <h2>모달</h2>
+      <h2>Modal</h2>
       <h3>
         #1. React<sub>Context</sub>
       </h3>
