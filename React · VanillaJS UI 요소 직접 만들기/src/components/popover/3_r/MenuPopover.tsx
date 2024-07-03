@@ -19,10 +19,17 @@ const menuPosition = {
 };
 
 const MenuPopover = ({ id, close, wrapperRef, dialogRef, opened }: Props) => {
-  const style = useStyleInView(wrapperRef, dialogRef, menuPosition, 'absolute');
+  const style = useStyleInView(
+    wrapperRef,
+    dialogRef,
+    menuPosition,
+    'absolute',
+    opened
+  );
 
   useEffect(() => {
     if (opened) {
+      console.log('add');
       window.addEventListener('click', close);
     }
     return () => {
@@ -30,13 +37,8 @@ const MenuPopover = ({ id, close, wrapperRef, dialogRef, opened }: Props) => {
     };
   }, [opened]);
   return createPortal(
-    <dialog
-      className={cx('MenuDialog')}
-      onClick={(e) => e.stopPropagation()}
-      ref={dialogRef}
-      style={style}
-    >
-      <ul className={cx('menus')}>
+    <dialog className={cx('MenuDialog')} ref={dialogRef} style={style}>
+      <ul className={cx('menus')} onClick={(e) => e.stopPropagation()}>
         <li id={id}>#{id}</li>
         <li>스레드의 댓글</li>
         <li>메시지 전달</li>

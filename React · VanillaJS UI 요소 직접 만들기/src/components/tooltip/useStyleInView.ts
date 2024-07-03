@@ -9,13 +9,14 @@ const useStyleInView = (
   wrapperRef: RefObject<HTMLElement>,
   targetRef: RefObject<HTMLElement>,
   position: Position,
-  positionType: 'absolute' | 'relative' = 'relative'
+  positionType: 'absolute' | 'relative' = 'relative',
+  needUpdate: boolean = true
 ) => {
   const [style, setStyle] = useState<Style>({});
   const viewportRect = useViewportRect();
 
   useLayoutEffect(() => {
-    if (!wrapperRef.current || !targetRef.current) return;
+    if (!needUpdate || !wrapperRef.current || !targetRef.current) return;
     const wrapperRect = wrapperRef.current.getBoundingClientRect();
     const targetRect = targetRef.current.getBoundingClientRect();
     const verticalKey =

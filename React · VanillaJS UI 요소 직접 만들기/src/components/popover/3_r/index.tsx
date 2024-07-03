@@ -16,7 +16,7 @@ const ListItem = ({ id, title, index }: ListItemProps) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const handleClickButton = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    dialogRef.current?.show();
+    dialogRef.current?.showModal();
     setOpened(true);
   };
   const closeMenu = () => {
