@@ -1,4 +1,5 @@
 import Accordions from './components/accordion';
+import ImageSlides from './components/imageSlide';
 import InfiniteScroll1 from './components/infiniteScroll/react';
 import InfiniteScroll2 from './components/infiniteScroll/vanilla';
 import LazyLoading1 from './components/lazyLoading/1_r';
@@ -294,7 +295,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     key: '/imageSlide',
     link: '/imageSlide',
     name: '13. 이미지 슬라이드',
-    children: null,
+    children: ImageSlides,
   },
   '/carousel': {
     key: '/carousel',
