@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 import cx from '../cx';
 import data from '../data';
 import useIntersectionObserver from '@/hook/useIntersectionObserver';
@@ -7,15 +7,23 @@ interface LazyImageProps {
   src: string;
   width: number;
   height: number;
+  rootElRef?: RefObject<HTMLElement>;
 }
 
 const options: IntersectionObserverInit = {
   threshold: 0,
 };
 
-export const LazyImage = ({ src, width, height }: LazyImageProps) => {
+export const LazyImage = ({
+  src,
+  width,
+  height,
+  rootElRef,
+}: LazyImageProps) => {
   const imgRef = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
+  options.root = rootElRef?.current || null;
+
   const { entries, observerRef } = useIntersectionObserver(imgRef, options);
 
   useEffect(() => {
