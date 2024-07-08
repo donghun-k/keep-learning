@@ -45,6 +45,7 @@ const initiator = (wrapper: HTMLDivElement) => {
   $next.addEventListener('click', () => move('right'));
 
   wrapper.classList.add(cx('imageSlide'));
+  wrapper.classList.add(cx('imageSlide1'));
   wrapper.append($ul, $prev, $next);
 };
 
