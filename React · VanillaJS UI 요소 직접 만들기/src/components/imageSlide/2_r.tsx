@@ -8,24 +8,34 @@ type Direction = 'left' | 'right';
 const ImageSlide2 = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const animatingRef = useRef(false);
 
   const move = useCallback((direction: Direction) => {
-    setCurrentIndex(
-      (prevIndex) =>
+    if (animatingRef.current) return;
+    setCurrentIndex((prevIndex) => {
+      const next =
         ((direction === 'right' ? prevIndex + 1 : prevIndex - 1) +
           data.length) %
-        data.length
-    );
+        data.length;
+      animatingRef.current = true;
+      return next;
+    });
   }, []);
+
+  const handleTransitionEnd = () => {
+    animatingRef.current = false;
+  };
+
   return (
     <>
       <h3>#2. React</h3>
-      <div className={cx('imageSlide')} ref={wrapperRef}>
+      <div className={cx('imageSlide', 'imageSlide2')} ref={wrapperRef}>
         <ul
           className={cx('container')}
           style={{
-            transform: `translateX(-${currentIndex * 100}%)`,
+            left: currentIndex * -600 + 'px',
           }}
+          onTransitionEnd={handleTransitionEnd}
         >
           {data.map((url, index) => (
             <li key={index} className={cx('item')}>
