@@ -49,7 +49,9 @@ const ImageSlide4 = () => {
 
   return (
     <>
-      <h3>#4. React</h3>
+      <h3>
+        #4. React<sub>페이지네이션</sub>
+      </h3>
       <div className={cx('imageSlide', 'imageSlide4')} ref={wrapperRef}>
         <ul className={cx('container')} ref={containerRef}>
           {data.map((url, index) => (

@@ -31,7 +31,9 @@ const ImageSlide3 = () => {
 
   return (
     <>
-      <h3>#3. React</h3>
+      <h3>
+        #3. React<sub>CSS scroll 이용</sub>
+      </h3>
       <div className={cx('imageSlide', 'imageSlide3')} ref={wrapperRef}>
         <ul className={cx('container')} ref={containerRef}>
           {data.map((url, index) => (
