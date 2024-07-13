@@ -1,4 +1,5 @@
 import Accordions from './components/accordion';
+import Carousels from './components/carousel';
 import ImageSlides from './components/imageSlide';
 import InfiniteScroll1 from './components/infiniteScroll/react';
 import InfiniteScroll2 from './components/infiniteScroll/vanilla';
@@ -301,7 +302,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     key: '/carousel',
     link: '/carousel',
     name: '14. 캐러셀',
-    children: null,
+    children: Carousels,
   },
   '/gallery': {
     key: '/gallery',
