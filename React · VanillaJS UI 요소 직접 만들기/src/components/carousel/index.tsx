@@ -1,4 +1,5 @@
 import Carousel1 from './1_v';
+import Carousel2 from './2_r';
 import cx from './cx';
 
 const Carousels = () => {
@@ -6,6 +7,7 @@ const Carousels = () => {
     <div className={cx('Carousels')}>
       <h2>캐러셀</h2>
       <Carousel1 />
+      <Carousel2 />
     </div>
   );
 };
