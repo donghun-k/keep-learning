@@ -6,7 +6,7 @@ import cx from './cx';
 const Carousels = () => {
   return (
     <div className={cx('Carousels')}>
-      <h2>캐러셀</h2>
+      <h2>Carousel</h2>
       <Carousel1 />
       <Carousel2 />
       <Carousel3 />
