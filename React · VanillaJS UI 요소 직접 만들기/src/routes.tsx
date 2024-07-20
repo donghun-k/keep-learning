@@ -1,5 +1,6 @@
 import Accordions from './components/accordion';
 import Carousels from './components/carousel';
+import Gallery1 from './components/gallery/1_r';
 import ImageSlides from './components/imageSlide';
 import InfiniteScroll1 from './components/infiniteScroll/react';
 import InfiniteScroll2 from './components/infiniteScroll/vanilla';
@@ -314,7 +315,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     key: '/gallery/1_r',
     link: '/gallery/1_r',
     name: 'R - w/Carousel',
-    children: null,
+    children: Gallery1,
   },
   '/gallery/2_r': {
     key: '/gallery/2_r',

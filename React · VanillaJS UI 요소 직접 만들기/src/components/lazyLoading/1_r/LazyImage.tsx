@@ -1,7 +1,6 @@
+import useIntersectionObserver from '@/hook/useIntersectionObserverV2';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import cx from '../cx';
-import data from '../data';
-import useIntersectionObserver from '@/hook/useIntersectionObserver';
 
 export interface LazyImageProps {
   src: string;
@@ -14,12 +13,7 @@ const options: IntersectionObserverInit = {
   threshold: 0,
 };
 
-export const LazyImage = ({
-  src,
-  width,
-  height,
-  rootElRef,
-}: LazyImageProps) => {
+const LazyImage = ({ src, width, height, rootElRef }: LazyImageProps) => {
   const imgRef = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
   options.root = rootElRef?.current || null;
@@ -49,31 +43,4 @@ export const LazyImage = ({
   );
 };
 
-const LazyLoading1 = () => {
-  const [builtInLazySupported, setBuiltInLazySupported] = useState<
-    null | boolean
-  >(null);
-  const ImageComponent = builtInLazySupported
-    ? (props: any) => <img {...props} loading="lazy" />
-    : LazyImage;
-
-  useEffect(() => {
-    setBuiltInLazySupported('loading' in HTMLImageElement.prototype);
-  }, []);
-
-  if (builtInLazySupported === null) {
-    return <p>loading...</p>;
-  }
-
-  return (
-    <>
-      <h2>Lazy Loading</h2>
-      <h3>#1. React</h3>
-      {data.map((url, i) => (
-        <ImageComponent key={i} src={url} width={600} height={320} />
-      ))}
-    </>
-  );
-};
-
-export default LazyLoading1;
+export default LazyImage;
