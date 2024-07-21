@@ -7,13 +7,20 @@ export interface LazyImageProps {
   width: number;
   height: number;
   rootElRef?: RefObject<HTMLElement>;
+  onClick?: () => void;
 }
 
 const options: IntersectionObserverInit = {
   threshold: 0,
 };
 
-const LazyImage = ({ src, width, height, rootElRef }: LazyImageProps) => {
+const LazyImage = ({
+  src,
+  width,
+  height,
+  rootElRef,
+  onClick,
+}: LazyImageProps) => {
   const imgRef = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
   options.root = rootElRef?.current || null;
@@ -39,6 +46,7 @@ const LazyImage = ({ src, width, height, rootElRef }: LazyImageProps) => {
       width={width}
       height={height}
       alt="image"
+      onClick={onClick}
     />
   );
 };

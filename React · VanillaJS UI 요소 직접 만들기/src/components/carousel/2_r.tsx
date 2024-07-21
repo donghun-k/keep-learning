@@ -1,12 +1,18 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import cx from './cx';
 import data from './data';
 import Pagination from '../imageSlide/Pagination';
 
 type Direction = 'left' | 'right';
 
-const Carousel2 = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export const Carousel = ({
+  images,
+  initialIndex = 0,
+}: {
+  images: string[];
+  initialIndex?: number;
+}) => {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const itemsRef = useRef<(HTMLLIElement | null)[]>([]);
 
   const moveTo = useCallback(
@@ -34,43 +40,54 @@ const Carousel2 = () => {
     (direction: Direction) => {
       const nextIndex =
         ((direction === 'right' ? currentIndex + 1 : currentIndex - 1) +
-          data.length) %
-        data.length;
+          images.length) %
+        images.length;
       moveTo(nextIndex, direction);
     },
-    [currentIndex, moveTo]
+    [images, currentIndex, moveTo]
   );
+
+  useEffect(() => {
+    setCurrentIndex(initialIndex);
+  }, [initialIndex]);
+
+  return (
+    <div className={cx('carousel', 'carousel1')}>
+      <ul className={cx('container')}>
+        {images.map((url, index) => (
+          <li
+            key={index}
+            className={cx('item', { current: index === currentIndex })}
+            ref={(r) => (itemsRef.current[index] = r)}
+          >
+            <img src={url} width="600" height="320" loading="lazy" />
+            <span>#{index + 1}</span>
+          </li>
+        ))}
+      </ul>
+      <button
+        className={cx('navButton', 'navLeft')}
+        onClick={() => move('left')}
+      />
+      <button
+        className={cx('navButton', 'navRight')}
+        onClick={() => move('right')}
+      />
+      <Pagination
+        currentIndex={currentIndex}
+        totalPage={images.length}
+        visibleCount={6}
+        handleMove={moveTo}
+      />
+    </div>
+  );
+};
+
+const Carousel2 = () => {
   return (
     <>
       <h3>#2. React</h3>
-      <div className={cx('carousel', 'carousel1')}>
-        <ul className={cx('container')}>
-          {data.map((url, index) => (
-            <li
-              key={index}
-              className={cx('item', { current: index === currentIndex })}
-              ref={(r) => (itemsRef.current[index] = r)}
-            >
-              <img src={url} width="600" height="320" loading="lazy" />
-              <span>#{index + 1}</span>
-            </li>
-          ))}
-        </ul>
-        <button
-          className={cx('navButton', 'navLeft')}
-          onClick={() => move('left')}
-        />
-        <button
-          className={cx('navButton', 'navRight')}
-          onClick={() => move('right')}
-        />
-        <Pagination
-          currentIndex={currentIndex}
-          totalPage={data.length}
-          visibleCount={6}
-          handleMove={moveTo}
-        />
-      </div>
+      <Carousel images={data} />
     </>
   );
 };

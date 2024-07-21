@@ -11,6 +11,7 @@ interface ModalProps extends PropsWithChildren {
   modalRef: RefObject<HTMLDialogElement>;
   closeOnClickOutside?: boolean;
   close?: () => void;
+  onClose?: () => void;
 }
 
 interface ModalHeaderProps extends PropsWithChildren {
@@ -20,13 +21,19 @@ interface ModalHeaderProps extends PropsWithChildren {
 const Modal = ({
   modalRef,
   close,
+  onClose,
   closeOnClickOutside = false,
   children,
 }: ModalProps) => {
+  const handleClose = () => {
+    close?.();
+    onClose?.();
+  };
+
   const handleClick = useCallback(
     (e: MouseEvent) => {
       if (closeOnClickOutside && modalRef.current === e.target) {
-        close?.();
+        handleClose();
       }
     },
     [closeOnClickOutside, close]
