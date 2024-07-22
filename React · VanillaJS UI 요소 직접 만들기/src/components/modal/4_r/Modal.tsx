@@ -12,6 +12,7 @@ interface ModalProps extends PropsWithChildren {
   closeOnClickOutside?: boolean;
   close?: () => void;
   onClose?: () => void;
+  className?: string;
 }
 
 interface ModalHeaderProps extends PropsWithChildren {
@@ -24,6 +25,7 @@ const Modal = ({
   onClose,
   closeOnClickOutside = false,
   children,
+  className,
 }: ModalProps) => {
   const handleClose = () => {
     close?.();
@@ -39,7 +41,11 @@ const Modal = ({
     [closeOnClickOutside, close]
   );
   return (
-    <dialog className={cx('Dialog')} onClick={handleClick} ref={modalRef}>
+    <dialog
+      className={cx('Dialog', className)}
+      onClick={handleClick}
+      ref={modalRef}
+    >
       <div className={cx('inner')}>{children}</div>
     </dialog>
   );
@@ -54,8 +60,11 @@ const ModalHeader = ({ title, children, close }: ModalHeaderProps) => {
     </div>
   );
 };
-const ModalContent = ({ children }: PropsWithChildren) => {
-  return <div className={cx('ModalContent')}>{children}</div>;
+const ModalContent = ({
+  children,
+  className,
+}: { className?: string } & PropsWithChildren) => {
+  return <div className={cx('ModalContent', className)}>{children}</div>;
 };
 const ModalFooter = ({ children }: PropsWithChildren) => {
   return <div className={cx('ModalFooter')}>{children}</div>;

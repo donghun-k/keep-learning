@@ -1,6 +1,7 @@
 import Accordions from './components/accordion';
 import Carousels from './components/carousel';
 import Gallery1 from './components/gallery/1_r';
+import Gallery2 from './components/gallery/2_r';
 import ImageSlides from './components/imageSlide';
 import InfiniteScroll1 from './components/infiniteScroll/react';
 import InfiniteScroll2 from './components/infiniteScroll/vanilla';
@@ -321,7 +322,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     key: '/gallery/2_r',
     link: '/gallery/2_r',
     name: 'R - Viewer',
-    children: null,
+    children: Gallery2,
   },
   '/selectBox': {
     key: '/selectBox',
