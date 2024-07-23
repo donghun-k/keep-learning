@@ -1,77 +1,82 @@
-import {
-  MouseEvent,
-  PropsWithChildren,
-  ReactNode,
-  RefObject,
-  useCallback,
-} from 'react';
+import { ReactNode, RefObject, SyntheticEvent, useCallback } from 'react';
 import cx from '../cx';
 
-interface ModalProps extends PropsWithChildren {
-  modalRef: RefObject<HTMLDialogElement>;
-  closeOnClickOutside?: boolean;
-  close?: () => void;
-  onClose?: () => void;
-  className?: string;
-}
-
-interface ModalHeaderProps extends PropsWithChildren {
-  title?: string;
-  close?: () => void;
-}
 const Modal = ({
   modalRef,
-  close,
-  onClose,
   closeOnClickOutside = false,
   children,
+  close,
+  onClose,
   className,
-}: ModalProps) => {
+}: {
+  modalRef: RefObject<HTMLDialogElement>;
+  closeOnClickOutside?: boolean;
+  children: ReactNode;
+  close: () => void;
+  onClose?: (...arg: any[]) => void;
+  className?: string;
+}) => {
   const handleClose = () => {
-    close?.();
+    close();
     onClose?.();
   };
 
   const handleClick = useCallback(
-    (e: MouseEvent) => {
+    (e: SyntheticEvent) => {
       if (closeOnClickOutside && modalRef.current === e.target) {
         handleClose();
       }
     },
-    [closeOnClickOutside, close]
+    [closeOnClickOutside]
   );
+
   return (
     <dialog
       className={cx('Dialog', className)}
-      onClick={handleClick}
       ref={modalRef}
+      onClick={handleClick}
     >
-      <div className={cx('inner')}>{children}</div>
+      {children}
     </dialog>
   );
 };
 
-const ModalHeader = ({ title, children, close }: ModalHeaderProps) => {
+const ModalHeader = ({
+  title,
+  children,
+  close,
+}: {
+  title?: string;
+  children?: ReactNode;
+  close?: () => void;
+}) => {
   return (
-    <div className={cx('ModalHeader')}>
+    <div className={cx('ModalHeader', 'gModalHeader')}>
       <div className={cx('title')}>{title}</div>
       {children}
-      <button className={cx('close')} onClick={close} />
+      <button className={cx('close', 'gModalClose')} onClick={close} />
     </div>
   );
 };
+
 const ModalContent = ({
+  className = '',
   children,
-  className,
-}: { className?: string } & PropsWithChildren) => {
+}: {
+  className?: string;
+  children: ReactNode;
+}) => {
   return <div className={cx('ModalContent', className)}>{children}</div>;
 };
-const ModalFooter = ({ children }: PropsWithChildren) => {
+
+const ModalFooter = ({ children }: { children: ReactNode }) => {
   return <div className={cx('ModalFooter')}>{children}</div>;
 };
 
 Modal.Header = ModalHeader;
 Modal.Content = ModalContent;
 Modal.Footer = ModalFooter;
+
+/* Compound Component */
 
 export default Modal;

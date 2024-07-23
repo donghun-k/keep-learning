@@ -165,5 +165,5 @@ const ScrollBox = <T extends { id: string }>(
 };
 
 export default forwardRef(ScrollBox) as <T extends { id: string }>(
-  props: Props<T> & { ref?: Ref<ScrollBoxHandle> }
+  props: Props<T> & { ref?: Ref<ScrollBoxHandle | undefined> }
 ) => JSX.Element;
