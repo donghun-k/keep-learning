@@ -30,6 +30,13 @@ aside {
   border-right: 1px solid var(--bg-default);
   background-color: var(--bg-default);
   color: #fff;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   a {
     color: inherit;
@@ -51,7 +58,10 @@ aside {
   h1 {
     margin: 0;
     padding: 20px;
+    position: sticky;
+    top: 0;
     overflow: hidden;
+    background-color: black;
 
     sub {
       float: right;
