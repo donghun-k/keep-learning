@@ -1,0 +1,68 @@
+.AutoComplete {
+  .form {
+    display: flex;
+    background-color: #f0f0f0;
+    input {
+      flex-grow: 1;
+      padding: 10px;
+      font-size: 1rem;
+      border-color: transparent;
+      background-color: transparent;
+    }
+    .toggle-button {
+      width: 30px;
+      border-color: transparent;
+      &::before {
+        content: '⏷';
+      }
+      &.open::before {
+        content: '⏶';
+      }
+    }
+  }
+
+  .item {
+    position: relative;
+
+    &:first-of-type {
+      margin-top: 8px;
+    }
+    &:last-of-type {
+      margin-bottom: 8px;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 15px 10px;
+      border: 0;
+      background-color: inherit;
+      font-size: 1rem;
+      transition: ease-out 0.3s;
+    }
+
+    sub {
+      color: #999;
+    }
+
+    &[aria-selected='true'] {
+      background-color: #eee;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        border: 2px solid #c35;
+      }
+    }
+    &:hover {
+      background-color: #fff5f5;
+    }
+    &[aria-current='true'] {
+      background-color: #fee;
+    }
+  }
+}
