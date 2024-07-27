@@ -1,5 +1,6 @@
 import Accordions from './components/accordion';
 import Carousels from './components/carousel';
+import Dropdowns from './components/dropdown';
 import Gallery1 from './components/gallery/1_r';
 import Gallery2 from './components/gallery/2_r';
 import ImageSlides from './components/imageSlide';
@@ -64,7 +65,7 @@ export const routePaths = [
   '/gallery',
   '/gallery/1_r',
   '/gallery/2_r',
-  '/selectBox',
+  '/dropdown',
   '/autoComplete',
   '/dnd',
 ] as const;
@@ -104,7 +105,7 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
       '/imageSlide',
       '/carousel',
       '/gallery',
-      '/selectBox',
+      '/dropdown',
       '/autoComplete',
       '/dnd',
     ],
@@ -324,11 +325,11 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     name: 'R - Viewer',
     children: Gallery2,
   },
-  '/selectBox': {
-    key: '/selectBox',
-    link: '/selectBox',
-    name: '16. 셀렉트 박스',
-    children: null,
+  '/dropdown': {
+    key: '/dropdown',
+    link: '/dropdown',
+    name: '16. 드랍다운',
+    children: Dropdowns,
   },
   '/autoComplete': {
     key: '/autoComplete',
