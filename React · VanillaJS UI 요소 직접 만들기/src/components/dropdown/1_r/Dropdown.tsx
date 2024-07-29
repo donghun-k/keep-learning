@@ -22,6 +22,7 @@ type DropdownProps = {
   isOpen: boolean;
   selectedIndex: number;
   focusedIndex: number;
+  itemsRef: RefObject<HTMLLIElement[]>;
 };
 
 type DropdownDispatchProps = {
@@ -47,7 +48,7 @@ const KEY_EVENT_MAP: Partial<
   ArrowDown: (e, { focusItem, items }) => {
     focusItem((prev) => Math.min(prev + 1, items.length - 1));
   },
-  Enter: (e, { selectItem, focusedIndex, toggle }) => {
+  Enter: (e, { selectItem, focusedIndex }) => {
     selectItem(focusedIndex);
   },
   Escape: (e, { toggle }) => {
@@ -60,6 +61,7 @@ const DropdownContext = createContext<DropdownProps>({
   isOpen: false,
   selectedIndex: -1,
   focusedIndex: -1,
+  itemsRef: { current: [] },
 });
 
 const DropdownDispatchContext = createContext<DropdownDispatchProps>({
@@ -81,6 +83,7 @@ const DropdownContextProvider = ({
   const [isOpen, setIsOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const itemsRef = useRef<HTMLLIElement[]>([]);
 
   const toggle = (force?: boolean) => {
     setIsOpen((prev) => (typeof force === 'boolean' ? force : !prev));
@@ -107,6 +110,7 @@ const DropdownContextProvider = ({
         isOpen,
         selectedIndex,
         focusedIndex,
+        itemsRef,
       }}
     >
       <DropdownDispatchContext.Provider
@@ -162,7 +166,7 @@ const DropdownItem = ({
   itemsRef: RefObject<HTMLLIElement[] | null[]>;
 }) => {
   const { selectedIndex, focusedIndex } = useDropdown();
-  const { selectItem, focusItem } = useSetDropdown();
+  const { selectItem } = useSetDropdown();
 
   return (
     <li
@@ -174,24 +178,17 @@ const DropdownItem = ({
         if (itemsRef.current) itemsRef.current[index] = r;
       }}
     >
-      <button
-        onClick={() => selectItem(index)}
-        onMouseEnter={() => focusItem(index)}
-      >
-        {item.text}
-      </button>
+      <button onClick={() => selectItem(index)}>{item.text}</button>
     </li>
   );
 };
 
 const DropdownList = () => {
-  const { items, isOpen, focusedIndex } = useDropdown();
+  const { items, isOpen, focusedIndex, itemsRef } = useDropdown();
   if (!isOpen) return null;
 
-  const itemsRef = useRef<HTMLLIElement[] | null[]>([]);
-
   useEffect(() => {
-    itemsRef.current[focusedIndex]?.scrollIntoView({
+    itemsRef.current![focusedIndex]?.scrollIntoView({
       block: 'nearest',
     });
   }, [focusedIndex]);
