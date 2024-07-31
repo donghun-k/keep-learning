@@ -6,38 +6,35 @@ import {
   RefObject,
   SetStateAction,
   useContext,
-  useEffect,
   useRef,
   useState,
 } from 'react';
-import cx from '../cx';
 
-export type DropdownItemType = {
-  id: string;
-  text: string;
-};
-
-type DropdownProps = {
-  items: DropdownItemType[];
+type DropdownProps<T> = {
+  items: T[];
   isOpen: boolean;
   selectedIndex: number;
   focusedIndex: number;
   itemsRef: RefObject<HTMLLIElement[] | null[]>;
 };
 
-type DropdownDispatchProps = {
-  setItems: Dispatch<SetStateAction<DropdownItemType[]>>;
+type DropdownDispatchProps<T> = {
+  setItems: Dispatch<SetStateAction<T[]>>;
   toggle: (force?: boolean) => void;
   selectItem: Dispatch<SetStateAction<number>>;
   focusItem: Dispatch<SetStateAction<number>>;
   handleKeyDown: (e: KeyboardEvent<Element>) => void;
 };
 
-type KeyEventHandler = (
+type KeyEventHandler = <T>(
   e: KeyboardEvent,
-  props: Pick<DropdownProps, 'focusedIndex' | 'items'> &
-    Pick<DropdownDispatchProps, 'focusItem' | 'selectItem' | 'toggle'>
+  props: Pick<DropdownProps<T>, 'focusedIndex' | 'items'> &
+    Pick<DropdownDispatchProps<T>, 'focusItem' | 'selectItem' | 'toggle'>
 ) => void;
+
+type Headless<T> = {
+  children: (props: T) => JSX.Element | null;
+};
 
 const KEY_EVENT_MAP: Partial<
   Record<KeyboardEvent<Element>['key'], KeyEventHandler>
@@ -56,140 +53,149 @@ const KEY_EVENT_MAP: Partial<
   },
 };
 
-const DropdownContext = createContext<DropdownProps>({
-  items: [],
-  isOpen: false,
-  selectedIndex: -1,
-  focusedIndex: -1,
-  itemsRef: { current: [] },
-});
+export type DropdownContainerProps = {
+  handleKeyDown: (e: KeyboardEvent) => void;
+};
+export type DropdownTriggerProps<T> = {
+  selectedItem: T;
+  toggle: (force?: boolean) => void;
+};
+export type DropdownItemProps<T> = {
+  item: T;
+  index: number;
+  focusedIndex: number;
+  selectedIndex: number;
+  itemsRef: RefObject<HTMLLIElement[] | null[]>;
+  selectItem: Dispatch<SetStateAction<number>>;
+};
+export type DropdownListProps<T> = {
+  items: T[];
+  isOpen: boolean;
+};
 
-const DropdownDispatchContext = createContext<DropdownDispatchProps>({
-  setItems: () => {},
-  toggle: () => {},
-  selectItem: () => {},
-  focusItem: () => {},
-  handleKeyDown: () => {},
-});
+const createDropdown = <T,>() => {
+  const DropdownContext = createContext<DropdownProps<T>>({
+    items: [],
+    isOpen: false,
+    selectedIndex: -1,
+    focusedIndex: -1,
+    itemsRef: { current: [] },
+  });
 
-const useDropdown = () => useContext(DropdownContext);
-const useSetDropdown = () => useContext(DropdownDispatchContext);
+  const DropdownDispatchContext = createContext<DropdownDispatchProps<T>>({
+    setItems: () => {},
+    toggle: () => {},
+    selectItem: () => {},
+    focusItem: () => {},
+    handleKeyDown: () => {},
+  });
 
-const DropdownContextProvider = ({
-  list,
-  children,
-}: { list: DropdownItemType[] } & PropsWithChildren) => {
-  const [items, setItems] = useState<DropdownItemType[]>(list);
-  const [isOpen, setIsOpen] = useState(false);
-  const [focusedIndex, setFocusedIndex] = useState(-1);
-  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const useDropdown = () => useContext(DropdownContext);
+  const useSetDropdown = () => useContext(DropdownDispatchContext);
 
-  const toggle = (force?: boolean) => {
-    setIsOpen((prev) => (typeof force === 'boolean' ? force : !prev));
-  };
+  const DropdownContextProvider = ({
+    list,
+    children,
+  }: { list: T[] } & PropsWithChildren) => {
+    const [items, setItems] = useState<T[]>(list);
+    const [isOpen, setIsOpen] = useState(false);
+    const [focusedIndex, setFocusedIndex] = useState(-1);
+    const [selectedIndex, setSelectedIndex] = useState(-1);
 
-  const handleKeyDown = (e: KeyboardEvent<Element>) => {
-    const { key } = e;
-    const handler = KEY_EVENT_MAP[key];
-    if (handler) {
-      handler(e, {
-        items,
-        focusedIndex,
-        focusItem: setFocusedIndex,
-        selectItem: setSelectedIndex,
-        toggle,
-      });
-    }
-  };
+    const toggle = (force?: boolean) => {
+      setIsOpen((prev) => (typeof force === 'boolean' ? force : !prev));
+    };
 
-  const itemsRef = useRef<HTMLLIElement[] | null[]>([]);
-
-  return (
-    <DropdownContext.Provider
-      value={{
-        items,
-        isOpen,
-        selectedIndex,
-        focusedIndex,
-        itemsRef,
-      }}
-    >
-      <DropdownDispatchContext.Provider
-        value={{
-          setItems,
-          toggle,
-          selectItem: setSelectedIndex,
+    const handleKeyDown = (e: KeyboardEvent<Element>) => {
+      const { key } = e;
+      const handler = KEY_EVENT_MAP[key];
+      if (handler) {
+        handler(e, {
+          items,
+          focusedIndex,
           focusItem: setFocusedIndex,
-          handleKeyDown,
+          selectItem: setSelectedIndex,
+          toggle,
+        });
+      }
+    };
+
+    const itemsRef = useRef<HTMLLIElement[] | null[]>([]);
+
+    return (
+      <DropdownContext.Provider
+        value={{
+          items,
+          isOpen,
+          selectedIndex,
+          focusedIndex,
+          itemsRef,
         }}
       >
-        {children}
-      </DropdownDispatchContext.Provider>
-    </DropdownContext.Provider>
-  );
+        <DropdownDispatchContext.Provider
+          value={{
+            setItems,
+            toggle,
+            selectItem: setSelectedIndex,
+            focusItem: setFocusedIndex,
+            handleKeyDown,
+          }}
+        >
+          {children}
+        </DropdownDispatchContext.Provider>
+      </DropdownContext.Provider>
+    );
+  };
+
+  const DropdownContainer = ({
+    Component,
+    children,
+  }: { Component: (props: any) => JSX.Element } & PropsWithChildren) => {
+    const { handleKeyDown } = useSetDropdown();
+    return <Component handleKeyDown={handleKeyDown}>{children}</Component>;
+  };
+
+  const DropdownTrigger = ({ children }: Headless<DropdownTriggerProps<T>>) => {
+    const { selectedIndex, items } = useDropdown();
+    const { toggle } = useSetDropdown();
+    const selectedItem = items[selectedIndex];
+
+    return children({ selectedItem, toggle });
+  };
+
+  const DropdownItem = ({
+    item,
+    index,
+    children,
+  }: Headless<DropdownItemProps<T>> &
+    Pick<DropdownItemProps<T>, 'item' | 'index'>) => {
+    const { selectedIndex, focusedIndex, itemsRef } = useDropdown();
+    const { selectItem } = useSetDropdown();
+
+    return children({
+      item,
+      index,
+      focusedIndex,
+      selectedIndex,
+      itemsRef,
+      selectItem,
+    });
+  };
+
+  const DropdownList = ({ children }: Headless<DropdownListProps<T>>) => {
+    const { items, isOpen } = useDropdown();
+    return children({ items, isOpen });
+  };
+
+  const Dropdown = {
+    Provider: DropdownContextProvider,
+    Container: DropdownContainer,
+    Trigger: DropdownTrigger,
+    List: DropdownList,
+    Item: DropdownItem,
+  };
+
+  return Dropdown;
 };
 
-const DropdownContainer = ({
-  Component,
-  children,
-}: { Component: (props: any) => JSX.Element } & PropsWithChildren) => {
-  const { handleKeyDown } = useSetDropdown();
-  return <Component handleKeyDown={handleKeyDown}>{children}</Component>;
-};
-
-const DropdownTrigger = ({
-  Component,
-}: {
-  Component: (props: any) => JSX.Element;
-}) => {
-  const { selectedIndex, items } = useDropdown();
-  const { toggle } = useSetDropdown();
-  const selectedItem = items[selectedIndex];
-
-  return <Component selectedItem={selectedItem} toggle={toggle} />;
-};
-
-const DropdownItem = ({
-  item,
-  index,
-  Component,
-}: {
-  item: DropdownItemType;
-  index: number;
-  Component: (props: any) => JSX.Element;
-}) => {
-  const { selectedIndex, focusedIndex, itemsRef } = useDropdown();
-  const { selectItem } = useSetDropdown();
-
-  return (
-    <Component
-      item={item}
-      index={index}
-      focusedIndex={focusedIndex}
-      selectedIndex={selectedIndex}
-      itemsRef={itemsRef}
-      selectItem={selectItem}
-    />
-  );
-};
-
-const DropdownList = ({
-  Component,
-}: {
-  Component: (props: any) => JSX.Element;
-}) => {
-  const { items, isOpen } = useDropdown();
-  if (!isOpen) return null;
-
-  return <Component items={items} isOpen={isOpen} />;
-};
-
-const Dropdown = {
-  Provider: DropdownContextProvider,
-  Container: DropdownContainer,
-  Trigger: DropdownTrigger,
-  List: DropdownList,
-  Item: DropdownItem,
-};
-
-export default Dropdown;
+export default createDropdown;

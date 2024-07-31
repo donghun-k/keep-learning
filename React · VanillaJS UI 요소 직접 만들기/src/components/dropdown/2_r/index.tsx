@@ -1,15 +1,23 @@
 import { KeyboardEvent, ReactNode, RefObject } from 'react';
 import data from '../data';
-import Dropdown, { DropdownItemType } from './Dropdown';
+import createDropdown, {
+  DropdownItemProps,
+  DropdownListProps,
+  DropdownTriggerProps,
+} from './Dropdown';
 import cx from '../cx';
+
+type DropdownItemType = {
+  id: string;
+  text: string;
+};
+
+const Dropdown = createDropdown<DropdownItemType>();
 
 const DDTrigger = ({
   selectedItem,
   toggle,
-}: {
-  selectedItem: DropdownItemType;
-  toggle: (force?: boolean) => void;
-}) => {
+}: DropdownTriggerProps<DropdownItemType>) => {
   return (
     <button
       className={cx('button-toggle')}
@@ -31,14 +39,7 @@ const DDItem = ({
   focusedIndex,
   selectItem,
   itemsRef,
-}: {
-  item: DropdownItemType;
-  index: number;
-  selectedIndex: number;
-  focusedIndex: number;
-  selectItem: (index: number) => void;
-  itemsRef: RefObject<HTMLLIElement[]>;
-}) => {
+}: DropdownItemProps<DropdownItemType>) => {
   return (
     <li
       className={cx('item')}
@@ -54,17 +55,14 @@ const DDItem = ({
   );
 };
 
-const DDList = ({
-  items,
-  isOpen,
-}: {
-  items: DropdownItemType[];
-  isOpen: boolean;
-}) => {
+const DDList = ({ items, isOpen }: DropdownListProps<DropdownItemType>) => {
+  if (!isOpen) return null;
   return (
     <ul className={cx('DropdownList')}>
       {items.map((item, i) => (
-        <Dropdown.Item key={item.id} item={item} index={i} Component={DDItem} />
+        <Dropdown.Item key={item.id} item={item} index={i}>
+          {DDItem}
+        </Dropdown.Item>
       ))}
     </ul>
   );
@@ -92,8 +90,8 @@ const Dropdown2 = () => {
       </h3>
       <Dropdown.Provider list={data}>
         <Dropdown.Container Component={DDContainer}>
-          <Dropdown.Trigger Component={DDTrigger} />
-          <Dropdown.List Component={DDList} />
+          <Dropdown.Trigger>{DDTrigger}</Dropdown.Trigger>
+          <Dropdown.List>{DDList}</Dropdown.List>
         </Dropdown.Container>
       </Dropdown.Provider>
     </article>
