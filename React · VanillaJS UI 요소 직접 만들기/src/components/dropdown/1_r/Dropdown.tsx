@@ -43,12 +43,15 @@ const KEY_EVENT_MAP: Partial<
   Record<KeyboardEvent<Element>['key'], KeyEventHandler>
 > = {
   ArrowUp: (e, { focusItem }) => {
+    e.preventDefault();
     focusItem((prev) => Math.max(prev - 1, 0));
   },
   ArrowDown: (e, { focusItem, items }) => {
+    e.preventDefault();
     focusItem((prev) => Math.min(prev + 1, items.length - 1));
   },
   Enter: (e, { selectItem, focusedIndex }) => {
+    e.preventDefault();
     selectItem(focusedIndex);
   },
   Escape: (e, { toggle }) => {
@@ -103,6 +106,24 @@ const DropdownContextProvider = ({
     }
   };
 
+  useEffect(() => {
+    const targetElem = itemsRef.current?.[focusedIndex];
+    if (targetElem)
+      targetElem.scrollIntoView({
+        block: 'nearest',
+      });
+  }, [focusedIndex]);
+
+  useEffect(() => {
+    const closeDropdown = () => toggle(false);
+    if (isOpen) {
+      window.addEventListener('click', closeDropdown, { once: true });
+    }
+    return () => {
+      window.removeEventListener('click', closeDropdown);
+    };
+  }, [isOpen]);
+
   return (
     <DropdownContext.Provider
       value={{
@@ -131,7 +152,11 @@ const DropdownContextProvider = ({
 const DropdownContainer = ({ children }: PropsWithChildren) => {
   const { handleKeyDown } = useSetDropdown();
   return (
-    <div className={cx('Dropdown')} onKeyDown={handleKeyDown}>
+    <div
+      className={cx('Dropdown')}
+      onKeyDown={handleKeyDown}
+      onClick={(e) => e.stopPropagation()}
+    >
       {children}
     </div>
   );
@@ -159,13 +184,11 @@ const DropdownTrigger = () => {
 const DropdownItem = ({
   item,
   index,
-  itemsRef,
 }: {
   item: DropdownItemType;
   index: number;
-  itemsRef: RefObject<HTMLLIElement[] | null[]>;
 }) => {
-  const { selectedIndex, focusedIndex } = useDropdown();
+  const { selectedIndex, focusedIndex, itemsRef } = useDropdown();
   const { selectItem } = useSetDropdown();
 
   return (
@@ -175,7 +198,7 @@ const DropdownItem = ({
       aria-selected={selectedIndex === index}
       aria-current={focusedIndex === index}
       ref={(r) => {
-        if (itemsRef.current) itemsRef.current[index] = r;
+        if (itemsRef.current) itemsRef.current[index] = r!;
       }}
     >
       <button onClick={() => selectItem(index)}>{item.text}</button>
@@ -184,19 +207,13 @@ const DropdownItem = ({
 };
 
 const DropdownList = () => {
-  const { items, isOpen, focusedIndex, itemsRef } = useDropdown();
+  const { items, isOpen } = useDropdown();
   if (!isOpen) return null;
-
-  useEffect(() => {
-    itemsRef.current![focusedIndex]?.scrollIntoView({
-      block: 'nearest',
-    });
-  }, [focusedIndex]);
 
   return (
     <ul className={cx('DropdownList')}>
       {items.map((item, i) => (
-        <DropdownItem key={item.id} index={i} item={item} itemsRef={itemsRef} />
+        <DropdownItem key={item.id} index={i} item={item} />
       ))}
     </ul>
   );
