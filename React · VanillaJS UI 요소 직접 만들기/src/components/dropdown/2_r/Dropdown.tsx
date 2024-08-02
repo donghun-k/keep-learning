@@ -6,6 +6,7 @@ import {
   RefObject,
   SetStateAction,
   useContext,
+  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -121,6 +122,24 @@ const createDropdown = <T,>() => {
     };
 
     const itemsRef = useRef<HTMLLIElement[] | null[]>([]);
+
+    useEffect(() => {
+      const targetElem = itemsRef.current?.[focusedIndex];
+      if (targetElem)
+        targetElem.scrollIntoView({
+          block: 'nearest',
+        });
+    }, [focusedIndex]);
+
+    useEffect(() => {
+      const closeDropdown = () => toggle(false);
+      if (isOpen) {
+        window.addEventListener('click', closeDropdown, { once: true });
+      }
+      return () => {
+        window.removeEventListener('click', closeDropdown);
+      };
+    }, [isOpen]);
 
     return (
       <DropdownContext.Provider

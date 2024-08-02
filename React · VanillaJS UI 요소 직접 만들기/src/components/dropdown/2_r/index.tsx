@@ -76,7 +76,11 @@ const DDContainer = ({
   children: ReactNode;
 }) => {
   return (
-    <div className={cx('Dropdown')} onKeyDown={handleKeyDown}>
+    <div
+      className={cx('Dropdown')}
+      onKeyDown={handleKeyDown}
+      onClick={(e) => e.stopPropagation()}
+    >
       {children}
     </div>
   );
