@@ -1,15 +1,22 @@
+import ViewportContextProvider from '@/context/viewportContext';
 import Dropdown1 from './1_r';
 import Dropdown2 from './2_r';
 import Dropdown3 from './3_r';
 import cx from './cx';
+import Dropdown4 from './4_r';
 
 const Dropdowns = () => {
   return (
-    <div className={cx('Dropdowns')}>
-      <Dropdown1 />
-      <Dropdown2 />
-      <Dropdown3 />
-    </div>
+    <ViewportContextProvider>
+      <div className={cx('Dropdowns')}>
+        <h2>Dropdown</h2>
+        <Dropdown1 />
+        <Dropdown2 />
+        <Dropdown3 />
+        <Dropdown4 />
+        <div id="popoverRoot" />
+      </div>
+    </ViewportContextProvider>
   );
 };
 
