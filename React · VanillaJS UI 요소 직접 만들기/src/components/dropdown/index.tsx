@@ -8,14 +8,12 @@ import Dropdown4 from './4_r';
 const Dropdowns = () => {
   return (
     <ViewportContextProvider>
-      <div className={cx('Dropdowns')}>
         <h2>Dropdown</h2>
         <Dropdown1 />
         <Dropdown2 />
         <Dropdown3 />
         <Dropdown4 />
         <div id="popoverRoot" />
-      </div>
     </ViewportContextProvider>
   );
 };
