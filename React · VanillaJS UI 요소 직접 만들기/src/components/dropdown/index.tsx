@@ -9,7 +9,6 @@ import Dropdown5 from './5_r';
 const Dropdowns = () => {
   return (
     <ViewportContextProvider>
-      <div className={cx('Dropdowns')}>
         <h2>Dropdown</h2>
         <Dropdown1 />
         <Dropdown2 />
@@ -17,7 +16,6 @@ const Dropdowns = () => {
         <Dropdown4 />
         <Dropdown5 />
         <div id="popoverRoot" />
-      </div>
     </ViewportContextProvider>
   );
 };
