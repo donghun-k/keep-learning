@@ -4,6 +4,7 @@ import Dropdown2 from './2_r';
 import Dropdown3 from './3_r';
 import cx from './cx';
 import Dropdown4 from './4_r';
+import Dropdown5 from './5_r';
 
 const Dropdowns = () => {
   return (
@@ -14,6 +15,7 @@ const Dropdowns = () => {
         <Dropdown2 />
         <Dropdown3 />
         <Dropdown4 />
+        <Dropdown5 />
         <div id="popoverRoot" />
       </div>
     </ViewportContextProvider>
